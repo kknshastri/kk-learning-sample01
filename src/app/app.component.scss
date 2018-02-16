@@ -1,0 +1,32 @@
+// Global Styles Here
+@import 'shared/styles/common';
+
+.headerSection {
+    background-color: $headerBgColor;
+    height: $headerSectionHeight;
+    padding: $headerSectionPadding;
+    border-bottom: $headerBottomBorder;
+}
+
+.contentSection {
+    height: $contentSectionHeight;
+    >.row {
+        height: $contentSectionHeight;
+    }
+    .contentContainer {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        overflow: auto;
+    }
+}
+
+.leftSidebarContainer {
+    min-width: $leftSidebarMinWidth;
+    max-width: $leftSidebarMaxWidth;
+    background-color: $leftSidebarBgColor;
+}
+.footerSection {
+    background-color: $footerBgColor;
+    height: $footerSectionHeight;
+    padding: $footerSectionPadding;
+}
