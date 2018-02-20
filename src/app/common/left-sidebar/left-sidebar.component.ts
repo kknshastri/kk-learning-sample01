@@ -1,11 +1,20 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
+import { NgRedux } from 'ng2-redux';
+// import { INCREMENT } from '../../action/actions';
+import { AppState } from '../../store/store';
+import { Observable } from 'rxjs/Observable';
+
 @Component({
   selector: 'app-left-sidebar',
   templateUrl: './left-sidebar.component.html',
   styleUrls: ['./left-sidebar.component.scss']
 })
 export class LeftSidebarComponent implements OnInit, OnDestroy {
+
+  name: Observable<string>;
+  counter: Observable<number>;
+
 
   secondsInNumber: number = 0;
   seconds: number | string = '00';
@@ -14,8 +23,11 @@ export class LeftSidebarComponent implements OnInit, OnDestroy {
   remainingTime: string = this.hours + ':' + this.minutes + ':' + this.seconds + ' Hours';
   clockInterval: any;
 
-  constructor() {
-    this.secondsInNumber = 8;
+  constructor(private ngRedux: NgRedux<AppState>) {
+    this.name = ngRedux.select('testName');
+    this.counter = ngRedux.select('testCounter');
+
+    this.secondsInNumber = 3670;
   }
 
   ngOnInit() {
@@ -32,14 +44,14 @@ export class LeftSidebarComponent implements OnInit, OnDestroy {
     let MM: number | string = 0;
     let SS: number | string = 0;
 
-    if(this.secondsInNumber >= (60 * 60)) {
-      HH = Math.floor(this.secondsInNumber/(60 * 60));
-      MM = Math.floor((this.secondsInNumber % (60 * 60))/60);
+    if (this.secondsInNumber >= (60 * 60)) {
+      HH = Math.floor(this.secondsInNumber / (60 * 60));
+      MM = Math.floor((this.secondsInNumber % (60 * 60)) / 60);
       SS = this.secondsInNumber % 60;
       // console.log('HH:MM:SS ===>> ' + HH + ':' + MM + ':' + SS);
     } else if (this.secondsInNumber > 60) {
       HH = 0;
-      MM = Math.floor(this.secondsInNumber/60);
+      MM = Math.floor(this.secondsInNumber / 60);
       SS = this.secondsInNumber % 60;
       // console.log('MM ===>> ' + MM);
     } else if (this.secondsInNumber > 0) {
@@ -63,8 +75,13 @@ export class LeftSidebarComponent implements OnInit, OnDestroy {
     this.remainingTime = HH + ':' + MM + ':' + SS + ' Hours';
 
     console.log('Running Clock...');
-    this.secondsInNumber -= 1;
+    this.secondsInNumber -= 37;
     console.log(this.secondsInNumber);
   }
+
+
+  // increment() {
+  //   this.ngRedux.dispatch({type: INCREMENT});
+  // };
 
 }

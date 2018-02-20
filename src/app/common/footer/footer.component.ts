@@ -1,5 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { QuestionService } from '../../services/question.service';
+
+import { NgRedux } from 'ng2-redux';
+import { INCREMENT, DECREMENT } from '../../action/actions';
+import { AppState } from '../../store/store';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-footer',
@@ -8,21 +12,18 @@ import { QuestionService } from '../../services/question.service';
 })
 export class FooterComponent implements OnInit {
 
-  constructor(public questService: QuestionService) {
+  constructor(private ngRedux: NgRedux<AppState>) {
   }
 
   ngOnInit() {
   }
 
-  // @Output()
-  // loadNextQuestions: EventEmitter<void> = new EventEmitter<void>();
-
-  loadNext() {
-    console.log('Loading next...');
-    // this.loadNextQuestions.emit(null);
-    this.questService.updateLoadNext();
+  loadNextQuestion() {
+    this.ngRedux.dispatch({ type: INCREMENT });
   }
 
-
+  loadPreviousQuestion() {
+    this.ngRedux.dispatch({ type: DECREMENT });
+  }
 
 }

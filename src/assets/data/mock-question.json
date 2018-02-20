@@ -1,0 +1,127 @@
+{
+    "questionSets": [
+        {
+            "questionSetName": "Set A - Java",
+            "questionSeries": "2018-Java-A",
+            "allQuestions": [
+                {
+                    "quesId": "Q001",
+                    "title": "Which is Capital of India?",
+                    "description": "Kindly read the below question and mark the correct answer.",
+                    "answerType": "SingleAnswer",
+                    "answerOptions": [
+                        "Karnataka",
+                        "New Delhi",
+                        "Maharashtra",
+                        "Goa"
+                    ],
+                    "answerResponse": ""
+                },
+                {
+                    "quesId": "Q002",
+                    "title": "Currency of India?",
+                    "description": "",
+                    "answerType": "SingleAnswer",
+                    "answerOptions": [
+                        "Indian Rupees",
+                        "Dollar",
+                        "Euro"
+                    ],
+                    "answerResponse": ""
+                },
+                {
+                    "quesId": "Q003",
+                    "title": "Which all are browsers",
+                    "description": "",
+                    "answerType": "MultipleAnswer",
+                    "answerOptions": [
+                        "Google Chrome",
+                        "Internet Explorer",
+                        "Safari",
+                        "Windows Media Player"
+                    ],
+                    "answerResponse": []
+                },
+                {
+                    "quesId": "Q004",
+                    "title": "Explain the basics of Object Oriented Concepts.",
+                    "description": "",
+                    "answerType": "TextAnswer",
+                    "answerOptions": [],
+                    "answerResponse": ""
+                },
+                {
+                    "quesId": "Q005",
+                    "title": "Which is Capital of India?",
+                    "description": "Kindly read the below question and mark the correct answer.",
+                    "answerType": "SingleAnswer",
+                    "answerOptions": [
+                        "Karnataka",
+                        "New Delhi",
+                        "Maharashtra",
+                        "Goa"
+                    ],
+                    "answerResponse": ""
+                },
+                {
+                    "quesId": "Q006",
+                    "title": "Currency of India?",
+                    "description": "",
+                    "answerType": "SingleAnswer",
+                    "answerOptions": [
+                        "Indian Rupees",
+                        "Dollar",
+                        "Euro"
+                    ],
+                    "answerResponse": ""
+                },
+                {
+                    "quesId": "Q007",
+                    "title": "Which all are browsers",
+                    "description": "",
+                    "answerType": "MultipleAnswer",
+                    "answerOptions": [
+                        "Google Chrome",
+                        "Internet Explorer",
+                        "Safari",
+                        "Windows Media Player"
+                    ],
+                    "answerResponse": []
+                },
+                {
+                    "quesId": "Q008",
+                    "title": "Explain the basics of Object Oriented Concepts.",
+                    "description": "",
+                    "answerType": "TextAnswer",
+                    "answerOptions": [],
+                    "answerResponse": ""
+                },
+                {
+                    "quesId": "Q009",
+                    "title": "Currency of India?",
+                    "description": "",
+                    "answerType": "SingleAnswer",
+                    "answerOptions": [
+                        "Indian Rupees",
+                        "Dollar",
+                        "Euro"
+                    ],
+                    "answerResponse": ""
+                },
+                {
+                    "quesId": "Q010",
+                    "title": "Which all are browsers",
+                    "description": "",
+                    "answerType": "MultipleAnswer",
+                    "answerOptions": [
+                        "Google Chrome",
+                        "Internet Explorer",
+                        "Safari",
+                        "Windows Media Player"
+                    ],
+                    "answerResponse": []
+                }
+            ]
+        }
+    ]
+}

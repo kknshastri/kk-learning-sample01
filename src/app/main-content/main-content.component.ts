@@ -12,12 +12,7 @@ export class MainContentComponent implements OnInit {
   constructor(public questService: QuestionService) {
   }
 
-  idxFromService: number = 0;
-
   ngOnInit() {
-    console.log('Reading index from service...');
-    console.log(this.questService.getStartIndex());
-    this.idxFromService = this.questService.getStartIndex();
   }
 
   stepSize: number = 5;
