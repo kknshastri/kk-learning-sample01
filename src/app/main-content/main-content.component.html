@@ -6,8 +6,9 @@
 </div>
 
 <div class="row marginLeftRightZero">
-    <div class="col-12 questionRow" *ngFor="let ques of allQuestions | slice:startIndex:endIndex; let idx = index">
-      <div class="row">Ques {{idx + 1 + startIndex}}) {{ques.title}}</div>
+    <!-- <div class="col-12 questionRow" *ngFor="let ques of allQuestions | slice:startIndex:endIndex; let idx = index"> -->
+        <div class="col-12 questionRow" *ngFor="let ques of allQuestions; let idx = index">
+            <div class="row">Ques {{idx + 1 + startIndex}}) {{ques.title}}</div>
       <!-- <div class="row">Question Id: {{ques.quesId}}</div> -->
       <div class="row" *ngIf="!!ques.description">{{ques.description}}</div>
 

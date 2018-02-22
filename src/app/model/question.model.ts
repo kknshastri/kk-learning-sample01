@@ -11,4 +11,5 @@ export class Question {
     answerType: string;
     answerOptions: any[];
     answerResponse: any | any[];
+    // answer : Question
 }

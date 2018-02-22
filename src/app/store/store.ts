@@ -12,7 +12,9 @@ export interface AppState {
 export const INIT_STATE: AppState = {
     testName: 'Krishna',
     testCounter: 5,
-    questionSets: []
+    questionSets: [],
+    // allQuest: [],
+    // responseBasedQuestUI: []
 };
 
 // Root Reducer

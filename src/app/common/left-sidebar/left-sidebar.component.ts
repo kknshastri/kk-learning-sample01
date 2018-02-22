@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { NgRedux } from 'ng2-redux';
+import { NgRedux } from 'ng2-redux'; // angular-redux/store
 // import { INCREMENT } from '../../action/actions';
 import { AppState } from '../../store/store';
 import { Observable } from 'rxjs/Observable';
