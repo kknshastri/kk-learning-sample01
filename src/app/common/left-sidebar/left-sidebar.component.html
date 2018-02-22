@@ -84,7 +84,7 @@
 
 <div class="row marginLeftRightZero text-center">
   <div class="col-12 paddingLeftRightZero">
-    <h6>Name: {{name | async}}</h6>
+    <h6>Name: {{name | async | json}}</h6>
     <h6>Counter: {{counter | async}}
       <span *ngIf="(counter | async) === 8">** Only when counter = 8</span>
     </h6>

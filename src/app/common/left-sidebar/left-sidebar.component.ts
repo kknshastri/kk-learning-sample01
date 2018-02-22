@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { NgRedux } from 'ng2-redux'; // angular-redux/store
-// import { INCREMENT } from '../../action/actions';
 import { AppState } from '../../store/store';
 import { Observable } from 'rxjs/Observable';
+
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-left-sidebar',
@@ -16,23 +16,24 @@ export class LeftSidebarComponent implements OnInit, OnDestroy {
   counter: Observable<number>;
 
 
-  secondsInNumber: number = 0;
+  secondsInNumber = 0;
   seconds: number | string = '00';
   minutes: number | string = '00';
   hours: number | string = '00';
   remainingTime: string = this.hours + ':' + this.minutes + ':' + this.seconds + ' Hours';
   clockInterval: any;
 
-  constructor(private ngRedux: NgRedux<AppState>) {
-    this.name = ngRedux.select('testName');
-    this.counter = ngRedux.select('testCounter');
-
+  constructor(private store: Store<any>) {
+    this.name = store.pipe(select((s) => s.rootReducer.testName));
+    this.counter = store.pipe(select('rootReducer', 'testCounter'));
     this.secondsInNumber = 3670;
   }
 
   ngOnInit() {
     console.log('left sidebar.... init..');
     this.clockInterval = setInterval(() => this.startClock(), 1000);
+    this.store.select<any>((state: any) => state)
+      .subscribe((cs: any) => console.log(cs.rootReducer.testName));
   }
 
   ngOnDestroy() {
@@ -78,10 +79,5 @@ export class LeftSidebarComponent implements OnInit, OnDestroy {
     this.secondsInNumber -= 37;
     console.log(this.secondsInNumber);
   }
-
-
-  // increment() {
-  //   this.ngRedux.dispatch({type: INCREMENT});
-  // };
 
 }

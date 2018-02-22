@@ -4,8 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { NgReduxModule, NgRedux } from 'ng2-redux';
 import { AppState, INIT_STATE, rootReducer } from './store/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './common/header/header.component';
@@ -15,6 +16,7 @@ import { MainContentComponent } from './main-content/main-content.component';
 import { QuestionService } from './services/question.service';
 import { from } from 'rxjs/observable/from';
 import { DemoComponent } from './demo/demo/demo.component';
+import { SampleEffects } from './effects/sample.effects';
 import { UserLandingComponent } from './user/user-landing/user-landing.component';
 import { AdminLandingComponent } from './admin/admin-landing/admin-landing.component';
 import { HomeContentComponent } from './admin/home-content/home-content.component';
@@ -40,13 +42,13 @@ import { SampleQuestionComponent } from './user/sample-question/sample-question.
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    NgReduxModule
+    StoreModule.forRoot({rootReducer: rootReducer}),
+    EffectsModule.forRoot([ SampleEffects ])
   ],
   providers: [QuestionService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(ngRedux: NgRedux<AppState>) {
-    ngRedux.configureStore(rootReducer, INIT_STATE);
+  constructor() {
   }
 }
