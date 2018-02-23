@@ -1,9 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
-import { NgRedux } from 'ng2-redux';
-import { INCREMENT, DECREMENT } from '../../action/actions';
+import { INCREMENT, DECREMENT, INCREMENT_FROM_EFFECT, DECREMENT_FROM_EFFECT } from '../../action/actions';
 import { AppState } from '../../store/store';
 import { Observable } from 'rxjs/Observable';
+
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-footer',
@@ -12,18 +13,26 @@ import { Observable } from 'rxjs/Observable';
 })
 export class FooterComponent implements OnInit {
 
-  constructor(private ngRedux: NgRedux<AppState>) {
+  constructor(private store: Store<AppState>) {
   }
 
   ngOnInit() {
   }
 
   loadNextQuestion() {
-    this.ngRedux.dispatch({ type: INCREMENT });
+    this.store.dispatch({ type: INCREMENT });
   }
 
   loadPreviousQuestion() {
-    this.ngRedux.dispatch({ type: DECREMENT });
+    this.store.dispatch({ type: DECREMENT });
+  }
+
+  storeDec() {
+    this.store.dispatch({ type: DECREMENT_FROM_EFFECT });
+  }
+
+  storeInc() {
+    this.store.dispatch({ type: INCREMENT_FROM_EFFECT });
   }
 
 }

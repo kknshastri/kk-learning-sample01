@@ -1,0 +1,82 @@
+{
+    "qset": {
+        "q_title": "",
+        "info": "",
+        "questions": [
+            {
+                "question": {
+                    "quesId": "Q001",
+                    "title": "Which is Capital of India?",
+                    "description": "Kindly read the below question and mark the correct answer.",
+                    "answerType": "SingleAnswer",
+                    "answerOptions": [
+                        "Karnataka",
+                        "New Delhi",
+                        "Maharashtra",
+                        "Goa"
+                    ],
+                    "answer": {}
+                }
+            },
+            {
+                "question": {
+                    "quesId": "Q002",
+                    "title": "Which is Capital of India?",
+                    "description": "Kindly read the below question and mark the correct answer.",
+                    "answerType": "SingleAnswer",
+                    "answerOptions": [
+                        "Karnataka",
+                        "New Delhi",
+                        "Maharashtra",
+                        "Goa"
+                    ],
+                    "answer": {}
+                }
+            },
+            {
+                "question": {
+                    "quesId": "Q003",
+                    "title": "Which is Capital of India?",
+                    "description": "Kindly read the below question and mark the correct answer.",
+                    "answerType": "SingleAnswer",
+                    "answerOptions": [
+                        "Yes",
+                        "No"
+                    ],
+                    "answer": {
+                        "Yes": {
+                            "question": {
+                                "quesId": "Q003_1",
+                                "title": "Which is Capital of India?",
+                                "description": "Kindly read the below question and mark the correct answer.",
+                                "answerType": "SingleAnswer",
+                                "answerOptions": [
+                                    "Karnataka",
+                                    "New Delhi",
+                                    "Maharashtra",
+                                    "Goa"
+                                ],
+                                "answer": {}
+                            }
+                        },
+                        "No": {
+                            "question": {
+                                "quesId": "Q003_2",
+                                "title": "Which is Capital of India?",
+                                "description": "Kindly read the below question and mark the correct answer.",
+                                "answerType": "SingleAnswer",
+                                "answerOptions": [
+                                    "Karnataka",
+                                    "New Delhi",
+                                    "Maharashtra",
+                                    "Goa"
+                                ],
+                                "answer": {}
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}
