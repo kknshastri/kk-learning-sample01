@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeContentComponent implements OnInit {
 
+  showCreateSectionForm: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  toggleCreateSectionForm() {
+    this.showCreateSectionForm = !this.showCreateSectionForm;
   }
 
 }

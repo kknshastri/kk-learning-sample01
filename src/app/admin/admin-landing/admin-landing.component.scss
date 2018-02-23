@@ -9,9 +9,10 @@
 }
 
 .contentSection {
-    height: $contentSectionHeight;
+    height: $adminContentSectionHeight;
+    overflow: auto;
     >.row {
-        height: $contentSectionHeight;
+        height: $adminContentSectionHeight;
     }
     .contentContainer {
         padding-top: 15px;
@@ -25,8 +26,9 @@
     max-width: $leftSidebarMaxWidth;
     background-color: $leftSidebarBgColor;
 }
-.footerSection {
-    background-color: $footerBgColor;
-    height: $footerSectionHeight;
-    padding: $footerSectionPadding;
-}
+
+// .footerSection {
+//     background-color: $footerBgColor;
+//     height: $footerSectionHeight;
+//     padding: $footerSectionPadding;
+// }

@@ -22,22 +22,20 @@ import { AdminLandingComponent } from './admin/admin-landing/admin-landing.compo
 import { HomeContentComponent } from './admin/home-content/home-content.component';
 import { NotFoundComponent } from './common/not-found/not-found.component';
 import { SampleQuestionComponent } from './user/sample-question/sample-question.component';
+import { AdminSidebarComponent } from './admin/admin-sidebar/admin-sidebar.component';
+import { ManageQuestionsComponent } from './admin/manage-questions/manage-questions.component';
+import { ManageSectionsComponent } from './admin/manage-sections/manage-sections.component';
+import { ManageSetsComponent } from './admin/manage-sets/manage-sets.component';
+import { RelationshipViewsComponent } from './admin/relationship-views/relationship-views.component';
 
+const appDeclarations: any = [
+  AppComponent, HeaderComponent, FooterComponent, LeftSidebarComponent, MainContentComponent,
+  DemoComponent, UserLandingComponent, AdminLandingComponent, HomeContentComponent,
+  NotFoundComponent, SampleQuestionComponent, AdminSidebarComponent
+];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    LeftSidebarComponent,
-    MainContentComponent,
-    DemoComponent,
-    UserLandingComponent,
-    AdminLandingComponent,
-    HomeContentComponent,
-    NotFoundComponent,
-    SampleQuestionComponent
-  ],
+  declarations: [...appDeclarations, ManageQuestionsComponent, ManageSectionsComponent, ManageSetsComponent, RelationshipViewsComponent],
   imports: [
     BrowserModule,
     FormsModule,
