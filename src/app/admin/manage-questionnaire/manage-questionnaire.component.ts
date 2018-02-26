@@ -7,14 +7,14 @@ import * as actions from '../../action/actions';
 
 
 @Component({
-  selector: 'app-manage-sections',
-  templateUrl: './manage-sections.component.html',
-  styleUrls: ['./manage-sections.component.scss']
+  selector: 'app-manage-questionnaire',
+  templateUrl: './manage-questionnaire.component.html',
+  styleUrls: ['./manage-questionnaire.component.scss']
 })
-export class ManageSectionsComponent implements OnInit {
+export class ManageQuestionnaireComponent implements OnInit {
 
   constructor(private store: Store<any>) {
-    this.store.dispatch({ type: actions.SIDEMENU_SELECTED, payload: 'Sections' });
+    this.store.dispatch({ type: actions.SIDEMENU_SELECTED, payload: 'Questionnaire' });
   }
 
   ngOnInit() {

@@ -7,7 +7,7 @@ $footerSectionPadding: 10px 30px;
 
 // $contentSectionMinHeight: 460px;
 $contentSectionHeight: calc(100vh - 160px);
-$adminContentSectionHeight: calc(100vh - 100px);
+$adminContentSectionHeight: calc(100vh - 100px - 55px - 3px);
 
 $leftSidebarMinWidth: 200px;
 $leftSidebarMaxWidth: 250px;

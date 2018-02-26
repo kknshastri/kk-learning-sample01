@@ -8,6 +8,17 @@
     border-bottom: $headerBottomBorder;
 }
 
+.titleBarSection {
+    // border: 1px solid green;
+    background-color: $titlebarBgColor;
+    height: 55px;
+    margin-top: 3px;
+}
+.titlebarContainerLeft {
+    min-width: $leftSidebarMinWidth;
+    max-width: $leftSidebarMaxWidth;
+}
+
 .contentSection {
     height: $adminContentSectionHeight;
     overflow: auto;
@@ -24,7 +35,7 @@
 .leftSidebarContainer {
     min-width: $leftSidebarMinWidth;
     max-width: $leftSidebarMaxWidth;
-    background-color: $leftSidebarBgColor;
+    background-color: $adminLeftSidebarBgColor;
 }
 
 // .footerSection {

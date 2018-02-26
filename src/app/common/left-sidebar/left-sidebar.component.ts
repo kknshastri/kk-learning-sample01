@@ -1,8 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { AppState } from '../../store/store';
 import { Observable } from 'rxjs/Observable';
-
+import { AppState } from '../../store/store';
 import { Store, select } from '@ngrx/store';
 
 @Component({

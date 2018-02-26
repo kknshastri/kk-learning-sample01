@@ -1,20 +1,24 @@
 <div class="row">
   <div class="col">
     <div class="card text-center">
-      <div class="card-header">
-        <h4>Manage Questions</h4>
-      </div>
-      <div class="card-block text-left cardActionHeaderRow">
-        <!-- <button class="btn btn-primary" (click)="toggleCreateSectionForm()" *ngIf="showCreateSectionForm">Cancel</button> -->
-        <button class="btn btn-primary" *ngIf="!showCreateSectionForm" data-toggle="modal" data-target="#newQuesModal">Add New Question</button>
+      <div class="card-header text-left">
+        <!-- <button class="btn btn-primary createButton" data-toggle="modal" data-target="#newQuesModal">+</button>
+        <a class="btn btn-primary createButton" data-toggle="modal" data-target="#newQuesModal">+</a> -->
+        <span class="badge badge-success createBadge" data-toggle="modal" data-target="#newQuesModal">+</span>
+        <h4>Create</h4>
       </div>
       <div class="card-block">
-        <div class="list-group">
-          <button type="button" class="list-group-item list-group-item-action">Question 1</button>
-          <button type="button" class="list-group-item list-group-item-action">Question 2</button>
-          <button type="button" class="list-group-item list-group-item-action">Question 3</button>
-          <!-- <button type="button" class="list-group-item list-group-item-action" disabled>Angular 5</button> -->
+        <div class="row">
+          <div class="col">
+            <form>
+              <div class="form-group">
+                <input type="email" class="form-control searchBox" id="questionnaireTitle" aria-describedby="emailHelp" placeholder="search questionnaire title">
+              </div>
+            </form>
+          </div>
         </div>
+
+
       </div>
 
     </div>

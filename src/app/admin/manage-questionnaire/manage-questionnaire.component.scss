@@ -1,0 +1,29 @@
+.card {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    min-height: 400px;
+    .card-header {
+        h4 {
+            display: inline-block;
+        }
+        .createButton {
+            border-radius: 50%;
+        }
+        .createBadge {
+            font-size: 21px;
+            border-radius: 50%;
+            background-color: #2eb98f;
+            cursor: pointer;
+        }
+    }
+}
+.cardActionHeaderRow {
+    padding-bottom: 0;
+    flex: 0 1 auto;
+}
+.searchBox {
+    width: 350px;
+    &:focus {
+        border-color: #2eb98f;
+    }
+}

@@ -4,10 +4,10 @@
 //     Text = 'TextAnswer'
 // }
 
-export class Question {
+export interface Question {
     quesId: string;
     title: string;
-    description: string;
+    description?: string;
     answerType: string;
     answerOptions: any[];
     answerResponse: any | any[];

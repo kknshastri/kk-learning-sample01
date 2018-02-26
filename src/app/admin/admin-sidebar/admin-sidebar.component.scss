@@ -1,2 +1,14 @@
 // Global Styles Here
 @import '../../shared/styles/common';
+
+button {
+    background-color: $adminLeftSidebarBgColor;
+}
+button:focus {
+    outline: none;
+}
+button.activeMenu {
+    background-color: #2eb98f;
+    font-weight: bold;
+    color: #ffffff;
+}

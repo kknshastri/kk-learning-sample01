@@ -14,7 +14,6 @@ import { FooterComponent } from './common/footer/footer.component';
 import { LeftSidebarComponent } from './common/left-sidebar/left-sidebar.component';
 import { MainContentComponent } from './main-content/main-content.component';
 import { QuestionService } from './services/question.service';
-import { from } from 'rxjs/observable/from';
 import { DemoComponent } from './demo/demo/demo.component';
 import { SampleEffects } from './effects/sample.effects';
 import { UserLandingComponent } from './user/user-landing/user-landing.component';
@@ -26,16 +25,20 @@ import { AdminSidebarComponent } from './admin/admin-sidebar/admin-sidebar.compo
 import { ManageQuestionsComponent } from './admin/manage-questions/manage-questions.component';
 import { ManageSectionsComponent } from './admin/manage-sections/manage-sections.component';
 import { ManageSetsComponent } from './admin/manage-sets/manage-sets.component';
-import { RelationshipViewsComponent } from './admin/relationship-views/relationship-views.component';
+import { TitlebarSectionComponent } from './admin/titlebar-section/titlebar-section.component';
+import { AdminHeaderComponent } from './admin/admin-header/admin-header.component';
+import { ManageQuestionnaireComponent } from './admin/manage-questionnaire/manage-questionnaire.component';
+import { ManageUsersComponent } from './admin/manage-users/manage-users.component';
 
 const appDeclarations: any = [
   AppComponent, HeaderComponent, FooterComponent, LeftSidebarComponent, MainContentComponent,
   DemoComponent, UserLandingComponent, AdminLandingComponent, HomeContentComponent,
-  NotFoundComponent, SampleQuestionComponent, AdminSidebarComponent
+  NotFoundComponent, SampleQuestionComponent, AdminSidebarComponent, ManageQuestionsComponent,
+  ManageSectionsComponent, ManageSetsComponent, TitlebarSectionComponent, AdminHeaderComponent
 ];
 
 @NgModule({
-  declarations: [...appDeclarations, ManageQuestionsComponent, ManageSectionsComponent, ManageSetsComponent, RelationshipViewsComponent],
+  declarations: [...appDeclarations, ManageQuestionnaireComponent, ManageUsersComponent],
   imports: [
     BrowserModule,
     FormsModule,

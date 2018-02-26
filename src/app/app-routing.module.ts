@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { MainContentComponent } from './main-content/main-content.component';
 import { DemoComponent } from './demo/demo/demo.component';
 import { UserLandingComponent } from './user/user-landing/user-landing.component';
 import { AdminLandingComponent } from './admin/admin-landing/admin-landing.component';
 import { HomeContentComponent } from './admin/home-content/home-content.component';
 import { NotFoundComponent } from './common/not-found/not-found.component';
-import { ManageSetsComponent } from './admin/manage-sets/manage-sets.component';
-import { RelationshipViewsComponent } from './admin/relationship-views/relationship-views.component';
-import { ManageSectionsComponent } from './admin/manage-sections/manage-sections.component';
 import { ManageQuestionsComponent } from './admin/manage-questions/manage-questions.component';
+import { ManageSectionsComponent } from './admin/manage-sections/manage-sections.component';
+import { ManageQuestionnaireComponent } from './admin/manage-questionnaire/manage-questionnaire.component';
+import { ManageUsersComponent } from './admin/manage-users/manage-users.component';
 
 const routes: Routes = [
   {
@@ -30,16 +31,16 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        // component: HomeContentComponent
-        component: ManageSetsComponent
+        component: ManageQuestionsComponent
       },
       {
         path: 'home',
-        component: HomeContentComponent
+        component: ManageQuestionsComponent
+        // component: HomeContentComponent
       },
       {
-        path: 'manageSets',
-        component: ManageSetsComponent
+        path: 'homeOld',
+        component: HomeContentComponent
       },
       {
         path: 'manageQues',
@@ -50,8 +51,12 @@ const routes: Routes = [
         component: ManageSectionsComponent
       },
       {
-        path: 'relationView',
-        component: RelationshipViewsComponent
+        path: 'manageQuestionnaire',
+        component: ManageQuestionnaireComponent
+      },
+      {
+        path: 'manageUsers',
+        component: ManageUsersComponent
       },
       {
         path: '**',
