@@ -21,11 +21,11 @@ ul {
             padding-left: 25px;
             li {
                 ul {
-                    padding-left: 35px;
-                    color: #b3b3b3;
-                    list-style-type: circle;
+                    padding-left: 30px;
                     li:before {
-                        content: '';
+                        content: '\002d';
+                        margin-right: 5px;
+                        color: $dark2;
                     }
                 }
             }
@@ -37,6 +37,8 @@ ul {
     &::before{
         content: '\002B';
         margin-right: 5px;
+        color: $dark2;
+        font-weight: bold;
     }
     &.currentSec.expandedSec, &.questionnaireExpanded {
         &::before{
@@ -47,17 +49,26 @@ ul {
 .hideList {
     display: none;
 }
-.currentSec, .questionnaireTitle {
+.questionnaireTitle {
+    color: #000000;
+    // font-weight: 400;
+    font-family: "Helvetica Neue", Helvetica;
+}
+.currentSec {
     color: #000000;
     font-weight: 400;
+    font-family: "Helvetica Neue", Helvetica;
 }
 .currentQues {
     color: #000000;
     font-weight: 400;
+    font-family: "Helvetica Neue", Helvetica;
 }
 .answeredQues {
-    color: $dark1;
+    color: $dark2;
     // font-weight: bold;
+    // font-weight: 400;
+    font-family: "Helvetica Neue", Helvetica;
 }
 
 .timerValue {

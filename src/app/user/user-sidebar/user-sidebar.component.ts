@@ -126,7 +126,6 @@ export class UserSidebarComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('Inside init....');
     this.clockInterval = setInterval(() => this.startClock(), 1000);
   }
 
@@ -143,8 +142,6 @@ export class UserSidebarComponent implements OnInit {
   }
 
   selectedQuestion(ques) {
-    console.log('selectedQuestion..');
-    console.log(ques);
     this.selectedQuesIdx = ques.qid;
   }
 

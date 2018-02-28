@@ -3,9 +3,13 @@
 @import 'dimensions';
 
 * {
-    font-family: "Helvetica Neue", Helvetica;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica;
     color: #6c6c6f;
     font-weight: 200;
+}
+button, .btn {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica;
+    padding: 3px 15px;
 }
 .padLeftRightZero {
     padding-left: 0;
@@ -18,4 +22,12 @@
 
 .verticleSpace {
     height: 10px;
+}
+
+.btn-outline-success {
+    border-color: #2eb98f;
+    cursor: pointer;
+    &:hover {
+        background-color: #2eb98f;
+    }
 }

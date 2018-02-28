@@ -15,6 +15,7 @@ export interface loggedUser {
     email?: string;
     isTestInProgress?: boolean;
     isTestSubmitted?: boolean;
+    isSubmitTriggered?: boolean;
 }
 
 export interface userStates {
@@ -47,7 +48,8 @@ export const INIT_STATE: AppState = {       // allQuest: [],    // responseBased
         name: 'Krishna Kant - User',
         userId: 'USER008',
         isTestInProgress: false,
-        isTestSubmitted: false
+        isTestSubmitted: false,
+        isSubmitTriggered: false
     },
     adminStates: {
         selectedSidebarMenu: 'Questions',
@@ -64,15 +66,20 @@ export const INIT_STATE: AppState = {       // allQuest: [],    // responseBased
 export function rootReducer(state: AppState = INIT_STATE, action): AppState {
     // console.log('Inside Reducer........');
     // console.log(action);
+    console.log('State before ===');
+    console.log(state);
     switch (action.type) {
         case actions.SIDEMENU_SELECTED: return Object.assign({}, state, {
             adminStates: { selectedSidebarMenu: action.payload }
         });
 
         case actions.TEST_PROGRESS: return Object.assign({}, state, {
-            loggedInUser: { isTestInProgress: action.payload }
+            loggedInUser: Object.assign({}, state.loggedInUser, { isTestInProgress: action.payload })
         });
 
+        case actions.TEST_SUBMIT_TRIGGERED: return Object.assign({}, state, {
+            loggedInUser: Object.assign({}, state.loggedInUser, { isSubmitTriggered: action.payload })
+        });
 
 
 

@@ -1,3 +1,9 @@
+<div class="row marginLeftRightZero" *ngIf="(isTestSubmitTriggered | async)">
+  <div class="col-12">
+    Are you sure...
+  </div>
+</div>
+
 <div *ngIf="(isTestinProgress | async)" class="row marginLeftRightZero questionRow">
   <div class="col">
     <div class="row marginLeftRightZero">
@@ -23,12 +29,12 @@
     <!-- <button type="button" class="btn btn-outline-success saveAnswerButton">Save Answer</button> -->
   </div>
 </div>
-<div *ngIf="(isTestinProgress | async)" class="row">
+<div *ngIf="(isTestinProgress | async)" class="row marginLeftRightZero">
   <div class="col">
-    <button type="button" class="btn btn-outline-success quesNavButton">Previous Question</button>
+    <button type="button" class="btn btn-outline-success quesNavButton">Previous</button>
   </div>
   <div class="col text-right">
-    <button type="button" class="btn btn-outline-success quesNavButton">Next Question</button>
-    <button type="button" class="btn btn-outline-success saveAnswerButton">Save Answer</button>
+    <button type="button" class="btn btn-outline-success quesNavButton">Next</button>
+    <button type="button" class="btn btn-outline-success saveAnswerButton">Save</button>
   </div>
 </div>

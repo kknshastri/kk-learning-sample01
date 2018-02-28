@@ -2,7 +2,8 @@
 @import '../../shared/styles/common';
 
 .homeRow {
-    height: 100%;
+    min-height: 100%;
+    height: auto;
     >div {
         border: .5px solid $contentBorderColor;
         padding: 25px;
