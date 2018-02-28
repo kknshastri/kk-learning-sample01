@@ -20,7 +20,7 @@ export class SampleEffects {
     krishna: Observable<any> = this.action
         .ofType(INCREMENT_FROM_EFFECT)
         .switchMap(() => {
-            console.log('Calling Effects====>>>');
+            console.log('Calling Effects====>>>');  // http
             return Observable.of({ type: DECREMENT });
         });
 

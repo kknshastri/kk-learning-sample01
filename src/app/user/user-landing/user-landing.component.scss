@@ -8,24 +8,35 @@
     border-bottom: $headerBottomBorder;
 }
 
-.contentSection {
+.userTitleBarSection {
+    background-color: $titlebarBgColor;
+    height: 55px;
+    margin-top: 3px;
+}
+
+.userContentSection {
     height: $contentSectionHeight;
+    padding: 15px;
     >.row {
-        height: $contentSectionHeight;
+        height: 100%;
+        border: .5px solid $contentBorderColor;
     }
     .contentContainer {
         padding-top: 15px;
         padding-bottom: 15px;
         overflow: auto;
     }
+    background-color: #ffffff;
 }
 
-.leftSidebarContainer {
-    min-width: $leftSidebarMinWidth;
-    max-width: $leftSidebarMaxWidth;
-    background-color: $leftSidebarBgColor;
+.userSidebarContainer {
+    overflow-x: hidden;
+    overflow-y: auto;
+    // min-width: $userSidebarMinWidth;
+    // max-width: $userSidebarMaxWidth;
+    // background-color: $userSidebarBgColor;
 }
-.footerSection {
+.userFooterSection {
     background-color: $footerBgColor;
     height: $footerSectionHeight;
     padding: $footerSectionPadding;

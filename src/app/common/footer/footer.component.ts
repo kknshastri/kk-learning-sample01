@@ -13,7 +13,7 @@ import { Store, select } from '@ngrx/store';
 })
 export class FooterComponent implements OnInit {
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<any>) {
   }
 
   ngOnInit() {

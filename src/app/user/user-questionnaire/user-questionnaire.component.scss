@@ -1,0 +1,32 @@
+// Global Styles Here
+@import '../../shared/styles/common';
+
+.questionRow {
+    min-height: 80%;
+    >div {
+        border: .5px solid $contentBorderColor;
+        padding: 25px 20px 55px 20px;
+    }
+    ul {
+        list-style-type: none;
+        li {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+.saveAnswerButton {
+    position: absolute;
+    right: 30px;
+    bottom: 82px;
+}
+
+.quesNavButton {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+input {
+    margin-top: 4px;
+    margin-right: 10px;
+}

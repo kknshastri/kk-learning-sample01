@@ -1,29 +1,34 @@
 <div class="container-fluid headerSection">
   <div class="row marginLeftRightZero">
     <div class="col-12 padLeftRightZero">
-      <app-header></app-header>
+      <app-user-header></app-user-header>
     </div>
   </div>
 </div>
 
-<div class="container-fluid contentSection padLeftRightZero">
+<div class="container-fluid userTitleBarSection">
   <div class="row marginLeftRightZero">
-    <div class="col-3 leftSidebarContainer padLeftRightZero">
-      <app-left-sidebar></app-left-sidebar>
+    <div class="col padLeftRightZero titlebarContainerRight">
+      <app-user-titlebar></app-user-titlebar>
     </div>
-    <div class="col contentContainer">
-      <!-- <app-main-content></app-main-content> -->
+  </div>
+</div>
+
+<div class="container-fluid userContentSection padLeftRightZero">
+  <div class="row marginLeftRightZero">
+    <div class="col-5 userSidebarContainer">
+      <app-user-sidebar></app-user-sidebar>
+    </div>
+    <div class="col-7 contentContainer">
       <router-outlet></router-outlet>
     </div>
   </div>
 </div>
 
-<div class="container-fluid footerSection">
+<div class="container-fluid userFooterSection">
   <div class="row marginLeftRightZero">
     <div class="col-12">
-      <!-- <app-footer (loadNextQuestions)="loadNext($event)"></app-footer> -->
-      <app-footer></app-footer>
-
+      <app-user-footer></app-user-footer>
     </div>
   </div>
 </div>

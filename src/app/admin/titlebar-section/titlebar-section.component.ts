@@ -15,7 +15,7 @@ export class TitlebarSectionComponent implements OnInit {
 
   constructor(private store: Store<any>) {
     this.selectedSidebarMenu = store.pipe(
-      select((s) => s.rootReducer.adminStates.selectedSidebarMenu)
+      select((s) => s.appState.adminStates.selectedSidebarMenu)
     );
   }
 

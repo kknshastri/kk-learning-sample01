@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
-import { AppState } from '../../store/store';
 import { Store, select } from '@ngrx/store';
 import * as actions from '../../action/actions';
 
@@ -17,7 +16,7 @@ export class AdminSidebarComponent implements OnInit {
 
   constructor(private router: Router, private store: Store<any>) {
     this.activeMenu = store.pipe(
-      select((s) => s.rootReducer.adminStates.selectedSidebarMenu)
+      select((s) => s.appState.adminStates.selectedSidebarMenu)
     );
   }
 

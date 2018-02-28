@@ -1,0 +1,14 @@
+// Global Styles Here
+@import '../../shared/styles/common';
+
+.homeRow {
+    height: 100%;
+    >div {
+        border: .5px solid $contentBorderColor;
+        padding: 25px;
+    }
+}
+
+// .startTestButton {
+
+// }

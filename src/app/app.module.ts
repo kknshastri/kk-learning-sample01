@@ -4,9 +4,11 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { AppState, INIT_STATE, rootReducer } from './store/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+
+import { rootReducer } from './store/store';
+import { SampleEffects } from './effects/sample.effects';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './common/header/header.component';
@@ -15,7 +17,7 @@ import { LeftSidebarComponent } from './common/left-sidebar/left-sidebar.compone
 import { MainContentComponent } from './main-content/main-content.component';
 import { QuestionService } from './services/question.service';
 import { DemoComponent } from './demo/demo/demo.component';
-import { SampleEffects } from './effects/sample.effects';
+
 import { UserLandingComponent } from './user/user-landing/user-landing.component';
 import { AdminLandingComponent } from './admin/admin-landing/admin-landing.component';
 import { HomeContentComponent } from './admin/home-content/home-content.component';
@@ -29,22 +31,30 @@ import { TitlebarSectionComponent } from './admin/titlebar-section/titlebar-sect
 import { AdminHeaderComponent } from './admin/admin-header/admin-header.component';
 import { ManageQuestionnaireComponent } from './admin/manage-questionnaire/manage-questionnaire.component';
 import { ManageUsersComponent } from './admin/manage-users/manage-users.component';
+import { UserFooterComponent } from './user/user-footer/user-footer.component';
+import { UserSidebarComponent } from './user/user-sidebar/user-sidebar.component';
+import { UserTitlebarComponent } from './user/user-titlebar/user-titlebar.component';
+import { UserHeaderComponent } from './user/user-header/user-header.component';
+import { UserHomeComponent } from './user/user-home/user-home.component';
+import { UserQuestionnaireComponent } from './user/user-questionnaire/user-questionnaire.component';
 
 const appDeclarations: any = [
   AppComponent, HeaderComponent, FooterComponent, LeftSidebarComponent, MainContentComponent,
   DemoComponent, UserLandingComponent, AdminLandingComponent, HomeContentComponent,
   NotFoundComponent, SampleQuestionComponent, AdminSidebarComponent, ManageQuestionsComponent,
-  ManageSectionsComponent, ManageSetsComponent, TitlebarSectionComponent, AdminHeaderComponent
+  ManageSectionsComponent, ManageSetsComponent, TitlebarSectionComponent, AdminHeaderComponent,
+  ManageQuestionnaireComponent, ManageUsersComponent, UserFooterComponent, UserSidebarComponent,
+  UserTitlebarComponent, UserHeaderComponent, UserHomeComponent, UserQuestionnaireComponent
 ];
 
 @NgModule({
-  declarations: [...appDeclarations, ManageQuestionnaireComponent, ManageUsersComponent],
+  declarations: [...appDeclarations],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    StoreModule.forRoot({rootReducer: rootReducer}),
-    EffectsModule.forRoot([ SampleEffects ])
+    StoreModule.forRoot({ appState: rootReducer }),
+    EffectsModule.forRoot([SampleEffects])
   ],
   providers: [QuestionService],
   bootstrap: [AppComponent]

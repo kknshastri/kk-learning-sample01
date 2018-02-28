@@ -5,7 +5,21 @@ import * as actions from '../action/actions';
 import { Question } from '../model/question.model';
 import { Section } from '../model/section.model';
 import { Questionnaire } from '../model/questionnaire.model';
+import { $ } from 'protractor';
 
+
+export interface loggedUser {
+    userId?: string;
+    role: string;
+    name: string;
+    email?: string;
+    isTestInProgress?: boolean;
+    isTestSubmitted?: boolean;
+}
+
+export interface userStates {
+    title: string;
+}
 
 export interface adminStates {
     selectedSidebarMenu: string;
@@ -14,15 +28,12 @@ export interface adminStates {
     manageQuestionnaire: Questionnaire[];
 }
 
-export interface userStates {
-    title: string;
-}
 
 // AppState will store all the data for Application
 export interface AppState {
     testName: string;
     testCounter: number;
-    // questionSets: any[];
+    loggedInUser: loggedUser;
     adminStates: adminStates;
     userStates: userStates;
 }
@@ -31,7 +42,13 @@ export interface AppState {
 export const INIT_STATE: AppState = {       // allQuest: [],    // responseBasedQuestUI: []
     testName: 'Krishna Kant Narayan Shastri',
     testCounter: 5,
-    // questionSets: [],
+    loggedInUser: {
+        role: 'user',
+        name: 'Krishna Kant - User',
+        userId: 'USER008',
+        isTestInProgress: false,
+        isTestSubmitted: false
+    },
     adminStates: {
         selectedSidebarMenu: 'Questions',
         manageQuestions: [],
@@ -51,6 +68,12 @@ export function rootReducer(state: AppState = INIT_STATE, action): AppState {
         case actions.SIDEMENU_SELECTED: return Object.assign({}, state, {
             adminStates: { selectedSidebarMenu: action.payload }
         });
+
+        case actions.TEST_PROGRESS: return Object.assign({}, state, {
+            loggedInUser: { isTestInProgress: action.payload }
+        });
+
+
 
 
 

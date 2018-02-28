@@ -2,6 +2,11 @@
 @import 'colors';
 @import 'dimensions';
 
+* {
+    font-family: "Helvetica Neue", Helvetica;
+    color: #6c6c6f;
+    font-weight: 200;
+}
 .padLeftRightZero {
     padding-left: 0;
     padding-right: 0;

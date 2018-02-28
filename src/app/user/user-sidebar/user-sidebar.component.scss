@@ -1,0 +1,65 @@
+// Global Styles Here
+@import '../../shared/styles/common';
+
+.timerContainer {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+// li:before {
+//     content: '\002B';
+//     margin-right: 4px;
+// }
+ul {
+    list-style-type: none;
+    padding-left: 5px;
+    li {
+        span {
+            cursor: pointer;
+        }
+        ul {
+            padding-left: 25px;
+            li {
+                ul {
+                    padding-left: 35px;
+                    color: #b3b3b3;
+                    list-style-type: circle;
+                    li:before {
+                        content: '';
+                    }
+                }
+            }
+        }
+    }
+}
+.questionnaireTitle,
+.sectionTitle {
+    &::before{
+        content: '\002B';
+        margin-right: 5px;
+    }
+    &.currentSec.expandedSec, &.questionnaireExpanded {
+        &::before{
+            content: '\2212';
+        }
+    }
+}
+.hideList {
+    display: none;
+}
+.currentSec, .questionnaireTitle {
+    color: #000000;
+    font-weight: 400;
+}
+.currentQues {
+    color: #000000;
+    font-weight: 400;
+}
+.answeredQues {
+    color: $dark1;
+    // font-weight: bold;
+}
+
+.timerValue {
+    font-weight: 400;
+}

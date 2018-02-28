@@ -11,6 +11,8 @@ import { ManageQuestionsComponent } from './admin/manage-questions/manage-questi
 import { ManageSectionsComponent } from './admin/manage-sections/manage-sections.component';
 import { ManageQuestionnaireComponent } from './admin/manage-questionnaire/manage-questionnaire.component';
 import { ManageUsersComponent } from './admin/manage-users/manage-users.component';
+import { UserHomeComponent } from './user/user-home/user-home.component';
+import { UserQuestionnaireComponent } from './user/user-questionnaire/user-questionnaire.component';
 
 const routes: Routes = [
   {
@@ -23,7 +25,21 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: UserLandingComponent
+    component: UserLandingComponent,
+    children: [
+      {
+        path: '',
+        component: UserHomeComponent
+      },
+      {
+        path: 'home',
+        component: UserHomeComponent
+      },
+      {
+        path: 'questionnaire',
+        component: UserQuestionnaireComponent
+      }
+    ]
   },
   {
     path: 'adminDashboard',

@@ -1,0 +1,45 @@
+<div *ngIf="(isTestinProgress | async)" class="row marginLeftRightZero timerContainer">
+  <div class="col text-center">
+    <h5 class="timerValue">{{remainingTime}}</h5>
+  </div>
+</div>
+
+<div *ngIf="(isTestinProgress | async)" class="row marginLeftRightZero">
+  <div class="col padLeftRightZero">
+    <ul>
+      <li>
+        <span (click)="expandQuestionnaire = !expandQuestionnaire" class="questionnaireTitle" [ngClass]="expandQuestionnaire ? 'questionnaireExpanded' : ''">{{questionnaireStructure.questionnaireName}}</span>
+        <ul [ngClass]="expandQuestionnaire ? '' : 'hideList'">
+          <li *ngFor="let section of questionnaireStructure.sections; let selectedSecId = index">
+            <span class="sectionTitle" [ngClass]="[selectedSecId === selectedSectionIdx ? 'currentSec' : '', section.sectionExpanded ? 'expandedSec' : '']" (click)="selectedSection(selectedSecId)">{{section.sectionName}}</span>
+            <ul [ngClass]="((selectedSecId === selectedSectionIdx) && section.sectionExpanded) ? '' : 'hideList'">
+              <li *ngFor="let ques of section.questions">
+                <span [ngClass]="[ques.qid === selectedQuesIdx ? 'currentQues' : '', ques.isAnswered ? 'answeredQues' : '']" (click)="selectedQuestion(ques)">{{ques.description}}</span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <!-- backup -->
+    <!-- <ul>
+        <li>
+          <span (click)="expandQuestionnaire = !expandQuestionnaire" class="setTitle">{{questionnaireStructure.questionnaireName}}</span>
+          <ul [ngClass]="expandQuestionnaire ? '' : 'hideList'">
+            <li *ngFor="let section of questionnaireStructure.sections; let selectedSecId = index">
+              <span (click)="section.sectionExpanded = !section.sectionExpanded; selectedSection(selectedSecId)" [ngClass]="selectedSecId === selectedSectionIdx ? 'currentSec' : ''">{{section.sectionName}}</span>
+              <ul [ngClass]="section.sectionExpanded ? '' : 'hideList'">
+                <li *ngFor="let ques of section.questions">
+                  <span [ngClass]="[ques.qid === selectedQuesIdx ? 'currentQues' : '', ques.isAnswered ? 'answeredQues' : '']"
+                  (click)="selectedQuestion(ques); selectedSection(selectedSecId)">{{ques.description}}</span>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul> -->
+
+
+  </div>
+</div>

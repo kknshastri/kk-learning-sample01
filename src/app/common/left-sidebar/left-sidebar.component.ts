@@ -23,8 +23,8 @@ export class LeftSidebarComponent implements OnInit, OnDestroy {
   clockInterval: any;
 
   constructor(private store: Store<any>) {
-    this.name = store.pipe(select((s) => s.rootReducer.testName));
-    this.counter = store.pipe(select('rootReducer', 'testCounter'));
+    this.name = store.pipe(select((s) => s.appState.testName));
+    this.counter = store.pipe(select('appState', 'testCounter'));
     this.secondsInNumber = 3670;
   }
 
@@ -32,7 +32,7 @@ export class LeftSidebarComponent implements OnInit, OnDestroy {
     console.log('left sidebar.... init..');
     this.clockInterval = setInterval(() => this.startClock(), 1000);
     this.store.select<any>((state: any) => state)
-      .subscribe((cs: any) => console.log(cs.rootReducer.testName));
+      .subscribe((cs: any) => console.log(cs.appState.testName));
   }
 
   ngOnDestroy() {

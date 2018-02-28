@@ -1,13 +1,21 @@
 
-// $headerBgColor: #88ffa3;
+$dark0: #3cccbe;
+$dark1: #99ddc8;
+
+$light0: #e1f4ee;
+
+// $contentBorderColor: #dbdbdb;
+$contentBorderColor: #ededed;
+
 $headerBgColor: #ffffff;
+$headerBottomBorder: 1px solid $dark0;
+
+$titlebarBgColor: $dark1;
+$footerBgColor: $dark1;
+$adminLeftSidebarBgColor: $light0;
+$userSidebarBgColor: $light0;
+
 // $headerBottomBorder: 5px solid #65e26e;
-$headerBottomBorder: 1px solid #3cccbe;
-
-$titlebarBgColor: #99ddc8;
-
-$footerBgColor: #88ffa3;
-
-$leftSidebarBgColor: #f1f1f1;
-$adminLeftSidebarBgColor: #e1f4ee;
+// $footerBgColor: #88ffa3;
+// $leftSidebarBgColor: #f1f1f1;
 

@@ -1,0 +1,12 @@
+
+<div class="row marginLeftRightZero homeRow">
+  <div class="col text-center">
+    <h5>Welcome!</h5>
+    <p>&nbsp;</p>
+    <p>Kindly read all the questions carefully and answer accordingly.</p>
+    <p>Kindly do not Reload or Refresh browser while test is in progress.</p>
+    <p>-- All The Best --</p>
+    <p>&nbsp;</p>
+    <p><button *ngIf="!(isTestinProgress | async) && !(isTestSubmitted | async)" type="button" class="btn btn-outline-success startTestButton" (click)="startTest()">Click here to Start Test</button></p>
+  </div>
+</div>

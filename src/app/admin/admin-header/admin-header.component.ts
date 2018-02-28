@@ -15,7 +15,7 @@ export class AdminHeaderComponent implements OnInit {
 
   constructor(private store: Store<any>) {
     this.adminName = store.pipe(
-      select((s) => s.rootReducer.testName)
+      select((s) => s.appState.testName)
     );
   }
 
