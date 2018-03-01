@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import { Store, select } from '@ngrx/store';
-import * as actions from '../../action/actions';
+import * as adminActions from '../../action/admin-actions';
 
 
 @Component({
@@ -26,25 +26,25 @@ export class AdminSidebarComponent implements OnInit {
   manageQuestions() {
     console.log('Manage Questions...');
     this.router.navigate(['/adminDashboard/manageQues']);
-    this.store.dispatch({ type: actions.SIDEMENU_SELECTED, payload: 'Questions' });
+    this.store.dispatch({ type: adminActions.SIDEMENU_SELECTED, payload: 'Questions' });
   }
 
   manageSections() {
     console.log('Manage Sections...');
     this.router.navigate(['/adminDashboard/manageSections']);
-    this.store.dispatch({ type: actions.SIDEMENU_SELECTED, payload: 'Sections' });
+    this.store.dispatch({ type: adminActions.SIDEMENU_SELECTED, payload: 'Sections' });
   }
 
   manageQuestionnaire() {
     console.log('Manage Questionnaire...');
     this.router.navigate(['/adminDashboard/manageQuestionnaire']);
-    this.store.dispatch({ type: actions.SIDEMENU_SELECTED, payload: 'Questionnaire' });
+    this.store.dispatch({ type: adminActions.SIDEMENU_SELECTED, payload: 'Questionnaire' });
   }
 
   manageUsers() {
     console.log('Manage Users...');
     this.router.navigate(['/adminDashboard/manageUsers']);
-    this.store.dispatch({ type: actions.SIDEMENU_SELECTED, payload: 'Users' });
+    this.store.dispatch({ type: adminActions.SIDEMENU_SELECTED, payload: 'Users' });
   }
 
 }

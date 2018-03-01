@@ -1,44 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import { Store, select } from '@ngrx/store';
+import * as userActions from '../../action/user-actions';
+
 
 @Component({
   selector: 'app-user-sidebar',
   templateUrl: './user-sidebar.component.html',
   styleUrls: ['./user-sidebar.component.scss']
 })
-export class UserSidebarComponent implements OnInit {
+export class UserSidebarComponent implements OnInit, OnDestroy {
 
   expandQuestionnaire = true;
-  selectedSectionIdx = -1;
-  selectedQuesIdx = '1';
+  selectedSectionIdx = 0;
+  selectedQuesIdx = 0;
   questionnaireStructure = {
     questionnaireName: 'Questionnaire Set Three',
     sections: [
       {
         sectionName: 'Section One',
-        sectionExpanded: false,
+        sectionExpanded: true,
         questions: [
           {
             qid: '1',
             isAnswered: true,
-            description: 'What are the..'
+            description: 'q00. What are the modules in SAP? Select correct answers from below.'
           },
           {
             qid: '2',
             isAnswered: false,
-            description: 'What are the..'
+            description: 'q01. What are the..'
           },
           {
             qid: '3',
             isAnswered: true,
-            description: 'What are the..'
+            description: 'q02. What are the..'
           },
           {
             qid: '4',
             isAnswered: false,
-            description: 'What are the..'
+            description: 'q03. What are the..'
           }
         ]
       },
@@ -49,12 +51,12 @@ export class UserSidebarComponent implements OnInit {
           {
             qid: '5',
             isAnswered: false,
-            description: 'What are the..'
+            description: 'q10. What are the..'
           },
           {
             qid: '6',
             isAnswered: true,
-            description: 'What are the..'
+            description: 'q11. What are the..'
           }
         ]
       },
@@ -65,12 +67,12 @@ export class UserSidebarComponent implements OnInit {
           {
             qid: '7',
             isAnswered: false,
-            description: 'What are the..'
+            description: 'q20. What are the..'
           },
           {
             qid: '8',
             isAnswered: false,
-            description: 'What are the..'
+            description: 'q21. What are the..'
           }
         ]
       },
@@ -81,12 +83,12 @@ export class UserSidebarComponent implements OnInit {
           {
             qid: '9',
             isAnswered: false,
-            description: 'What are the..'
+            description: 'q30. What are the..'
           },
           {
             qid: '10',
             isAnswered: false,
-            description: 'What are the..'
+            description: 'q31. What are the..'
           }
         ]
       },
@@ -97,12 +99,12 @@ export class UserSidebarComponent implements OnInit {
           {
             qid: '11',
             isAnswered: false,
-            description: 'What are the..'
+            description: 'q40. What are the..'
           },
           {
             qid: '12',
             isAnswered: false,
-            description: 'What are the..'
+            description: 'q41. What are the..'
           }
         ]
       }
@@ -118,19 +120,39 @@ export class UserSidebarComponent implements OnInit {
 
   isTestinProgress: Observable<boolean>;
   isTestSubmitted: Observable<boolean>;
+  timerSubscription: any;
+  timerStarted = false;
 
   constructor(private store: Store<any>) {
-    this.isTestinProgress = store.pipe(select((s) => s.appState.loggedInUser.isTestInProgress));
-    this.isTestSubmitted = store.pipe(select((s) => s.appState.loggedInUser.isTestSubmitted));
+    console.log('sidebar constructor >>>>>>>>>>>>>>>>>>>>');
     this.secondsInNumber = 3670;
+    this.isTestinProgress = store.pipe(select((s) => s.appState.userStates.isTestInProgress));
+    this.isTestSubmitted = store.pipe(select((s) => s.appState.userStates.isTestSubmitted));
   }
 
   ngOnInit() {
-    this.clockInterval = setInterval(() => this.startClock(), 1000);
+    console.log('sidebar init >>>>>>>>>>>>>>>>>>>>');
+    // this.clockInterval = setInterval(() => this.startClock(), 1000);
+    this.timerSubscription = this.store.select<any>((state: any) => state)
+      .subscribe((s: any) => {
+        console.log('Sidebar... inside subscribe...');
+        let timerStatus = s.appState.userStates.timerStarted;
+        if (timerStatus && !this.timerStarted) {
+          console.log('Timer is starting now >>>>>>>>>>>');
+          this.startTimer();
+          this.timerStarted = true;
+        }
+      });
   }
 
-  selectedSection(SecIdx) {
+  ngOnDestroy() {
+    console.log('Destroying....');
+    this.timerSubscription.unsubscribe();
+  }
+
+  selectedSection(SecIdx, sectionDetails) {
     this.selectedSectionIdx = SecIdx;
+    this.selectedQuesIdx = -1;
     this.questionnaireStructure.sections.map((section, idx) => {
       if (idx === SecIdx) {
         section.sectionExpanded = !section.sectionExpanded;
@@ -139,10 +161,16 @@ export class UserSidebarComponent implements OnInit {
       }
       return section;
     });
+    console.log('selected sec ===');
+    console.log(sectionDetails.sectionName);
+    this.store.dispatch({ type: userActions.TEST_SELECTED_SECTION, payload: [sectionDetails, SecIdx] });
   }
 
-  selectedQuestion(ques) {
-    this.selectedQuesIdx = ques.qid;
+  selectedQuestion(ques, quesIdx) {
+    console.log('Selected section idx >>> ' + this.selectedSectionIdx);
+    console.log('Selected question idx >>> ' + quesIdx);
+    this.selectedQuesIdx = quesIdx;
+    this.store.dispatch({ type: userActions.TEST_SELECTED_QUESTION, payload: [ques, quesIdx] });
   }
 
   startClock() {
@@ -172,7 +200,9 @@ export class UserSidebarComponent implements OnInit {
       // this.remainingTime = '00:00:00 Hours';
       console.log('Time Over...');
       clearInterval(this.clockInterval);
+      this.timerSubscription.unsubscribe();   // Check once... ngDestroy..
       // alert('Time Over...');
+      // Call service to submit test... TODO...
     }
 
     HH = (HH < 10) ? ('0' + HH) : HH;
@@ -181,6 +211,10 @@ export class UserSidebarComponent implements OnInit {
     this.remainingTime = HH + ':' + MM + ':' + SS + ' Hours';
     // console.log('Running Clock...');
     this.secondsInNumber -= 1;
+  }
+
+  startTimer() {
+    this.clockInterval = setInterval(() => this.startClock(), 1000);
   }
 
 }

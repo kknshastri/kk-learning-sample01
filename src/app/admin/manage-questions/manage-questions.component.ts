@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AppState } from '../../store/store';
 import { Store, select } from '@ngrx/store';
-import * as actions from '../../action/actions';
+import * as adminActions from '../../action/admin-actions';
 
 
 @Component({
@@ -14,7 +14,7 @@ import * as actions from '../../action/actions';
 export class ManageQuestionsComponent implements OnInit {
 
   constructor(private store: Store<any>) {
-    this.store.dispatch({ type: actions.SIDEMENU_SELECTED, payload: 'Questions' });
+    this.store.dispatch({ type: adminActions.SIDEMENU_SELECTED, payload: 'Questions' });
   }
 
   ngOnInit() {

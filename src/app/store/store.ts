@@ -1,34 +1,35 @@
 
 // import { Action } from '@ngrx/store';
-import * as actions from '../action/actions';
+import * as userActions from '../action/user-actions';
+import * as adminActions from '../action/admin-actions';
+
 
 import { Question } from '../model/question.model';
 import { Section } from '../model/section.model';
 import { Questionnaire } from '../model/questionnaire.model';
-import { $ } from 'protractor';
-
 
 export interface loggedUser {
     userId?: string;
     role: string;
     name: string;
     email?: string;
+}
+export interface userStates {
+    timerStarted: boolean
+    title?: string;
     isTestInProgress?: boolean;
     isTestSubmitted?: boolean;
-    isSubmitTriggered?: boolean;
+    selectedSection?: any;
+    currentQuestion?: any;
+    currentSectionCounter: number;
+    currentQuesCounter: number;
 }
-
-export interface userStates {
-    title: string;
-}
-
 export interface adminStates {
     selectedSidebarMenu: string;
     manageQuestions: Question[];
     manageSections: Section[];
     manageQuestionnaire: Questionnaire[];
 }
-
 
 // AppState will store all the data for Application
 export interface AppState {
@@ -40,16 +41,13 @@ export interface AppState {
 }
 
 // Initial State of the Application
-export const INIT_STATE: AppState = {       // allQuest: [],    // responseBasedQuestUI: []
+export const INIT_STATE: AppState = {
     testName: 'Krishna Kant Narayan Shastri',
     testCounter: 5,
     loggedInUser: {
         role: 'user',
         name: 'Krishna Kant - User',
         userId: 'USER008',
-        isTestInProgress: false,
-        isTestSubmitted: false,
-        isSubmitTriggered: false
     },
     adminStates: {
         selectedSidebarMenu: 'Questions',
@@ -57,50 +55,96 @@ export const INIT_STATE: AppState = {       // allQuest: [],    // responseBased
         manageSections: [],
         manageQuestionnaire: []
     },
-    userStates: null
+    userStates: {
+        timerStarted: false,
+        isTestInProgress: false,
+        isTestSubmitted: false,
+        currentQuesCounter: 0,
+        currentSectionCounter: 0,
+        selectedSection: {
+            sectionName: 'Section One',
+            sectionExpanded: false,
+            questions: [
+                {
+                    qid: '1',
+                    isAnswered: true,
+                    description: 'What are the modules in SAP? Select correct answers from below.'
+                }
+            ]
+        },
+        currentQuestion: {
+            qid: '1',
+            isAnswered: true,
+            description: 'What are the modules in SAP? Select correct answers from below.'
+        }
+    }
 };
 
 
 
 // Root Reducer
 export function rootReducer(state: AppState = INIT_STATE, action): AppState {
-    // console.log('Inside Reducer........');
-    // console.log(action);
-    console.log('State before ===');
-    console.log(state);
+    console.log('Action >>>>');
+    console.log(action);
     switch (action.type) {
-        case actions.SIDEMENU_SELECTED: return Object.assign({}, state, {
+        // All Admin Actions here...
+        case adminActions.SIDEMENU_SELECTED: return Object.assign({}, state, {
             adminStates: { selectedSidebarMenu: action.payload }
         });
 
-        case actions.TEST_PROGRESS: return Object.assign({}, state, {
-            loggedInUser: Object.assign({}, state.loggedInUser, { isTestInProgress: action.payload })
+
+
+
+        // All User Actions here...
+        case userActions.TEST_PROGRESS: return Object.assign({}, state, {
+            userStates: Object.assign({}, state.userStates, { isTestInProgress: action.payload })
         });
 
-        case actions.TEST_SUBMIT_TRIGGERED: return Object.assign({}, state, {
-            loggedInUser: Object.assign({}, state.loggedInUser, { isSubmitTriggered: action.payload })
+        case userActions.TIMER_START_FLAG: return Object.assign({}, state, {
+            userStates: Object.assign({}, state.userStates, { timerStarted: true })
         });
 
+        case userActions.TEST_SELECTED_SECTION: return Object.assign({}, state, {
+            userStates: Object.assign({}, state.userStates, {
+                selectedSection: action.payload[0],
+                currentSectionCounter: action.payload[1]
+            })
+        });
+
+        case userActions.TEST_SELECTED_QUESTION: return Object.assign({}, state, {
+            userStates: Object.assign({}, state.userStates, {
+                currentQuestion: action.payload[0],
+                currentQuesCounter: action.payload[1]
+            })
+        });
+
+        case userActions.TEST_SUBMITTED: return Object.assign({}, state, {
+            userStates: Object.assign({}, state.userStates, {
+                isTestInProgress: false,
+                isTestSubmitted: action.payload
+            })
+        });
+
+        // case userActions.SHOW_PREV_QUES: return Object.assign({}, state, {
+        //     userStates: Object.assign({}, state.userStates, { currentQuesCounter: state.userStates.currentQuesCounter - 1 })
+        // });
+
+        // case userActions.SHOW_NEXT_QUES: return Object.assign({}, state, {
+        //     userStates: Object.assign({}, state.userStates, { currentQuesCounter: state.userStates.currentQuesCounter + 1 })
+        // });
+
+        case userActions.SHOW_PREV_QUES: return Object.assign({}, state, {
+            userStates: Object.assign({}, state.userStates, {  })
+        });
+
+        case userActions.SHOW_NEXT_QUES: return Object.assign({}, state, {
+            userStates: Object.assign({}, state.userStates, {  })
+        });
+
+        case userActions.SAVE_CURR_QUES: return Object.assign({}, state);
 
 
 
-        case actions.INCREMENT: if (state.testCounter >= 10) {
-            return state;
-        } else {
-            return Object.assign({}, state, {
-                testCounter: state.testCounter + 1,
-                testName: 'name' + (state.testCounter + 1)
-            });
-        }
-
-        case actions.DECREMENT: if (state.testCounter <= 0) {
-            return state;
-        } else {
-            return Object.assign({}, state, {
-                testCounter: state.testCounter - 1,
-                testName: 'name' + (state.testCounter - 1)
-            });
-        }
 
         default: return state;
     }

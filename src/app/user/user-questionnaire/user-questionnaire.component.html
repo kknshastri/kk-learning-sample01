@@ -1,11 +1,24 @@
-<div class="row marginLeftRightZero" *ngIf="(isTestSubmitTriggered | async)">
-  <div class="col-12">
-    Are you sure...
+<div *ngIf="(isTestinProgress | async) && !!(selectedSectionName)" class="row marginLeftRightZero">
+  <div class="col-12 sectionNameLabel">
+    {{selectedSectionName | async}}
   </div>
 </div>
 
 <div *ngIf="(isTestinProgress | async)" class="row marginLeftRightZero questionRow">
-  <div class="col">
+  <div class="col-12">
+    <div class="row marginLeftRightZero" *ngIf="!!(currQuestion | async)">
+      <div class="col-12 padLeftRightZero">
+        {{(currQuestion | async).description}}
+      </div>
+      <div class="col-12 verticleSpace"></div>
+      <div class="col-12 verticleSpace"></div>
+      <div class="col-12 padLeftRightZero">
+        Options and Answers here..
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="col-12">
     <div class="row marginLeftRightZero">
       What are the modules in SAP? Select correct answers from below.
     </div>
@@ -13,28 +26,24 @@
     <div class="row verticleSpace"></div>
     <div class="row marginLeftRightZero">
       <ul>
-        <li>
-          <input type="checkbox" name="options-Q" value="1">SAP Basis</li>
-        <li>
-          <input type="checkbox" name="options-Q" value="2">SAP Security</li>
-        <li>
-          <input type="checkbox" name="options-Q" value="3">SAP HANA</li>
-        <li>
-          <input type="checkbox" name="options-Q" value="4">SAP ABAP</li>
-        <li>
-          <input type="checkbox" name="options-Q" value="5">All of the above</li>
+        <li><input type="checkbox" name="options-Q" value="1">SAP Basis</li>
+        <li><input type="checkbox" name="options-Q" value="2">SAP Security</li>
+        <li><input type="checkbox" name="options-Q" value="3">SAP HANA</li>
+        <li><input type="checkbox" name="options-Q" value="4">SAP ABAP</li>
+        <li><input type="checkbox" name="options-Q" value="5">All of the above</li>
       </ul>
     </div>
+  </div> -->
 
-    <!-- <button type="button" class="btn btn-outline-success saveAnswerButton">Save Answer</button> -->
-  </div>
 </div>
 <div *ngIf="(isTestinProgress | async)" class="row marginLeftRightZero">
   <div class="col">
-    <button type="button" class="btn btn-outline-success quesNavButton">Previous</button>
+    <button *ngIf="(currQuestionCounter | async) > 0" type="button" class="btn btn-outline-success quesNavButton" (click)="showPrevQuestion()">Previous</button>
+    <span>QuesCounter: {{currQuestionCounter | async}}</span>
   </div>
   <div class="col text-right">
-    <button type="button" class="btn btn-outline-success quesNavButton">Next</button>
-    <button type="button" class="btn btn-outline-success saveAnswerButton">Save</button>
+    <button *ngIf="((currQuestionCounter | async) < 5) && ((currQuestionCounter | async) > -2)" type="button" class="btn btn-outline-success quesNavButton"
+      (click)="showNextQuestion()">Next</button>
+    <button type="button" class="btn btn-outline-success saveAnswerButton" (click)="saveCurrQuestion()">Save</button>
   </div>
 </div>

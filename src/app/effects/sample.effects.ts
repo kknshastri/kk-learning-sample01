@@ -7,7 +7,7 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/mergeMap';
 
-import { INCREMENT, DECREMENT, INCREMENT_FROM_EFFECT, DECREMENT_FROM_EFFECT } from '../action/actions';
+// import { INCREMENT, DECREMENT, INCREMENT_FROM_EFFECT, DECREMENT_FROM_EFFECT } from '../action/actions';
 
 @Injectable()
 export class SampleEffects {
@@ -16,20 +16,20 @@ export class SampleEffects {
         console.log('Inside Effects===>>');
     }
 
-    @Effect({ dispatch: true })
-    krishna: Observable<any> = this.action
-        .ofType(INCREMENT_FROM_EFFECT)
-        .switchMap(() => {
-            console.log('Calling Effects====>>>');  // http
-            return Observable.of({ type: DECREMENT });
-        });
+    // @Effect({ dispatch: true })
+    // krishna: Observable<any> = this.action
+    //     .ofType(INCREMENT_FROM_EFFECT)
+    //     .switchMap(() => {
+    //         console.log('Calling Effects====>>>');  // http
+    //         return Observable.of({ type: DECREMENT });
+    //     });
 
-    @Effect({ dispatch: true })
-    krishna2: Observable<any> = this.action
-        .ofType(DECREMENT_FROM_EFFECT)
-        .switchMap(() => {
-            console.log('Calling Effects====>>>');
-            return Observable.of({ type: INCREMENT });
-        });
+    // @Effect({ dispatch: true })
+    // krishna2: Observable<any> = this.action
+    //     .ofType(DECREMENT_FROM_EFFECT)
+    //     .switchMap(() => {
+    //         console.log('Calling Effects====>>>');
+    //         return Observable.of({ type: INCREMENT });
+    //     });
 
 }

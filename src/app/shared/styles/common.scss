@@ -10,6 +10,10 @@
 button, .btn {
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica;
     padding: 3px 15px;
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 0;
+    }
 }
 .padLeftRightZero {
     padding-left: 0;
