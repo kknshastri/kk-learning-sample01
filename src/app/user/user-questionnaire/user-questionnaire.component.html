@@ -38,6 +38,7 @@
 </div>
 <div *ngIf="(isTestinProgress | async)" class="row marginLeftRightZero">
   <div class="col">
+    <!-- <button *ngIf="(currQuestionCounter | async) > 0" type="button" class="btn btn-outline-success quesNavButton" (click)="showPrevQuestion()">Previous</button> -->
     <button *ngIf="(currQuestionCounter | async) > 0" type="button" class="btn btn-outline-success quesNavButton" (click)="showPrevQuestion()">Previous</button>
     <span>QuesCounter: {{currQuestionCounter | async}}</span>
   </div>

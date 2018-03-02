@@ -9,6 +9,8 @@
         (click)="manageQuestionnaire()">Manage Questionnaire</button>
       <button type="button" class="list-group-item list-group-item-action" [ngClass]="(activeMenu | async) === 'Users' ? 'activeMenu' : ''"
         (click)="manageUsers()">Manage Users</button>
+      <button type="button" class="list-group-item list-group-item-action" [ngClass]="(activeMenu | async) === 'UploadQues' ? 'activeMenu' : ''"
+        (click)="uploadQuestions()">Upload Questions</button>
 
       <!-- <a role="button" class="list-group-item list-group-item-action" [routerLink]="['/adminDashboard/manageQues']">Manage Questions</a>
       <a role="button" class="list-group-item list-group-item-action" [routerLink]="['/adminDashboard/manageSections']">Manage Sections</a>

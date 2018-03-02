@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -37,6 +38,7 @@ import { UserTitlebarComponent } from './user/user-titlebar/user-titlebar.compon
 import { UserHeaderComponent } from './user/user-header/user-header.component';
 import { UserHomeComponent } from './user/user-home/user-home.component';
 import { UserQuestionnaireComponent } from './user/user-questionnaire/user-questionnaire.component';
+import { UploadQuestionComponent } from './admin/upload-question/upload-question.component';
 
 const appDeclarations: any = [
   AppComponent, HeaderComponent, FooterComponent, LeftSidebarComponent, MainContentComponent,
@@ -48,11 +50,12 @@ const appDeclarations: any = [
 ];
 
 @NgModule({
-  declarations: [...appDeclarations],
+  declarations: [...appDeclarations, UploadQuestionComponent],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    HttpClientModule,
     StoreModule.forRoot({ appState: rootReducer }),
     EffectsModule.forRoot([SampleEffects])
   ],

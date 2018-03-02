@@ -47,4 +47,10 @@ export class AdminSidebarComponent implements OnInit {
     this.store.dispatch({ type: adminActions.SIDEMENU_SELECTED, payload: 'Users' });
   }
 
+  uploadQuestions() {
+    console.log('Upload Questions..');
+    this.router.navigate(['/adminDashboard/uploadQues']);
+    this.store.dispatch({ type: adminActions.SIDEMENU_SELECTED, payload: 'UploadQues' });
+  }
+
 }

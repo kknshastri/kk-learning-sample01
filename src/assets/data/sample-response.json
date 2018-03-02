@@ -1,0 +1,503 @@
+http://localhost:5000/api/questionset/1
+
+{
+    "status": "success",
+    "question_set": {
+        "questionset_id": "1",
+        "title": "QN One",
+        "sections_questions": [
+            {
+                "locale": "en",
+                "_id": "5a99280b5c4c5b5c5ace79d7",
+                "section_id": "101",
+                "title": "HANA Modelling",
+                "description": "Modelling",
+                "questions": [
+                    {
+                        "locale": "en",
+                        "_id": "5a99280b5c4c5b5c5ace79c1",
+                        "question_id": "1",
+                        "title": "To perform complex calculations and aggregations, which of the table type is preferred",
+                        "description": "To perform complex calculations and aggregations, which of the table type is preferred",
+                        "question_type": "single",
+                        "answer": {
+                            "answer_value": [],
+                            "answer_option": [
+                                "Row Store",
+                                "Column Store",
+                                "Depends on Dimension table",
+                                "All of the above are true"
+                            ],
+                            "_id": "5a99280b5c4c5b5c5ace79c2"
+                        }
+                    },
+                    {
+                        "locale": "en",
+                        "_id": "5a99280b5c4c5b5c5ace79c7",
+                        "question_id": "4",
+                        "title": "In SAP HANA database, an administrator can see that log area is filling continuously and causing database to hang. What can be done to fix this issue?",
+                        "description": "In SAP HANA database, an administrator can see that log area is filling continuously and causing database to hang. What can be done to fix this issue?",
+                        "question_type": "single",
+                        "answer": {
+                            "answer_value": [],
+                            "answer_option": [
+                                "Limit File Size",
+                                "Use backint destination type",
+                                "Enable Automatic log backup",
+                                "Use 3rd party backup tool"
+                            ],
+                            "_id": "5a99280b5c4c5b5c5ace79c8"
+                        }
+                    },
+                    {
+                        "locale": "en",
+                        "_id": "5a99280b5c4c5b5c5ace79cd",
+                        "question_id": "7",
+                        "title": "In SAP HANA Modeling, If a view is not activated how do you identify this by looking at the name of the view in package?",
+                        "description": "In SAP HANA Modeling, If a view is not activated how do you identify this by looking at the name of the view in package?",
+                        "question_type": "single",
+                        "answer": {
+                            "answer_value": [],
+                            "answer_option": [
+                                "Red cross mark",
+                                "Grey Diamond mark",
+                                "Yellow oval mark",
+                                "Blue tick mark"
+                            ],
+                            "_id": "5a99280b5c4c5b5c5ace79ce"
+                        }
+                    }
+                ]
+            },
+            {
+                "locale": "en",
+                "_id": "5a99280b5c4c5b5c5ace79d8",
+                "section_id": "102",
+                "title": "HANA Basics",
+                "description": "Basics",
+                "questions": [
+                    {
+                        "locale": "en",
+                        "_id": "5a99280b5c4c5b5c5ace79c9",
+                        "question_id": "5",
+                        "title": "To manage remote objects from Teradata, Sybase IQ and Hadoop in HANA database, which of the below option can be used?",
+                        "description": "To manage remote objects from Teradata, Sybase IQ and Hadoop in HANA database, which of the below option can be used?",
+                        "question_type": "single",
+                        "answer": {
+                            "answer_value": [],
+                            "answer_option": [
+                                "SAP Smart data access",
+                                "HANA XS Engine",
+                                "HANA Application Perspective",
+                                "HANA Sybase Replication"
+                            ],
+                            "_id": "5a99280b5c4c5b5c5ace79ca"
+                        }
+                    },
+                    {
+                        "locale": "en",
+                        "_id": "5a99280b5c4c5b5c5ace79cf",
+                        "question_id": "8",
+                        "title": "In a Query panel, Report developer wants to add multiple conditions in a Where clause statement. Which of the operator type should be used?",
+                        "description": "In a Query panel, Report developer wants to add multiple conditions in a Where clause statement. Which of the operator type should be used?",
+                        "question_type": "single",
+                        "answer": {
+                            "answer_value": [],
+                            "answer_option": [
+                                "Arithmetic Operator",
+                                "Relational/Comparison Operator",
+                                "Set Operator",
+                                "Logical/Boolean Operators"
+                            ],
+                            "_id": "5a99280b5c4c5b5c5ace79d0"
+                        }
+                    },
+                    {
+                        "locale": "en",
+                        "_id": "5a99280b5c4c5b5c5ace79d5",
+                        "question_id": "11",
+                        "title": "How many portfolios under SAP",
+                        "description": "How many portfolios under SAP",
+                        "question_type": "multiple",
+                        "answer": {
+                            "answer_value": [],
+                            "answer_option": [
+                                "SAP Functional",
+                                "SAP Technical",
+                                "SAP UI",
+                                "SAP Backend"
+                            ],
+                            "_id": "5a99280b5c4c5b5c5ace79d6"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
+
+http://localhost:5000/api/questionset/2
+{
+    "status": "success",
+    "question_set": {
+        "questionset_id": "2",
+        "title": "QN Two",
+        "sections_questions": [
+            {
+                "locale": "en",
+                "_id": "5a99280b5c4c5b5c5ace79d7",
+                "section_id": "101",
+                "title": "HANA Modelling",
+                "description": "Modelling",
+                "questions": [
+                    {
+                        "locale": "en",
+                        "_id": "5a99280b5c4c5b5c5ace79c3",
+                        "question_id": "2",
+                        "title": "In SAP HANA Modeling, Attributes views are used",
+                        "description": "In SAP HANA Modeling, Attributes views are used",
+                        "question_type": "single",
+                        "answer": {
+                            "answer_value": [],
+                            "answer_option": [
+                                "A, C, D are correct",
+                                "A, D, E are correct",
+                                "B, C, D are correct",
+                                "A, B, D are correct"
+                            ],
+                            "_id": "5a99280b5c4c5b5c5ace79c4"
+                        }
+                    },
+                    {
+                        "locale": "en",
+                        "_id": "5a99280b5c4c5b5c5ace79c5",
+                        "question_id": "3",
+                        "title": "In SAP HANA Modeling, to copy an existing view and without making any changes to it, which of the below option should be used?",
+                        "description": "In SAP HANA Modeling, to copy an existing view and without making any changes to it, which of the below option should be used?",
+                        "question_type": "single",
+                        "answer": {
+                            "answer_value": [],
+                            "answer_option": [
+                                "Derived",
+                                "Copy",
+                                "Standard",
+                                "Time",
+                                "All of the above"
+                            ],
+                            "_id": "5a99280b5c4c5b5c5ace79c6"
+                        }
+                    },
+                    {
+                        "locale": "en",
+                        "_id": "5a99280b5c4c5b5c5ace79cb",
+                        "question_id": "6",
+                        "title": "Which of the below option in HANA system allows you to perform analysis like Raw data, distinct value, etc. on a database table or on a Modelling view?",
+                        "description": "Which of the below option in HANA system allows you to perform analysis like Raw data, distinct value, etc. on a database table or on a Modeling view?",
+                        "question_type": "single",
+                        "answer": {
+                            "answer_value": [],
+                            "answer_option": [
+                                "Open Content",
+                                "Open Definition",
+                                "Data Preview",
+                                "Open Details"
+                            ],
+                            "_id": "5a99280b5c4c5b5c5ace79cc"
+                        }
+                    }
+                ]
+            },
+            {
+                "locale": "en",
+                "_id": "5a99280b5c4c5b5c5ace79d8",
+                "section_id": "102",
+                "title": "HANA Basics",
+                "description": "Basics",
+                "questions": [
+                    {
+                        "locale": "en",
+                        "_id": "5a99280b5c4c5b5c5ace79d1",
+                        "question_id": "9",
+                        "title": "In SAP HANA security, which of the below can be used to limit the data access based on the attributes and for a specific time period in Modeling Views?",
+                        "description": "In SAP HANA security, which of the below can be used to limit the data access based on the attributes and for a specific time period in Modeling Views?",
+                        "question_type": "single",
+                        "answer": {
+                            "answer_value": [],
+                            "answer_option": [
+                                "Roles Management",
+                                "Object Privilege",
+                                "Analytic Privilege",
+                                "System Privilege",
+                                "Package Privilege"
+                            ],
+                            "_id": "5a99280b5c4c5b5c5ace79d2"
+                        }
+                    },
+                    {
+                        "locale": "en",
+                        "_id": "5a99280b5c4c5b5c5ace79d3",
+                        "question_id": "10",
+                        "title": "Can SAP HANA database be used by any application, other than SAP?",
+                        "description": "Can SAP HANA database be used by any application, other than SAP?",
+                        "question_type": "single",
+                        "answer": {
+                            "answer_value": [],
+                            "answer_option": [
+                                "Yes",
+                                "No"
+                            ],
+                            "_id": "5a99280b5c4c5b5c5ace79d4"
+                        }
+                    },
+                    {
+                        "locale": "en",
+                        "_id": "5a99280b5c4c5b5c5ace79d5",
+                        "question_id": "11",
+                        "title": "How many portfolios under SAP",
+                        "description": "How many portfolios under SAP",
+                        "question_type": "multiple",
+                        "answer": {
+                            "answer_value": [],
+                            "answer_option": [
+                                "SAP Functional",
+                                "SAP Technical",
+                                "SAP UI",
+                                "SAP Backend"
+                            ],
+                            "_id": "5a99280b5c4c5b5c5ace79d6"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
+
+http://localhost:5000/api/questionset/3
+
+{
+    "status": "success",
+    "question_set": {
+        "questionset_id": "3",
+        "title": "QN Three",
+        "sections_questions": [
+            {
+                "locale": "en",
+                "_id": "5a99280b5c4c5b5c5ace79d7",
+                "section_id": "101",
+                "title": "HANA Modelling",
+                "description": "Modelling",
+                "questions": [
+                    {
+                        "locale": "en",
+                        "_id": "5a99280b5c4c5b5c5ace79c1",
+                        "question_id": "1",
+                        "title": "To perform complex calculations and aggregations, which of the table type is preferred",
+                        "description": "To perform complex calculations and aggregations, which of the table type is preferred",
+                        "question_type": "single",
+                        "answer": {
+                            "answer_value": [],
+                            "answer_option": [
+                                "Row Store",
+                                "Column Store",
+                                "Depends on Dimension table",
+                                "All of the above are true"
+                            ],
+                            "_id": "5a99280b5c4c5b5c5ace79c2"
+                        }
+                    },
+                    {
+                        "locale": "en",
+                        "_id": "5a99280b5c4c5b5c5ace79c3",
+                        "question_id": "2",
+                        "title": "In SAP HANA Modeling, Attributes views are used",
+                        "description": "In SAP HANA Modeling, Attributes views are used",
+                        "question_type": "single",
+                        "answer": {
+                            "answer_value": [],
+                            "answer_option": [
+                                "A, C, D are correct",
+                                "A, D, E are correct",
+                                "B, C, D are correct",
+                                "A, B, D are correct"
+                            ],
+                            "_id": "5a99280b5c4c5b5c5ace79c4"
+                        }
+                    },
+                    {
+                        "locale": "en",
+                        "_id": "5a99280b5c4c5b5c5ace79c5",
+                        "question_id": "3",
+                        "title": "In SAP HANA Modeling, to copy an existing view and without making any changes to it, which of the below option should be used?",
+                        "description": "In SAP HANA Modeling, to copy an existing view and without making any changes to it, which of the below option should be used?",
+                        "question_type": "single",
+                        "answer": {
+                            "answer_value": [],
+                            "answer_option": [
+                                "Derived",
+                                "Copy",
+                                "Standard",
+                                "Time",
+                                "All of the above"
+                            ],
+                            "_id": "5a99280b5c4c5b5c5ace79c6"
+                        }
+                    },
+                    {
+                        "locale": "en",
+                        "_id": "5a99280b5c4c5b5c5ace79c7",
+                        "question_id": "4",
+                        "title": "In SAP HANA database, an administrator can see that log area is filling continuously and causing database to hang. What can be done to fix this issue?",
+                        "description": "In SAP HANA database, an administrator can see that log area is filling continuously and causing database to hang. What can be done to fix this issue?",
+                        "question_type": "single",
+                        "answer": {
+                            "answer_value": [],
+                            "answer_option": [
+                                "Limit File Size",
+                                "Use backint destination type",
+                                "Enable Automatic log backup",
+                                "Use 3rd party backup tool"
+                            ],
+                            "_id": "5a99280b5c4c5b5c5ace79c8"
+                        }
+                    },
+                    {
+                        "locale": "en",
+                        "_id": "5a99280b5c4c5b5c5ace79cb",
+                        "question_id": "6",
+                        "title": "Which of the below option in HANA system allows you to perform analysis like Raw data, distinct value, etc. on a database table or on a Modelling view?",
+                        "description": "Which of the below option in HANA system allows you to perform analysis like Raw data, distinct value, etc. on a database table or on a Modeling view?",
+                        "question_type": "single",
+                        "answer": {
+                            "answer_value": [],
+                            "answer_option": [
+                                "Open Content",
+                                "Open Definition",
+                                "Data Preview",
+                                "Open Details"
+                            ],
+                            "_id": "5a99280b5c4c5b5c5ace79cc"
+                        }
+                    },
+                    {
+                        "locale": "en",
+                        "_id": "5a99280b5c4c5b5c5ace79cd",
+                        "question_id": "7",
+                        "title": "In SAP HANA Modeling, If a view is not activated how do you identify this by looking at the name of the view in package?",
+                        "description": "In SAP HANA Modeling, If a view is not activated how do you identify this by looking at the name of the view in package?",
+                        "question_type": "single",
+                        "answer": {
+                            "answer_value": [],
+                            "answer_option": [
+                                "Red cross mark",
+                                "Grey Diamond mark",
+                                "Yellow oval mark",
+                                "Blue tick mark"
+                            ],
+                            "_id": "5a99280b5c4c5b5c5ace79ce"
+                        }
+                    }
+                ]
+            },
+            {
+                "locale": "en",
+                "_id": "5a99280b5c4c5b5c5ace79d8",
+                "section_id": "102",
+                "title": "HANA Basics",
+                "description": "Basics",
+                "questions": [
+                    {
+                        "locale": "en",
+                        "_id": "5a99280b5c4c5b5c5ace79c9",
+                        "question_id": "5",
+                        "title": "To manage remote objects from Teradata, Sybase IQ and Hadoop in HANA database, which of the below option can be used?",
+                        "description": "To manage remote objects from Teradata, Sybase IQ and Hadoop in HANA database, which of the below option can be used?",
+                        "question_type": "single",
+                        "answer": {
+                            "answer_value": [],
+                            "answer_option": [
+                                "SAP Smart data access",
+                                "HANA XS Engine",
+                                "HANA Application Perspective",
+                                "HANA Sybase Replication"
+                            ],
+                            "_id": "5a99280b5c4c5b5c5ace79ca"
+                        }
+                    },
+                    {
+                        "locale": "en",
+                        "_id": "5a99280b5c4c5b5c5ace79cf",
+                        "question_id": "8",
+                        "title": "In a Query panel, Report developer wants to add multiple conditions in a Where clause statement. Which of the operator type should be used?",
+                        "description": "In a Query panel, Report developer wants to add multiple conditions in a Where clause statement. Which of the operator type should be used?",
+                        "question_type": "single",
+                        "answer": {
+                            "answer_value": [],
+                            "answer_option": [
+                                "Arithmetic Operator",
+                                "Relational/Comparison Operator",
+                                "Set Operator",
+                                "Logical/Boolean Operators"
+                            ],
+                            "_id": "5a99280b5c4c5b5c5ace79d0"
+                        }
+                    },
+                    {
+                        "locale": "en",
+                        "_id": "5a99280b5c4c5b5c5ace79d1",
+                        "question_id": "9",
+                        "title": "In SAP HANA security, which of the below can be used to limit the data access based on the attributes and for a specific time period in Modeling Views?",
+                        "description": "In SAP HANA security, which of the below can be used to limit the data access based on the attributes and for a specific time period in Modeling Views?",
+                        "question_type": "single",
+                        "answer": {
+                            "answer_value": [],
+                            "answer_option": [
+                                "Roles Management",
+                                "Object Privilege",
+                                "Analytic Privilege",
+                                "System Privilege",
+                                "Package Privilege"
+                            ],
+                            "_id": "5a99280b5c4c5b5c5ace79d2"
+                        }
+                    },
+                    {
+                        "locale": "en",
+                        "_id": "5a99280b5c4c5b5c5ace79d3",
+                        "question_id": "10",
+                        "title": "Can SAP HANA database be used by any application, other than SAP?",
+                        "description": "Can SAP HANA database be used by any application, other than SAP?",
+                        "question_type": "single",
+                        "answer": {
+                            "answer_value": [],
+                            "answer_option": [
+                                "Yes",
+                                "No"
+                            ],
+                            "_id": "5a99280b5c4c5b5c5ace79d4"
+                        }
+                    },
+                    {
+                        "locale": "en",
+                        "_id": "5a99280b5c4c5b5c5ace79d5",
+                        "question_id": "11",
+                        "title": "How many portfolios under SAP",
+                        "description": "How many portfolios under SAP",
+                        "question_type": "multiple",
+                        "answer": {
+                            "answer_value": [],
+                            "answer_option": [
+                                "SAP Functional",
+                                "SAP Technical",
+                                "SAP UI",
+                                "SAP Backend"
+                            ],
+                            "_id": "5a99280b5c4c5b5c5ace79d6"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
+

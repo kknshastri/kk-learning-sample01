@@ -26,8 +26,11 @@ export class UserHomeComponent implements OnInit {
 
   startTest() {
     console.log('Clicked on Start test button...');
-    this.store.dispatch({ type: userActions.TEST_PROGRESS, payload: true });
-    this.router.navigate(['/dashboard/questionnaire']);
+    this.store.dispatch({ type: userActions.QUESTION_LOAD, payload: null });
+
+    // Redirect after loading question...
+    // this.store.dispatch({ type: userActions.TEST_PROGRESS, payload: true });
+    // this.router.navigate(['/dashboard/questionnaire']);
   }
 
 }

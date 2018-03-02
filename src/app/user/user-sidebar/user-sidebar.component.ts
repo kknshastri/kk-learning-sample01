@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
+import { Router } from '@angular/router';
+
 import { Observable } from 'rxjs/Observable';
 import { Store, select } from '@ngrx/store';
 import * as userActions from '../../action/user-actions';
@@ -123,22 +125,17 @@ export class UserSidebarComponent implements OnInit, OnDestroy {
   timerSubscription: any;
   timerStarted = false;
 
-  constructor(private store: Store<any>) {
-    console.log('sidebar constructor >>>>>>>>>>>>>>>>>>>>');
-    this.secondsInNumber = 3670;
+  constructor(private store: Store<any>, private router: Router) {
+    this.secondsInNumber = 50 * 60;   // 3670;   // Test Duration in seconds.
     this.isTestinProgress = store.pipe(select((s) => s.appState.userStates.isTestInProgress));
     this.isTestSubmitted = store.pipe(select((s) => s.appState.userStates.isTestSubmitted));
   }
 
   ngOnInit() {
-    console.log('sidebar init >>>>>>>>>>>>>>>>>>>>');
-    // this.clockInterval = setInterval(() => this.startClock(), 1000);
     this.timerSubscription = this.store.select<any>((state: any) => state)
       .subscribe((s: any) => {
-        console.log('Sidebar... inside subscribe...');
         let timerStatus = s.appState.userStates.timerStarted;
         if (timerStatus && !this.timerStarted) {
-          console.log('Timer is starting now >>>>>>>>>>>');
           this.startTimer();
           this.timerStarted = true;
         }
@@ -146,7 +143,6 @@ export class UserSidebarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log('Destroying....');
     this.timerSubscription.unsubscribe();
   }
 
@@ -182,17 +178,14 @@ export class UserSidebarComponent implements OnInit, OnDestroy {
       HH = Math.floor(this.secondsInNumber / (60 * 60));
       MM = Math.floor((this.secondsInNumber % (60 * 60)) / 60);
       SS = this.secondsInNumber % 60;
-      // console.log('HH:MM:SS ===>> ' + HH + ':' + MM + ':' + SS);
     } else if (this.secondsInNumber > 60) {
       HH = 0;
       MM = Math.floor(this.secondsInNumber / 60);
       SS = this.secondsInNumber % 60;
-      // console.log('MM ===>> ' + MM);
     } else if (this.secondsInNumber > 0) {
       HH = 0;
       MM = 0;
       SS = this.secondsInNumber;
-      // console.log('SS ===>> ' + SS);
     } else {
       HH = 0;
       MM = 0;
@@ -200,17 +193,17 @@ export class UserSidebarComponent implements OnInit, OnDestroy {
       // this.remainingTime = '00:00:00 Hours';
       console.log('Time Over...');
       clearInterval(this.clockInterval);
-      this.timerSubscription.unsubscribe();   // Check once... ngDestroy..
-      // alert('Time Over...');
-      // Call service to submit test... TODO...
+      this.timerSubscription.unsubscribe();
+      this.store.dispatch({ type: userActions.TEST_SUBMITTED, payload: true });
+      this.router.navigate(['/dashboard']);
+      console.log('After test submission....');
     }
 
     HH = (HH < 10) ? ('0' + HH) : HH;
     MM = (MM < 10) ? ('0' + MM) : MM;
     SS = (SS < 10) ? ('0' + SS) : SS;
     this.remainingTime = HH + ':' + MM + ':' + SS + ' Hours';
-    // console.log('Running Clock...');
-    this.secondsInNumber -= 1;
+    this.secondsInNumber = (this.secondsInNumber > 0) ? (this.secondsInNumber - 1) : 0;
   }
 
   startTimer() {

@@ -96,6 +96,16 @@ export function rootReducer(state: AppState = INIT_STATE, action): AppState {
 
 
         // All User Actions here...
+        case userActions.QUESTION_LOAD: console.log('Reducer: Question Loading...');
+            return Object.assign({}, state);
+
+        case userActions.QUESTION_LOAD_SUCCESS: console.log('Reducer: QUESTION_LOAD_SUCCESS');
+            return Object.assign({}, state);
+
+        case userActions.QUESTION_LOAD_FAILED: console.log('Reducer: QUESTION_LOAD_FAILED');
+            return Object.assign({}, state);
+
+
         case userActions.TEST_PROGRESS: return Object.assign({}, state, {
             userStates: Object.assign({}, state.userStates, { isTestInProgress: action.payload })
         });
@@ -134,11 +144,11 @@ export function rootReducer(state: AppState = INIT_STATE, action): AppState {
         // });
 
         case userActions.SHOW_PREV_QUES: return Object.assign({}, state, {
-            userStates: Object.assign({}, state.userStates, {  })
+            userStates: Object.assign({}, state.userStates, {})
         });
 
         case userActions.SHOW_NEXT_QUES: return Object.assign({}, state, {
-            userStates: Object.assign({}, state.userStates, {  })
+            userStates: Object.assign({}, state.userStates, {})
         });
 
         case userActions.SAVE_CURR_QUES: return Object.assign({}, state);

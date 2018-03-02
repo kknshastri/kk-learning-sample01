@@ -17,6 +17,8 @@ export class UserQuestionnaireComponent implements OnInit {
   selectedSectionName: Observable<string>;
   currQuestionCounter: Observable<number>;
   currQuestion: Observable<any>;
+  currSecCounter: Observable<number>;
+  currSection: Observable<any>;
 
   constructor(private store: Store<any>, private router: Router) {
     // console.log('questionnaire constructure...');
@@ -25,6 +27,8 @@ export class UserQuestionnaireComponent implements OnInit {
     this.selectedSectionName = store.pipe(select((s) => s.appState.userStates.selectedSection.sectionName));
     this.currQuestionCounter = store.pipe(select((s) => s.appState.userStates.currentQuesCounter));
     this.currQuestion = store.pipe(select((s) => s.appState.userStates.currentQuestion));
+    this.currSecCounter = store.pipe(select((s) => s.appState.userStates.currentSectionCounter));
+    this.currSection = store.pipe(select((s) => s.appState.userStates.selectedSection));
   }
 
   ngOnInit() {

@@ -13,6 +13,7 @@ import { ManageQuestionnaireComponent } from './admin/manage-questionnaire/manag
 import { ManageUsersComponent } from './admin/manage-users/manage-users.component';
 import { UserHomeComponent } from './user/user-home/user-home.component';
 import { UserQuestionnaireComponent } from './user/user-questionnaire/user-questionnaire.component';
+import { UploadQuestionComponent } from './admin/upload-question/upload-question.component';
 
 const routes: Routes = [
   {
@@ -73,6 +74,10 @@ const routes: Routes = [
       {
         path: 'manageUsers',
         component: ManageUsersComponent
+      },
+      {
+        path: 'uploadQues',
+        component: UploadQuestionComponent
       },
       {
         path: '**',
