@@ -12,11 +12,8 @@ export class MainContentComponent implements OnInit {
   constructor(public questService: QuestionService) {
   }
 
-  ngOnInit() {
-  }
-
-  stepSize: number = 5;
-  startIndex: number = 5;
+  stepSize = 5;
+  startIndex = 5;
   endIndex: number = this.startIndex + this.stepSize;
   // endIndex: number = 2;
 
@@ -103,11 +100,14 @@ export class MainContentComponent implements OnInit {
     }
   ];
 
+  ngOnInit() {
+  }
+
   multipleAnswerChange(e, ques) {
     if (!!e.target.checked) {
       ques.answerResponse.push(e.target.value);
     } else {
-      let optIndex = ques.answerResponse.indexOf(e.target.value);
+      const optIndex = ques.answerResponse.indexOf(e.target.value);
       if (optIndex > -1) {
         ques.answerResponse.splice(optIndex, 1);
       }

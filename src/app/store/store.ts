@@ -8,14 +8,20 @@ import { Question } from '../model/question.model';
 import { Section } from '../model/section.model';
 import { Questionnaire } from '../model/questionnaire.model';
 
-export interface loggedUser {
+
+export interface AllQuestions {
+    isLoading: boolean;
+    data: any[];
+    error: boolean;
+}
+export interface LoggedUser {
     userId?: string;
     role: string;
     name: string;
     email?: string;
 }
-export interface userStates {
-    timerStarted: boolean
+export interface UserStates {
+    timerStarted: boolean;
     title?: string;
     isTestInProgress?: boolean;
     isTestSubmitted?: boolean;
@@ -23,8 +29,9 @@ export interface userStates {
     currentQuestion?: any;
     currentSectionCounter: number;
     currentQuesCounter: number;
+    allQuestions: AllQuestions;
 }
-export interface adminStates {
+export interface AdminStates {
     selectedSidebarMenu: string;
     manageQuestions: Question[];
     manageSections: Section[];
@@ -35,9 +42,9 @@ export interface adminStates {
 export interface AppState {
     testName: string;
     testCounter: number;
-    loggedInUser: loggedUser;
-    adminStates: adminStates;
-    userStates: userStates;
+    loggedInUser: LoggedUser;
+    adminStates: AdminStates;
+    userStates: UserStates;
 }
 
 // Initial State of the Application
@@ -76,6 +83,11 @@ export const INIT_STATE: AppState = {
             qid: '1',
             isAnswered: true,
             description: 'What are the modules in SAP? Select correct answers from below.'
+        },
+        allQuestions: {
+            isLoading: false,
+            data: [],
+            error: null
         }
     }
 };

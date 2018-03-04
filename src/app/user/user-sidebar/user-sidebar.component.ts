@@ -134,7 +134,7 @@ export class UserSidebarComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.timerSubscription = this.store.select<any>((state: any) => state)
       .subscribe((s: any) => {
-        let timerStatus = s.appState.userStates.timerStarted;
+        const timerStatus = s.appState.userStates.timerStarted;
         if (timerStatus && !this.timerStarted) {
           this.startTimer();
           this.timerStarted = true;
