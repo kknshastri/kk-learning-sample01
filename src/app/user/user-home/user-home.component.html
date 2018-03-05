@@ -6,8 +6,8 @@
 
 <div class="row marginLeftRightZero homeRow">
   <div class="col-12 text-center" *ngIf="(isTestSubmitted | async)">
-      <p>&nbsp;</p>
-      <h5 class="submittedLabel">Your Test is submitted successfully.</h5>
+    <p>&nbsp;</p>
+    <h5 class="submittedLabel">Your Test is submitted successfully.</h5>
   </div>
 
   <div class="col-12 text-center" *ngIf="!(isTestSubmitted | async)">
@@ -20,6 +20,10 @@
     <p>Browse questions via navigation buttons or using left navigation.</p>
     <p>-- All The Best --</p>
     <p>&nbsp;</p>
+    <p *ngIf="!!(isQuesLoading | async)">Loading Questions...</p>
+    <p *ngIf="!!(loadQuesError | async)" class="text-left errorMsg">
+      Something went wrong, please try again later or contact Admin.
+    </p>
     <p>
       <button *ngIf="!(isTestinProgress | async) && !(isTestSubmitted | async)" type="button" class="btn btn-outline-success startTestButton"
         (click)="startTest()">Click here to Start Test</button>

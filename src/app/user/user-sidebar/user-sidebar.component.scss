@@ -25,13 +25,19 @@ ul {
             li {
                 ul {
                     padding-left: 30px;
-                    li span {
-                        cursor: pointer;
-                    }
-                    li:before {
-                        content: '\002d';
-                        margin-right: 5px;
-                        color: $dark2;
+                    li {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        span {
+                            cursor: pointer;
+                            white-space: nowrap;
+                            &:before {
+                                content: '\002d';
+                                margin-right: 5px;
+                                color: $dark2;
+                                font-weight: bold;
+                            }
+                        }
                     }
                 }
             }

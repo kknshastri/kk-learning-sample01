@@ -20,17 +20,20 @@ export class QuestionService {
   constructor(private http: HttpClient) { }
 
   loadAllQuestions(): Observable<any> {
-    console.log('Calling service loadAllQuestions ===>>>');
-    return this.http.get(this.questionApiUrl, this.httpOptions1)
+    // console.log('Calling service loadAllQuestions ===>>>');
+    return this.http.get(this.questionApiUrl)
       .pipe(
-        map((rss) => {
-          console.log('Inside map----');
-          console.log(rss);
-          return rss;
-        }),
-        catchError(this.handleError)
+      map((resp) => {
+        console.log('Inside map----');
+        console.log(resp);
+        // Response Mapper here: <TODO>
+        return resp;
+      }),
+      catchError(this.handleError)
       );
   }
+
+
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);

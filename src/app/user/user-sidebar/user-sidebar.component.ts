@@ -17,101 +17,7 @@ export class UserSidebarComponent implements OnInit, OnDestroy {
   expandQuestionnaire = true;
   selectedSectionIdx = 0;
   selectedQuesIdx = 0;
-  questionnaireStructure = {
-    questionnaireName: 'Questionnaire Set Three',
-    sections: [
-      {
-        sectionName: 'Section One',
-        sectionExpanded: true,
-        questions: [
-          {
-            qid: '1',
-            isAnswered: true,
-            description: 'q00. What are the modules in SAP? Select correct answers from below.'
-          },
-          {
-            qid: '2',
-            isAnswered: false,
-            description: 'q01. What are the..'
-          },
-          {
-            qid: '3',
-            isAnswered: true,
-            description: 'q02. What are the..'
-          },
-          {
-            qid: '4',
-            isAnswered: false,
-            description: 'q03. What are the..'
-          }
-        ]
-      },
-      {
-        sectionName: 'Section Two',
-        sectionExpanded: false,
-        questions: [
-          {
-            qid: '5',
-            isAnswered: false,
-            description: 'q10. What are the..'
-          },
-          {
-            qid: '6',
-            isAnswered: true,
-            description: 'q11. What are the..'
-          }
-        ]
-      },
-      {
-        sectionName: 'Section Three',
-        sectionExpanded: false,
-        questions: [
-          {
-            qid: '7',
-            isAnswered: false,
-            description: 'q20. What are the..'
-          },
-          {
-            qid: '8',
-            isAnswered: false,
-            description: 'q21. What are the..'
-          }
-        ]
-      },
-      {
-        sectionName: 'Section Four',
-        sectionExpanded: false,
-        questions: [
-          {
-            qid: '9',
-            isAnswered: false,
-            description: 'q30. What are the..'
-          },
-          {
-            qid: '10',
-            isAnswered: false,
-            description: 'q31. What are the..'
-          }
-        ]
-      },
-      {
-        sectionName: 'Section Five',
-        sectionExpanded: false,
-        questions: [
-          {
-            qid: '11',
-            isAnswered: false,
-            description: 'q40. What are the..'
-          },
-          {
-            qid: '12',
-            isAnswered: false,
-            description: 'q41. What are the..'
-          }
-        ]
-      }
-    ]
-  };
+
 
   secondsInNumber = 0;
   seconds: number | string = '00';
@@ -125,10 +31,13 @@ export class UserSidebarComponent implements OnInit, OnDestroy {
   timerSubscription: any;
   timerStarted = false;
 
+  questionSet: Observable<any>;
+
   constructor(private store: Store<any>, private router: Router) {
     this.secondsInNumber = 50 * 60;   // 3670;   // Test Duration in seconds.
     this.isTestinProgress = store.pipe(select((s) => s.appState.userStates.isTestInProgress));
     this.isTestSubmitted = store.pipe(select((s) => s.appState.userStates.isTestSubmitted));
+    this.questionSet = store.pipe(select((s) => s.appState.userStates.allQuestions.data.question_set));
   }
 
   ngOnInit() {
@@ -149,16 +58,9 @@ export class UserSidebarComponent implements OnInit, OnDestroy {
   selectedSection(SecIdx, sectionDetails) {
     this.selectedSectionIdx = SecIdx;
     this.selectedQuesIdx = -1;
-    this.questionnaireStructure.sections.map((section, idx) => {
-      if (idx === SecIdx) {
-        section.sectionExpanded = !section.sectionExpanded;
-      } else {
-        section.sectionExpanded = false;
-      }
-      return section;
-    });
-    console.log('selected sec ===');
-    console.log(sectionDetails.sectionName);
+
+    // console.log('selected sec ===');
+    // console.log(sectionDetails.sectionName);
     this.store.dispatch({ type: userActions.TEST_SELECTED_SECTION, payload: [sectionDetails, SecIdx] });
   }
 
@@ -210,4 +112,104 @@ export class UserSidebarComponent implements OnInit, OnDestroy {
     this.clockInterval = setInterval(() => this.startClock(), 1000);
   }
 
+
+
+
+  // questionnaireStructure = {
+  //   questionnaireName: 'Questionnaire Set Three',
+  //   sections: [
+  //     {
+  //       sectionName: 'Section One',
+  //       sectionExpanded: true,
+  //       questions: [
+  //         {
+  //           qid: '1',
+  //           isAnswered: true,
+  //           description: 'q00. What are the modules in SAP? Select correct answers from below.'
+  //         },
+  //         {
+  //           qid: '2',
+  //           isAnswered: false,
+  //           description: 'q01. What are the..'
+  //         },
+  //         {
+  //           qid: '3',
+  //           isAnswered: true,
+  //           description: 'q02. What are the..'
+  //         },
+  //         {
+  //           qid: '4',
+  //           isAnswered: false,
+  //           description: 'q03. What are the..'
+  //         }
+  //       ]
+  //     },
+  //     {
+  //       sectionName: 'Section Two',
+  //       sectionExpanded: false,
+  //       questions: [
+  //         {
+  //           qid: '5',
+  //           isAnswered: false,
+  //           description: 'q10. What are the..'
+  //         },
+  //         {
+  //           qid: '6',
+  //           isAnswered: true,
+  //           description: 'q11. What are the..'
+  //         }
+  //       ]
+  //     },
+  //     {
+  //       sectionName: 'Section Three',
+  //       sectionExpanded: false,
+  //       questions: [
+  //         {
+  //           qid: '7',
+  //           isAnswered: false,
+  //           description: 'q20. What are the..'
+  //         },
+  //         {
+  //           qid: '8',
+  //           isAnswered: false,
+  //           description: 'q21. What are the..'
+  //         }
+  //       ]
+  //     },
+  //     {
+  //       sectionName: 'Section Four',
+  //       sectionExpanded: false,
+  //       questions: [
+  //         {
+  //           qid: '9',
+  //           isAnswered: false,
+  //           description: 'q30. What are the..'
+  //         },
+  //         {
+  //           qid: '10',
+  //           isAnswered: false,
+  //           description: 'q31. What are the..'
+  //         }
+  //       ]
+  //     },
+  //     {
+  //       sectionName: 'Section Five',
+  //       sectionExpanded: false,
+  //       questions: [
+  //         {
+  //           qid: '11',
+  //           isAnswered: false,
+  //           description: 'q40. What are the..'
+  //         },
+  //         {
+  //           qid: '12',
+  //           isAnswered: false,
+  //           description: 'q41. What are the..'
+  //         }
+  //       ]
+  //     }
+  //   ]
+  // };
+
 }
+

@@ -8,11 +8,13 @@ import { Question } from '../model/question.model';
 import { Section } from '../model/section.model';
 import { Questionnaire } from '../model/questionnaire.model';
 
+import { ResponseMapper } from '../effects/response.mapper';
+
 
 export interface AllQuestions {
     isLoading: boolean;
-    data: any[];
-    error: boolean;
+    data: any;
+    error: any;
 }
 export interface LoggedUser {
     userId?: string;
@@ -68,29 +70,32 @@ export const INIT_STATE: AppState = {
         isTestSubmitted: false,
         currentQuesCounter: 0,
         currentSectionCounter: 0,
-        selectedSection: {
-            sectionName: 'Section One',
-            sectionExpanded: false,
-            questions: [
-                {
-                    qid: '1',
-                    isAnswered: true,
-                    description: 'What are the modules in SAP? Select correct answers from below.'
-                }
-            ]
-        },
-        currentQuestion: {
-            qid: '1',
-            isAnswered: true,
-            description: 'What are the modules in SAP? Select correct answers from below.'
-        },
+        selectedSection: null,
+        currentQuestion: null,
         allQuestions: {
             isLoading: false,
-            data: [],
+            data: null,
             error: null
         }
     }
 };
+
+// selectedSection: {
+//     sectionName: 'Section One',
+//     sectionExpanded: false,
+//     questions: [
+//         {
+//             qid: '1',
+//             isAnswered: true,
+//             description: 'What are the modules in SAP? Select correct answers from below.'
+//         }
+//     ]
+// },
+// currentQuestion: {
+//     qid: '1',
+//     isAnswered: true,
+//     description: 'What are the modules in SAP? Select correct answers from below.'
+// },
 
 
 
@@ -105,17 +110,38 @@ export function rootReducer(state: AppState = INIT_STATE, action): AppState {
         });
 
 
-
-
         // All User Actions here...
-        case userActions.QUESTION_LOAD: console.log('Reducer: Question Loading...');
-            return Object.assign({}, state);
+        case userActions.QUESTION_LOAD: return Object.assign({}, state, {
+            userStates: Object.assign({}, state.userStates, {
+                allQuestions: Object.assign({}, {
+                    isLoading: true,
+                    data: null,
+                    error: null
+                })
+            })
+        });
 
-        case userActions.QUESTION_LOAD_SUCCESS: console.log('Reducer: QUESTION_LOAD_SUCCESS');
-            return Object.assign({}, state);
+        case userActions.QUESTION_LOAD_SUCCESS: return Object.assign({}, state, {
+            userStates: Object.assign({}, state.userStates, {
+                allQuestions: Object.assign({}, {
+                    isLoading: false,
+                    data: action.payload,
+                    error: null
+                }),
+                selectedSection: action.payload.question_set.sections_questions[0],
+                currentQuestion: action.payload.question_set.sections_questions[0].questions[0]
+            })
+        });
 
-        case userActions.QUESTION_LOAD_FAILED: console.log('Reducer: QUESTION_LOAD_FAILED');
-            return Object.assign({}, state);
+        case userActions.QUESTION_LOAD_FAILED: return Object.assign({}, state, {
+            userStates: Object.assign({}, state.userStates, {
+                allQuestions: Object.assign({}, {
+                    isLoading: false,
+                    data: null,
+                    error: action.payload
+                })
+            })
+        });
 
 
         case userActions.TEST_PROGRESS: return Object.assign({}, state, {
@@ -129,7 +155,10 @@ export function rootReducer(state: AppState = INIT_STATE, action): AppState {
         case userActions.TEST_SELECTED_SECTION: return Object.assign({}, state, {
             userStates: Object.assign({}, state.userStates, {
                 selectedSection: action.payload[0],
-                currentSectionCounter: action.payload[1]
+                currentSectionCounter: action.payload[1],
+                allQuestions: Object.assign({}, state.userStates.allQuestions, {
+                    data: new ResponseMapper().mapAllQuestions(state.userStates.allQuestions.data, action.payload[1], true)
+                })
             })
         });
 

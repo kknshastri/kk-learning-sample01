@@ -6,43 +6,43 @@
 </div>
 
 <div class="row marginLeftRightZero">
-    <!-- <div class="col-12 questionRow" *ngFor="let ques of allQuestions | slice:startIndex:endIndex; let idx = index"> -->
-        <div class="col-12 questionRow" *ngFor="let ques of allQuestions; let idx = index">
-            <div class="row">Ques {{idx + 1 + startIndex}}) {{ques.title}}</div>
-      <!-- <div class="row">Question Id: {{ques.quesId}}</div> -->
-      <div class="row" *ngIf="!!ques.description">{{ques.description}}</div>
+  <!-- <div class="col-12 questionRow" *ngFor="let ques of allQuestions | slice:startIndex:endIndex; let idx = index"> -->
+  <div class="col-12 questionRow" *ngFor="let ques of allQuestions; let idx = index">
+    <div class="row">Ques {{idx + 1 + startIndex}}) {{ques.title}}</div>
+    <!-- <div class="row">Question Id: {{ques.quesId}}</div> -->
+    <div class="row" *ngIf="!!ques.description">{{ques.description}}</div>
 
-      <div class="row" *ngIf="ques.answerType === 'SingleAnswer'">
-        <div class="col-12">
-          <div class="row optionsRow" *ngFor="let opt of ques.answerOptions">
-              <input type="radio" name="options-Q{{idx}}" value="{{opt}}" (change)="singleAnswerChange($event, ques)">{{opt}}
-          </div>
-        </div>
-        <div class="col-12">
-            Selected Answers: {{!!ques.answerResponse ? ques.answerResponse : 'Not Attempted'}}
+    <div class="row" *ngIf="ques.answerType === 'SingleAnswer'">
+      <div class="col-12">
+        <div class="row optionsRow" *ngFor="let opt of ques.answerOptions">
+          <input type="radio" name="options-Q{{idx}}" value="{{opt}}" (change)="singleAnswerChange($event, ques)">{{opt}}
         </div>
       </div>
-
-      <div class="row" *ngIf="ques.answerType === 'MultipleAnswer'">
-        <div class="col-12">
-          <div class="row optionsRow" *ngFor="let opt of ques.answerOptions">
-              <input type="checkbox" name="options-Q{{idx}}" value="{{opt}}" (change)="multipleAnswerChange($event, ques)" >{{opt}}
-          </div>
-        </div>
-        <div class="col-12">
-            Selected Answers: {{!!ques.answerResponse.length ? (ques.answerResponse | json) : 'Not Attempted'}}
-        </div>
+      <div class="col-12">
+        Selected Answers: {{!!ques.answerResponse ? ques.answerResponse : 'Not Attempted'}}
       </div>
-
-      <div class="row" *ngIf="ques.answerType === 'TextAnswer'">
-        <div class="col-12">
-          <input type="text" name="options-Q{{idx}}" value="" [(ngModel)]="ques.answerResponse">
-        </div>
-        <div class="col-12">
-            Selected Answers: {{!!ques.answerResponse ? ques.answerResponse : 'Not Attempted'}}
-        </div>
-      </div>
-      <!-- <div class="row">Answer Type = {{ques.answerType}}</div> -->
     </div>
+
+    <div class="row" *ngIf="ques.answerType === 'MultipleAnswer'">
+      <div class="col-12">
+        <div class="row optionsRow" *ngFor="let opt of ques.answerOptions">
+          <input type="checkbox" name="options-Q{{idx}}" value="{{opt}}" (change)="multipleAnswerChange($event, ques)">{{opt}}
+        </div>
+      </div>
+      <div class="col-12">
+        Selected Answers: {{!!ques.answerResponse.length ? (ques.answerResponse | json) : 'Not Attempted'}}
+      </div>
+    </div>
+
+    <div class="row" *ngIf="ques.answerType === 'TextAnswer'">
+      <div class="col-12">
+        <input type="text" name="options-Q{{idx}}" value="" [(ngModel)]="ques.answerResponse">
+      </div>
+      <div class="col-12">
+        Selected Answers: {{!!ques.answerResponse ? ques.answerResponse : 'Not Attempted'}}
+      </div>
+    </div>
+    <!-- <div class="row">Answer Type = {{ques.answerType}}</div> -->
+  </div>
 </div>
 

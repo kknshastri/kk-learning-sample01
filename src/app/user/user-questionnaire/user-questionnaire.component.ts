@@ -19,12 +19,13 @@ export class UserQuestionnaireComponent implements OnInit {
   currQuestion: Observable<any>;
   currSecCounter: Observable<number>;
   currSection: Observable<any>;
+  currQuesAnswer: string[] = [];
 
   constructor(private store: Store<any>, private router: Router) {
     // console.log('questionnaire constructure...');
     this.isTestinProgress = store.pipe(select((s) => s.appState.userStates.isTestInProgress));
     this.isTestSubmitted = store.pipe(select((s) => s.appState.userStates.isTestSubmitted));
-    this.selectedSectionName = store.pipe(select((s) => s.appState.userStates.selectedSection.sectionName));
+    this.selectedSectionName = store.pipe(select((s) => s.appState.userStates.selectedSection.title));
     this.currQuestionCounter = store.pipe(select((s) => s.appState.userStates.currentQuesCounter));
     this.currQuestion = store.pipe(select((s) => s.appState.userStates.currentQuestion));
     this.currSecCounter = store.pipe(select((s) => s.appState.userStates.currentSectionCounter));
@@ -38,9 +39,11 @@ export class UserQuestionnaireComponent implements OnInit {
     // this.isTestSubmitted.subscribe((status) => { testSubmitted = status; }).unsubscribe();
     this.store.select<any>((state: any) => state)
       .subscribe((s: any) => {
+        console.log('subs >>>>>>>>>>>>>>>>>');
         testProgress = s.appState.userStates.isTestInProgress;
         testSubmitted = s.appState.userStates.isTestSubmitted;
       }).unsubscribe();
+    // });
 
     if (!testProgress && !testSubmitted) {
       this.router.navigate(['/dashboard']);
@@ -61,10 +64,32 @@ export class UserQuestionnaireComponent implements OnInit {
     this.store.dispatch({ type: userActions.SHOW_NEXT_QUES });
   }
 
+  multipleAnswerChange(e, ques) {
+    if (!!e.target.checked) {
+      ques.answerResponse.push(e.target.value);
+    } else {
+      const optIndex = ques.answerResponse.indexOf(e.target.value);
+      if (optIndex > -1) {
+        ques.answerResponse.splice(optIndex, 1);
+      }
+    }
+  }
+
+  singleAnswerChange(e) {
+    console.log('singleAnswerChange >>> ', e.target.value);
+    if (!!e.target.value) {
+      this.currQuesAnswer = [e.target.value];
+    }
+  }
+
   saveCurrQuestion() {
     console.log('saveCurrQuestion..');
-    this.store.dispatch({ type: userActions.SAVE_CURR_QUES });
+    if (this.currQuesAnswer.length && !!this.currQuesAnswer[0]) {
+      console.log('Dispatching action to save answer...');
+      this.store.dispatch({ type: userActions.SAVE_CURR_QUES, payload: this.currQuesAnswer });
+    }
   }
+
 
 
 }
