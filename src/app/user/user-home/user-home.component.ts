@@ -18,6 +18,7 @@ export class UserHomeComponent implements OnInit, OnDestroy {
   isQuesLoading: Observable<boolean>;
   loadQuesError: Observable<any>;
   quesLoadSubscription: any;
+  initialLoad = true;
 
   constructor(private store: Store<any>, private router: Router) {
     this.isTestinProgress = store.pipe(select((s) => s.appState.userStates.isTestInProgress));
@@ -27,42 +28,41 @@ export class UserHomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    console.log('User Home init...');
+
     this.quesLoadSubscription = this.store.select<any>((state: any) => state)
-    .subscribe((s: any) => {
-      if (!!s.appState.userStates.allQuestions.data && !!s.appState.userStates.allQuestions.data.status
-        && (s.appState.userStates.allQuestions.data.status === 'success')) {
-          // console.log('success >>>>>');
-          this.quesLoadSubscription.unsubscribe();
-          this.store.dispatch({ type: userActions.TEST_PROGRESS, payload: true });
-          this.router.navigate(['/dashboard/questionnaire']);
-      }
-    });
+      .subscribe((s: any) => {
+        console.log('>>>> User home subscribe >>>>>>');
+        if (!!s.appState.userStates.allQuestions.data && !!s.appState.userStates.allQuestions.data.status
+          && (s.appState.userStates.allQuestions.data.status === 'success')) {
+          console.log('success >>>>>');
+
+          if (this.initialLoad && !s.appState.userStates.isTestSubmitted) {
+            console.log('Initial load and dispatch TEST_PROGRESS');
+            this.store.dispatch({ type: userActions.TEST_PROGRESS, payload: true });
+            this.router.navigate(['/dashboard/questionnaire']);
+            this.initialLoad = false;
+          } else {
+            if (!!this.quesLoadSubscription && s.appState.userStates.isTestSubmitted) {
+              console.log('User Home Unsubscribing here....');
+              this.quesLoadSubscription.unsubscribe();
+            }
+          }
+        }
+      });
   }
 
   ngOnDestroy() {
-    this.quesLoadSubscription.unsubscribe();
-    console.log('User home destroyed...');
+    console.log('User Home destroy...');
+    if (!!this.quesLoadSubscription) {
+      console.log('User home unsubscribe in destroy...');
+      this.quesLoadSubscription.unsubscribe();
+    }
   }
 
   startTest() {
     console.log('Clicked on Start test button...');
     this.store.dispatch({ type: userActions.QUESTION_LOAD, payload: null });
-
-    // let testProgress = '';
-    // this.store.select<any>((state: any) => state)
-    //   .subscribe((s: any) => {
-    //     if (!!s.appState.userStates.allQuestions.data && !!s.appState.userStates.allQuestions.data.status
-    //       && (s.appState.userStates.allQuestions.data.status === 'success')) {
-    //         console.log('success >>>>>');
-    //     } else {
-    //       console.log('not success >>>');
-    //     }
-    //     // testProgress = s.appState.userStates.isTestInProgress;
-    //   }).unsubscribe();
-
-    // Redirect after loading question...
-    // this.store.dispatch({ type: userActions.TEST_PROGRESS, payload: true });
-    // this.router.navigate(['/dashboard/questionnaire']);
   }
 
 }

@@ -7,10 +7,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/of';
-import { timer } from 'rxjs/observable/timer';
+import 'rxjs/add/observable/timer';
 
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
@@ -28,13 +26,46 @@ export class SampleEffects {
     }
 
     @Effect()
+    userLogin: Observable<any> = this.action
+        .ofType(userActions.USER_LOGIN)
+        .switchMap((actionObject) =>
+            Observable.timer(1000)
+                .switchMap(() =>
+                    this.quesService.userLogin(actionObject.payload)
+                        .map((resp) => {
+                            if (resp.status === 'error') {
+                                return new userActions.UserLoginFailed({ message: resp.msg, status: resp.status });
+                            } else {
+                                return new userActions.UserLoginSuccess(resp);
+                            }
+                        })
+                        .catch((err) => Observable.of({ type: userActions.USER_LOGIN_FAILED, payload: err }))
+                )
+        );
+
+    @Effect()
     loadQuestion: Observable<any> = this.action
         .ofType(userActions.QUESTION_LOAD)
         .switchMap(() =>
-            this.quesService.loadAllQuestions()
-                .map((allQues) => new userActions.QuestionLoadSuccess(new ResponseMapper().mapAllQuestions(allQues, 0, false)))
-                .catch((err) => Observable.of({ type: userActions.QUESTION_LOAD_FAILED, payload: err }))
+            Observable.timer(500)
+                .switchMap(() =>
+                    this.quesService.loadAllQuestions()
+                        .map((allQues) => new userActions.QuestionLoadSuccess(new ResponseMapper().mapAllQuestions(allQues, 0, false)))
+                        .catch((err) => Observable.of({ type: userActions.QUESTION_LOAD_FAILED, payload: err }))
+                )
         );
+
+    // @Effect()
+    // testSubmit: Observable<any> = this.action
+    //     .ofType(userActions.TEST_SUBMITTED)
+    //     .switchMap(() =>
+    //         Observable.timer(300)
+    //             .switchMap(() =>
+    //                 this.quesService.loadAllQuestions()
+    //                     .map((allQues) => new userActions.QuestionLoadSuccess(new ResponseMapper().mapAllQuestions(allQues, 0, false)))
+    //                     .catch((err) => Observable.of({ type: userActions.QUESTION_LOAD_FAILED, payload: err }))
+    //             )
+    //     );
 
 
 

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
-import { AppState } from '../../store/store';
 import { Store, select } from '@ngrx/store';
 import * as adminActions from '../../action/admin-actions';
 
@@ -13,11 +12,22 @@ import * as adminActions from '../../action/admin-actions';
 })
 export class ManageUsersComponent implements OnInit {
 
+  newUser = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: ''
+  };
+
   constructor(private store: Store<any>) {
     this.store.dispatch({ type: adminActions.SIDEMENU_SELECTED, payload: 'Users' });
   }
 
   ngOnInit() {
+  }
+
+  createUser() {
+    console.log('User create...');
   }
 
 }

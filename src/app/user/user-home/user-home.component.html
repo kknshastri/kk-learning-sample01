@@ -21,11 +21,12 @@
     <p>-- All The Best --</p>
     <p>&nbsp;</p>
     <p *ngIf="!!(isQuesLoading | async)">Loading Questions...</p>
+    <!-- <p *ngIf="!!(isQuesLoading | async)"><img class="loadingIcon" src="assets/images/bgLoad.gif" alt="loading"></p> -->
     <p *ngIf="!!(loadQuesError | async)" class="text-left errorMsg">
       Something went wrong, please try again later or contact Admin.
     </p>
     <p>
-      <button *ngIf="!(isTestinProgress | async) && !(isTestSubmitted | async)" type="button" class="btn btn-outline-success startTestButton"
+      <button *ngIf="!(isTestinProgress | async) && !(isTestSubmitted | async) && !(isQuesLoading | async)" type="button" class="btn btn-outline-success startTestButton"
         (click)="startTest()">Click here to Start Test</button>
     </p>
   </div>

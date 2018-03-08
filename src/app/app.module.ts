@@ -39,6 +39,10 @@ import { UserHeaderComponent } from './user/user-header/user-header.component';
 import { UserHomeComponent } from './user/user-home/user-home.component';
 import { UserQuestionnaireComponent } from './user/user-questionnaire/user-questionnaire.component';
 import { UploadQuestionComponent } from './admin/upload-question/upload-question.component';
+import { HomeLandingComponent } from './home/home-landing/home-landing.component';
+import { HomeHeaderComponent } from './home/home-header/home-header.component';
+import { HomeFooterComponent } from './home/home-footer/home-footer.component';
+import { HomeTitlebarComponent } from './home/home-titlebar/home-titlebar.component';
 
 const appDeclarations: any = [
   AppComponent, HeaderComponent, FooterComponent, LeftSidebarComponent, MainContentComponent,
@@ -50,7 +54,7 @@ const appDeclarations: any = [
 ];
 
 @NgModule({
-  declarations: [...appDeclarations, UploadQuestionComponent],
+  declarations: [...appDeclarations, UploadQuestionComponent, HomeLandingComponent, HomeHeaderComponent, HomeFooterComponent, HomeTitlebarComponent],
   imports: [
     BrowserModule,
     FormsModule,

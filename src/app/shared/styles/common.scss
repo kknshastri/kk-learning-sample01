@@ -36,6 +36,9 @@ button, .btn {
     }
 }
 
+input.form-control:focus {
+    border-color: $dark2;
+}
 .errorMsg {
     color: #ff0000;
 }

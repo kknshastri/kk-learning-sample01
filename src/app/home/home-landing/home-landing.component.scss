@@ -1,0 +1,58 @@
+// Global Styles Here
+@import '../../shared/styles/common';
+
+.homeHeaderSection {
+    background-color: $headerBgColor;
+    height: $headerSectionHeight;
+    padding: $headerSectionPadding;
+    border-bottom: $headerBottomBorder;
+}
+
+.homeTitleBarSection {
+    background-color: $titlebarBgColor;
+    height: 55px;
+    margin-top: 3px;
+}
+
+.homeContentSection {
+    background-color: #ffffff;
+    height: $contentSectionHeight;
+    padding: 15px;
+    >.row {
+        height: 100%;
+        min-height: 300px;
+        // border: .5px solid $contentBorderColor;
+        overflow: auto;
+        .loginContainer {
+            padding: 25px;
+            min-width: 490px;
+            max-width: 490px;
+        }
+    }
+}
+
+.homeFooterSection {
+    background-color: $footerBgColor;
+    height: $footerSectionHeight;
+    padding: $footerSectionPadding;
+}
+
+h5.titleLabel {
+    color: $dark1;
+}
+label {
+    font-weight: 400;
+    font-family: "Helvetica Neue", Helvetica;
+}
+
+button {
+    &:disabled {
+        cursor: not-allowed;
+        color: #6c6c6f;
+        border-color: #ffc107;
+        &:hover {
+            background-color: #ffc107;
+            // border-color: #ffc107;
+        }
+    }
+}

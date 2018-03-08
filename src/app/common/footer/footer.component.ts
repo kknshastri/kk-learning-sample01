@@ -3,7 +3,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 // import { INCREMENT, DECREMENT, INCREMENT_FROM_EFFECT, DECREMENT_FROM_EFFECT } from '../../action/actions';
 
 import { Observable } from 'rxjs/Observable';
-import { AppState } from '../../store/store';
 import { Store, select } from '@ngrx/store';
 
 @Component({

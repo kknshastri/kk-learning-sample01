@@ -20,6 +20,30 @@
     position: absolute;
     right: 30px;
     bottom: 82px;
+    &:disabled {
+        cursor: not-allowed;
+        color: #6c6c6f;
+        border-color: #ffc107;
+        &:hover {
+            background-color: #ffc107;
+        }
+    }
+}
+
+.resetAnswerButton {
+    position: absolute;
+    // right: 120px;
+    right: 30px;
+    bottom: 82px;
+    &:disabled {
+        cursor: not-allowed;
+        color: #6c6c6f;
+        border-color: #ffc107;
+        &:hover {
+            background-color: #ffc107;
+            // border-color: #ffc107;
+        }
+    }
 }
 
 .quesNavButton {

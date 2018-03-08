@@ -8,7 +8,7 @@
   <div class="col-12">
     <div class="row marginLeftRightZero" *ngIf="!!(currQuestion | async)">
       <div class="col-12 padLeftRightZero">
-        Ques) {{(currQuestion | async).title}}
+        {{(currQuestionCounter | async) + 1}}. {{(currQuestion | async).title}}
       </div>
       <div class="col-12 verticleSpace"></div>
       <div class="col-12 padLeftRightZero" *ngIf="!!(currQuestion | async).description">
@@ -25,12 +25,13 @@
         <div class="row marginLeftRightZero" *ngIf="(currQuestion | async).question_type === 'single'">
           <div class="col-12 padLeftRightZero">
             <div class="row optionsRow marginLeftRightZero" *ngFor="let opt of (currQuestion | async).answer.answer_option">
-              <input type="radio" name="options-Q{{idx}}" value="{{opt}}" (change)="singleAnswerChange($event)">{{opt}}
+              <input type="radio" name="options-S" value="{{opt}}" (change)="singleAnswerChange($event)" [checked]="(currQuestion | async).answer.answer_value.indexOf(opt) > -1"
+                [disabled]="(currQuestion | async).isAnswered">{{opt}}
             </div>
           </div>
           <div class="col-12 verticleSpace"></div>
           <div class="col-12 padLeftRightZero">
-            Selected Answers: {{!!(currQuestion | async).answer.answer_value.length ? (currQuestion | async).answer.answer_value : 'Not Attempted'}}
+            <!-- Selected Answers: {{!!(currQuestion | async).answer.answer_value.length ? (currQuestion | async).answer.answer_value : 'Not Attempted'}} -->
           </div>
         </div>
 
@@ -38,7 +39,8 @@
         <div class="row marginLeftRightZero" *ngIf="(currQuestion | async).question_type === 'multiple'">
           <div class="col-12">
             <div class="row optionsRow" *ngFor="let opt of (currQuestion | async).answer.answer_option">
-              <input type="checkbox" name="options-Q{{idx}}" value="{{opt}}">{{opt}}
+              <input type="checkbox" name="options-M" value="{{opt}}" (change)="multipleAnswerChange($event)" [checked]="(currQuestion | async).answer.answer_value.indexOf(opt) > -1"
+                [disabled]="(currQuestion | async).isAnswered">{{opt}}
             </div>
           </div>
           <div class="col-12 verticleSpace"></div>
@@ -48,16 +50,27 @@
         </div>
 
         <!-- Text Answer Type -->
-        <!-- <div class="row marginLeftRightZero" *ngIf="(currQuestion | async).question_type === 'text'">
+        <div class="row marginLeftRightZero" *ngIf="(currQuestion | async).question_type === 'text'">
           <div class="col-12">
-            <input type="text" name="options-Q{{idx}}" value="" [(ngModel)]="ques.answerResponse">
+            <input type="text" name="options-T" value="" [(ngModel)]="ques.answerResponse">
           </div>
           <div class="col-12">
-            Selected Answers: {{!!ques.answerResponse ? ques.answerResponse : 'Not Attempted'}}
+            <!-- Selected Answers: {{!!ques.answerResponse ? ques.answerResponse : 'Not Attempted'}} -->
           </div>
-        </div> -->
+        </div>
 
       </div>
+
+      <div class="col-12 verticleSpace"></div>
+      <div class="col-12 padLeftRightZero">
+        isAnswered: {{(currQuestion | async).isAnswered}}
+      </div>
+
+      <div class="col-12 verticleSpace"></div>
+      <div class="col-12 padLeftRightZero">
+        User Response: {{(currQuestion | async).answer.answer_value | json}}
+      </div>
+
     </div>
   </div>
 
@@ -65,13 +78,12 @@
 </div>
 <div *ngIf="(isTestinProgress | async)" class="row marginLeftRightZero">
   <div class="col">
-    <!-- <button *ngIf="(currQuestionCounter | async) > 0" type="button" class="btn btn-outline-success quesNavButton" (click)="showPrevQuestion()">Previous</button> -->
-    <button *ngIf="(currQuestionCounter | async) > 0" type="button" class="btn btn-outline-success quesNavButton" (click)="showPrevQuestion()">Previous</button>
-    <span>QuesCounter: {{currQuestionCounter | async}}</span>
+    <button *ngIf="(prevQuestion | async)" type="button" class="btn btn-outline-success quesNavButton" (click)="navigateQuestion('prev')">Previous</button>
   </div>
   <div class="col text-right">
-    <button *ngIf="((currQuestionCounter | async) < 5) && ((currQuestionCounter | async) > -2)" type="button" class="btn btn-outline-success quesNavButton"
-      (click)="showNextQuestion()">Next</button>
-    <button type="button" class="btn btn-outline-success saveAnswerButton" (click)="saveCurrQuestion()">Save</button>
+    <button *ngIf="(nextQuestion | async)" type="button" class="btn btn-outline-success quesNavButton" (click)="navigateQuestion('next')">Next</button>
+    <button type="button" class="btn btn-outline-success resetAnswerButton" (click)="resetCurrAnswer()" *ngIf="(currQuestion | async).isAnswered">Reset</button>
+    <button type="button" class="btn btn-outline-success saveAnswerButton" (click)="saveCurrAnswer()" [disabled]="disableSaveButon || (currQuestion | async).isAnswered"
+      *ngIf="!(currQuestion | async).isAnswered">Save</button>
   </div>
 </div>

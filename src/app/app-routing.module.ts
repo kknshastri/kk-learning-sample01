@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { MainContentComponent } from './main-content/main-content.component';
 import { DemoComponent } from './demo/demo/demo.component';
 import { UserLandingComponent } from './user/user-landing/user-landing.component';
 import { AdminLandingComponent } from './admin/admin-landing/admin-landing.component';
@@ -14,11 +13,12 @@ import { ManageUsersComponent } from './admin/manage-users/manage-users.componen
 import { UserHomeComponent } from './user/user-home/user-home.component';
 import { UserQuestionnaireComponent } from './user/user-questionnaire/user-questionnaire.component';
 import { UploadQuestionComponent } from './admin/upload-question/upload-question.component';
+import { HomeLandingComponent } from './home/home-landing/home-landing.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: MainContentComponent
+    component: HomeLandingComponent
   },
   {
     path: 'demo',

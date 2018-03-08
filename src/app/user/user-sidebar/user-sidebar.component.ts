@@ -14,12 +14,16 @@ import * as userActions from '../../action/user-actions';
 })
 export class UserSidebarComponent implements OnInit, OnDestroy {
 
+  currQuestionCounter: Observable<number>;
+  currSecCounter: Observable<number>;
+
   expandQuestionnaire = true;
-  selectedSectionIdx = 0;
-  selectedQuesIdx = 0;
 
 
   secondsInNumber = 0;
+  warningOne = 10 * 60;   // First Warning when time <= 10 Minutes
+  warningTwo = 5 * 60;    // Second Warning when time <= 5 Minutes
+  warningIndicator = '';  // Class for warning indicator
   seconds: number | string = '00';
   minutes: number | string = '00';
   hours: number | string = '00';
@@ -34,10 +38,12 @@ export class UserSidebarComponent implements OnInit, OnDestroy {
   questionSet: Observable<any>;
 
   constructor(private store: Store<any>, private router: Router) {
-    this.secondsInNumber = 50 * 60;   // 3670;   // Test Duration in seconds.
+    this.secondsInNumber = 5.1 * 60;   // 3670;   // Test Duration in seconds.
     this.isTestinProgress = store.pipe(select((s) => s.appState.userStates.isTestInProgress));
     this.isTestSubmitted = store.pipe(select((s) => s.appState.userStates.isTestSubmitted));
     this.questionSet = store.pipe(select((s) => s.appState.userStates.allQuestions.data.question_set));
+    this.currQuestionCounter = store.pipe(select((s) => s.appState.userStates.currentQuesCounter));
+    this.currSecCounter = store.pipe(select((s) => s.appState.userStates.currentSectionCounter));
   }
 
   ngOnInit() {
@@ -56,18 +62,10 @@ export class UserSidebarComponent implements OnInit, OnDestroy {
   }
 
   selectedSection(SecIdx, sectionDetails) {
-    this.selectedSectionIdx = SecIdx;
-    this.selectedQuesIdx = -1;
-
-    // console.log('selected sec ===');
-    // console.log(sectionDetails.sectionName);
     this.store.dispatch({ type: userActions.TEST_SELECTED_SECTION, payload: [sectionDetails, SecIdx] });
   }
 
   selectedQuestion(ques, quesIdx) {
-    console.log('Selected section idx >>> ' + this.selectedSectionIdx);
-    console.log('Selected question idx >>> ' + quesIdx);
-    this.selectedQuesIdx = quesIdx;
     this.store.dispatch({ type: userActions.TEST_SELECTED_QUESTION, payload: [ques, quesIdx] });
   }
 
@@ -106,6 +104,8 @@ export class UserSidebarComponent implements OnInit, OnDestroy {
     SS = (SS < 10) ? ('0' + SS) : SS;
     this.remainingTime = HH + ':' + MM + ':' + SS + ' Hours';
     this.secondsInNumber = (this.secondsInNumber > 0) ? (this.secondsInNumber - 1) : 0;
+    this.warningIndicator = (this.secondsInNumber < this.warningTwo) ?
+      'warning2' : ((this.secondsInNumber < this.warningOne) ? 'warning1' : '');
   }
 
   startTimer() {
@@ -114,102 +114,6 @@ export class UserSidebarComponent implements OnInit, OnDestroy {
 
 
 
-
-  // questionnaireStructure = {
-  //   questionnaireName: 'Questionnaire Set Three',
-  //   sections: [
-  //     {
-  //       sectionName: 'Section One',
-  //       sectionExpanded: true,
-  //       questions: [
-  //         {
-  //           qid: '1',
-  //           isAnswered: true,
-  //           description: 'q00. What are the modules in SAP? Select correct answers from below.'
-  //         },
-  //         {
-  //           qid: '2',
-  //           isAnswered: false,
-  //           description: 'q01. What are the..'
-  //         },
-  //         {
-  //           qid: '3',
-  //           isAnswered: true,
-  //           description: 'q02. What are the..'
-  //         },
-  //         {
-  //           qid: '4',
-  //           isAnswered: false,
-  //           description: 'q03. What are the..'
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       sectionName: 'Section Two',
-  //       sectionExpanded: false,
-  //       questions: [
-  //         {
-  //           qid: '5',
-  //           isAnswered: false,
-  //           description: 'q10. What are the..'
-  //         },
-  //         {
-  //           qid: '6',
-  //           isAnswered: true,
-  //           description: 'q11. What are the..'
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       sectionName: 'Section Three',
-  //       sectionExpanded: false,
-  //       questions: [
-  //         {
-  //           qid: '7',
-  //           isAnswered: false,
-  //           description: 'q20. What are the..'
-  //         },
-  //         {
-  //           qid: '8',
-  //           isAnswered: false,
-  //           description: 'q21. What are the..'
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       sectionName: 'Section Four',
-  //       sectionExpanded: false,
-  //       questions: [
-  //         {
-  //           qid: '9',
-  //           isAnswered: false,
-  //           description: 'q30. What are the..'
-  //         },
-  //         {
-  //           qid: '10',
-  //           isAnswered: false,
-  //           description: 'q31. What are the..'
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       sectionName: 'Section Five',
-  //       sectionExpanded: false,
-  //       questions: [
-  //         {
-  //           qid: '11',
-  //           isAnswered: false,
-  //           description: 'q40. What are the..'
-  //         },
-  //         {
-  //           qid: '12',
-  //           isAnswered: false,
-  //           description: 'q41. What are the..'
-  //         }
-  //       ]
-  //     }
-  //   ]
-  // };
 
 }
 
