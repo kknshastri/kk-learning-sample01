@@ -11,7 +11,8 @@
         {{(currQuestionCounter | async) + 1}}. {{(currQuestion | async).title}}
       </div>
       <div class="col-12 verticleSpace"></div>
-      <div class="col-12 padLeftRightZero" *ngIf="!!(currQuestion | async).description">
+      <div class="col-12 padLeftRightZero" *ngIf="!!(currQuestion | async).description &&
+        ((currQuestion | async).description !== (currQuestion | async).title)">
         Description: {{(currQuestion | async).description}}
       </div>
 

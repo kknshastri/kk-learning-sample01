@@ -46,15 +46,10 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12 text-center">&nbsp;{{''}}</div>
-
-        <div class="col-12 text-center">loginProgress: {{(loginProgress | async)}}</div>
-        <div class="col-12 text-center">validUser: {{validUser}}</div>
-        <div class="col-12 text-center">error: {{(errorDetails | async | json)}}</div>
-
-        <div class="col-12 verticleSpace"></div>
+        <div class="col-12 text-center errorMsg">&nbsp;{{(errorDetails | async)}}</div>
+        <!-- <div class="col-12 verticleSpace"></div> -->
         <div class="col text-right">
-          <button type="button" class="btn btn-outline-success" (click)="userLogin()" [disabled]="!this.user.email.trim() || !this.user.pwd.trim() || disableLogin">Login</button>
+          <button type="button" class="btn btn-outline-success" (click)="userLogin()" [disabled]="!this.user.email.trim() || !this.user.pwd.trim() || (loginProgress | async)">Login</button>
           <!-- <button type="button" class="btn btn-outline-success" (click)="userRegister()">Register</button> -->
         </div>
       </div>

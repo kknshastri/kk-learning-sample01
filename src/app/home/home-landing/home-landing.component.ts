@@ -14,7 +14,6 @@ import * as userActions from '../../action/user-actions';
 export class HomeLandingComponent implements OnInit, OnDestroy {
   loginSubscription: any;
   user = { email: '', pwd: '' }
-  disableLogin = false;
   validUser = false;
 
   loginProgress: Observable<boolean>;
@@ -43,7 +42,6 @@ export class HomeLandingComponent implements OnInit, OnDestroy {
           }
         } else {
           this.validUser = false;
-          this.disableLogin = false;
         }
       });
   }
@@ -55,7 +53,6 @@ export class HomeLandingComponent implements OnInit, OnDestroy {
   }
 
   userLogin() {
-    this.disableLogin = true;
     this.store.dispatch({ type: userActions.USER_LOGIN, payload: { "email": this.user.email, "password": this.user.pwd } });
   }
 

@@ -1,4 +1,4 @@
-
+import { Helper } from '../helper/helper';
 // import { Action } from '@ngrx/store';
 import * as userActions from '../action/user-actions';
 import * as adminActions from '../action/admin-actions';
@@ -35,6 +35,7 @@ export interface UserStates {
     title?: string;
     isTestInProgress?: boolean;
     isTestSubmitted?: boolean;
+    isTestSubmitProgress: boolean;
     selectedSection?: any;
     currentQuestion?: any;
     currentSectionCounter: number;
@@ -86,6 +87,7 @@ export const INIT_STATE: AppState = {
         timerStarted: false,
         isTestInProgress: false,
         isTestSubmitted: false,
+        isTestSubmitProgress: false,
         currentQuesCounter: 0,
         currentSectionCounter: 0,
         selectedSection: null,
@@ -103,8 +105,8 @@ export const INIT_STATE: AppState = {
 
 // Root Reducer
 export function rootReducer(state: AppState = INIT_STATE, action): AppState {
-    console.log('Action >>>>');
-    console.log(action);
+    console.log('Received Action >>>>', action);
+    const helper = new Helper();
     switch (action.type) {
         // All Admin Actions here...
         case adminActions.SIDEMENU_SELECTED: return Object.assign({}, state, {
@@ -129,16 +131,16 @@ export function rootReducer(state: AppState = INIT_STATE, action): AppState {
                 isLoginProgress: false,
                 isValidUser: true,
                 error: null,
-                userId: action.payload.msg._id,
-                role: action.payload.msg.user_role,
-                name: action.payload.msg.first_name + ' ' + action.payload.msg.last_name,
-                firstName: action.payload.msg.first_name,
-                lastName: action.payload.msg.last_name,
-                email: action.payload.msg.email
+                userId: action.payload._id,
+                role: action.payload.user_role,
+                name: action.payload.first_name + ' ' + action.payload.last_name,
+                firstName: action.payload.first_name,
+                lastName: action.payload.last_name,
+                email: action.payload.email
             }),
             userStates: Object.assign({}, state.userStates, {
-                questionnaireSet: action.payload.msg.questionset_id,
-                testStatus: action.payload.msg.test_status
+                questionnaireSet: action.payload.questionset_id,
+                testStatus: action.payload.test_status
             })
         });
 
@@ -187,7 +189,6 @@ export function rootReducer(state: AppState = INIT_STATE, action): AppState {
             })
         });
 
-
         case userActions.TEST_PROGRESS: return Object.assign({}, state, {
             userStates: Object.assign({}, state.userStates, { isTestInProgress: action.payload })
         });
@@ -196,24 +197,32 @@ export function rootReducer(state: AppState = INIT_STATE, action): AppState {
             userStates: Object.assign({}, state.userStates, { timerStarted: true })
         });
 
-        case userActions.TEST_SELECTED_SECTION: return Object.assign({}, state, {
-            userStates: Object.assign({}, state.userStates, {
-                selectedSection: action.payload[0],
-                currentQuestion: action.payload[0].questions[0],
-                currentSectionCounter: action.payload[1],
-                currentQuesCounter: 0,
-                allQuestions: Object.assign({}, state.userStates.allQuestions, {
-                    data: new ResponseMapper().mapAllQuestions(state.userStates.allQuestions.data, action.payload[1], true)
+        case userActions.TEST_SELECTED_SECTION:
+            const jumpCounter1 = helper.jumpCounter(state.userStates, 0, action.payload[1]);
+            return Object.assign({}, state, {
+                userStates: Object.assign({}, state.userStates, {
+                    selectedSection: action.payload[0],
+                    currentQuestion: action.payload[0].questions[0],
+                    currentSectionCounter: action.payload[1],
+                    currentQuesCounter: 0,
+                    allQuestions: Object.assign({}, state.userStates.allQuestions, {
+                        data: new ResponseMapper().mapAllQuestions(state.userStates.allQuestions.data, action.payload[1], true)
+                    }),
+                    nextPointer: jumpCounter1.nextPtr,
+                    prevPointer: jumpCounter1.prevPtr
                 })
-            })
-        });
+            });
 
-        case userActions.TEST_SELECTED_QUESTION: return Object.assign({}, state, {
-            userStates: Object.assign({}, state.userStates, {
-                currentQuestion: action.payload[0],
-                currentQuesCounter: action.payload[1]
-            })
-        });
+        case userActions.TEST_SELECTED_QUESTION:
+            const jumpCounter2 = helper.jumpCounter(state.userStates, action.payload[1], state.userStates.currentSectionCounter);
+            return Object.assign({}, state, {
+                userStates: Object.assign({}, state.userStates, {
+                    currentQuestion: action.payload[0],
+                    currentQuesCounter: action.payload[1],
+                    nextPointer: jumpCounter2.nextPtr,
+                    prevPointer: jumpCounter2.prevPtr
+                })
+            });
 
         case userActions.SAVE_CURR_ANSWER: return Object.assign({}, state, {
             userStates: Object.assign({}, state.userStates, {
@@ -231,93 +240,36 @@ export function rootReducer(state: AppState = INIT_STATE, action): AppState {
         });
 
         case userActions.NAVIGATE_QUES:
-            let prevPtr = false, nextPtr = false;
-            let newQuesCounter = state.userStates.currentQuesCounter;
-            let newSecCounter = state.userStates.currentSectionCounter;
-
-            // NEXT QUESTION: Update pointer on click of NEXT
-            if (action.payload === 'next') {
-                // Next section exist
-                if (newSecCounter < (state.userStates.allQuestions.data.question_set.sections_questions.length - 1)) {
-                    // Same section next question
-                    if (newQuesCounter < (state.userStates.selectedSection.questions.length - 1)) {
-                        newQuesCounter += 1;
-                        prevPtr = true;
-                        nextPtr = true;     // VERIFY TODO...
-                    } else {
-                        newQuesCounter = 0;
-                        newSecCounter += 1;
-                        prevPtr = true;
-                        nextPtr = true;
-                    }
-                } else {    // Next section doesn't exist
-                    // Same section next question
-                    if (newQuesCounter < (state.userStates.selectedSection.questions.length - 2)) {
-                        newQuesCounter += 1;
-                        prevPtr = true;
-                        nextPtr = true;
-                    } else {
-                        newQuesCounter += 1;
-                        prevPtr = true;
-                        nextPtr = false;
-                    }
-                }
-
-            } else {        // PREVIOUS QUESTION: Update pointer on click of PREVIOUS
-                // Check if prev question is available in same section and there should be prev section..
-                if (newSecCounter > 0) {
-                    if (newQuesCounter > 0) {    // Same section prev question...
-                        newQuesCounter -= 1;
-                        prevPtr = true;
-                        nextPtr = true;
-                    } else {
-                        newSecCounter -= 1;     // Prev section last question...
-                        newQuesCounter = state.userStates.allQuestions.data.question_set.sections_questions[newSecCounter].questions.length - 2;
-                        nextPtr = true;
-                        prevPtr = ((newSecCounter >= 0) && (newQuesCounter > 0)) ? true : false;
-                    }
-                } else {
-                    // Check for first section...
-                    if (newQuesCounter > 0) {
-                        newQuesCounter -= 1;
-                        nextPtr = true;
-                        prevPtr = (newQuesCounter > 0) ? true : false;
-                    } else {
-
-                    }
-                }
-            }
-
+            const updateCounter = helper.updateCounter(state.userStates, action.payload);
+            const updatedQuestionSet = Object.assign({}, state.userStates.allQuestions, {
+                data: new ResponseMapper().mapAllQuestions(state.userStates.allQuestions.data, updateCounter.newSecCounter, false)
+            });
             return Object.assign({}, state, {
                 userStates: Object.assign({}, state.userStates, {
-                    nextPointer: nextPtr,
-                    prevPointer: prevPtr,
-                    currentSectionCounter: newSecCounter,
-                    currentQuesCounter: newQuesCounter
+                    nextPointer: updateCounter.nextPtr,
+                    prevPointer: updateCounter.prevPtr,
+                    currentSectionCounter: updateCounter.newSecCounter,
+                    currentQuesCounter: updateCounter.newQuesCounter,
+                    selectedSection: updatedQuestionSet.data.question_set.sections_questions[updateCounter.newSecCounter],
+                    currentQuestion: updatedQuestionSet.data.question_set.sections_questions[updateCounter.newSecCounter].questions[updateCounter.newQuesCounter],
+                    allQuestions: updatedQuestionSet
                 })
             });
 
         case userActions.TEST_SUBMITTED: return Object.assign({}, state, {
             userStates: Object.assign({}, state.userStates, {
                 isTestInProgress: false,
-                isTestSubmitted: action.payload
+                isTestSubmitted: true,
+                isTestSubmitProgress: true
             })
         });
 
-        // case userActions.SHOW_PREV_QUES: return Object.assign({}, state, {
-        //     userStates: Object.assign({}, state.userStates, { currentQuesCounter: state.userStates.currentQuesCounter - 1 })
-        // });
-
-        // case userActions.SHOW_NEXT_QUES: return Object.assign({}, state, {
-        //     userStates: Object.assign({}, state.userStates, { currentQuesCounter: state.userStates.currentQuesCounter + 1 })
-        // });
-
-        case userActions.SHOW_PREV_QUES: return Object.assign({}, state, {
-            userStates: Object.assign({}, state.userStates, {})
+        case userActions.TEST_SUBMITTED_SUCCESS: return Object.assign({}, state, {
+            userStates: Object.assign({}, state.userStates)
         });
 
-        case userActions.SHOW_NEXT_QUES: return Object.assign({}, state, {
-            userStates: Object.assign({}, state.userStates, {})
+        case userActions.TEST_SUBMITTED_FAILED: return Object.assign({}, state, {
+            userStates: Object.assign({}, state.userStates)
         });
 
 

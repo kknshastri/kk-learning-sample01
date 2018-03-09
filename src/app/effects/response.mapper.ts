@@ -9,7 +9,7 @@ export class ResponseMapper {
                         'sectionExpanded': secIdx === expandedSecIdx ? (isToggle ? !sec.sectionExpanded : true) : false,
                         'questions': sec.questions.map((ques, quesIdx) => {
                             return Object.assign({}, ques, {
-                                'isAnswered': isToggle ? ques.isAnswered : false
+                                'isAnswered': !!ques.isAnswered ? ques.isAnswered : false
                             });
                         })
                     });

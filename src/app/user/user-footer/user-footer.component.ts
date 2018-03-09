@@ -38,10 +38,12 @@ export class UserFooterComponent implements OnInit, OnDestroy {
 
   submitTest() {
     console.log('Submit Test button clicked...');
-    this.testRespSubscription.unsubscribe();
+    if (!!this.testRespSubscription) {
+      this.testRespSubscription.unsubscribe();
+    }
     console.log('Saved Answers ==>> ==>> ==>> ');
     console.log(this.testResponseData);   // PAYLOAD
-    this.store.dispatch({ type: userActions.TEST_SUBMITTED, payload: true });
+    this.store.dispatch({ type: userActions.TEST_SUBMITTED, payload: this.testResponseData });
 
     // IN PROGRESS: DONT DELETE
     // this.router.navigate(['/dashboard']);
