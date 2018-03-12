@@ -67,6 +67,9 @@ ul {
     color: #000000;
     font-weight: 500;
     font-family: "Helvetica Neue", Helvetica;
+    &.allAnswered {
+        color: $dark2;
+    }
 }
 .currentSec {
     color: #000000;
@@ -101,4 +104,8 @@ ul {
     &.warning2 {
         color: red;
     }
+}
+
+.answeredSection {
+    color: $dark2;
 }

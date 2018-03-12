@@ -11,9 +11,4 @@ export class AppComponent implements OnInit {
   ngOnInit() {
   }
 
-  // loadNext(e) {
-  //   console.log('Got emitted and captured...');
-  //   console.log(e);
-  // }
-
 }

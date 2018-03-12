@@ -11,19 +11,13 @@ import 'rxjs/add/observable/timer';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-
 import * as userActions from '../action/user-actions';
 import * as adminActions from '../action/admin-actions';
-
 import { ResponseMapper } from './response.mapper';
-
 
 @Injectable()
 export class SampleEffects {
-
-    constructor(private action: Actions, private store: Store<any>, private quesService: QuestionService) {
-        console.log('Inside Effects===>>');
-    }
+    constructor(private action: Actions, private store: Store<any>, private quesService: QuestionService) { }
 
     @Effect()
     userLogin: Observable<any> = this.action
@@ -46,20 +40,11 @@ export class SampleEffects {
     @Effect()
     loadQuestion: Observable<any> = this.action
         .ofType(userActions.QUESTION_LOAD)
-        .switchMap(() =>
+        .switchMap((actionObject) =>
             Observable.timer(500)
                 .switchMap(() => {
-                    let param1 = {
-                        "questionset_id": "3",
-                        "email": "kris",
-                        "user_id": "5aa292cce3e853118f4b706b"
-                    };
-                    return this.quesService.loadAllQuestions(param1)
-                        .map((allQues) => {
-                            console.log('received qset --->>');
-                            console.log(allQues);
-                            return new userActions.QuestionLoadSuccess(new ResponseMapper().mapAllQuestions(allQues, 0, false));
-                        })
+                    return this.quesService.loadAllQuestions(actionObject["payload"])
+                        .map((allQues) => new userActions.QuestionLoadSuccess(new ResponseMapper().mapAllQuestions(allQues, 0, false)))
                         .catch((err) => Observable.of({ type: userActions.QUESTION_LOAD_FAILED, payload: err }));
                 })
         );
@@ -68,94 +53,20 @@ export class SampleEffects {
     submitAnswer: Observable<any> = this.action
         .ofType(userActions.TEST_SUBMITTED)
         .switchMap((actionObject) =>
-            Observable.timer(1000)
+            Observable.timer(800)
                 .switchMap(() => {
-                    const userAnswers = Object.assign({}, actionObject["payload"], {
-                        "questionset_id": "3",
-                        "email": "kris",
-                        "user_id": "5aa292cce3e853118f4b706b"
-                    });
-                    console.log('submitted answers ---------->>-------------->>-------');
-                    console.log(userAnswers);
-                    return this.quesService.submitTest(userAnswers)
+                    return this.quesService.submitTest(actionObject["payload"])
                         .map((resp) => {
                             if (resp.status === 'error') {
-                                console.log('Inside if --->>>, resp == ', resp);
                                 return new userActions.TestSubmitFailed({ message: resp.question_set, status: resp.status });
                             } else {
-                                console.log('Inside else --->>>, resp == ', resp);
-                                return new userActions.TestSubmitSuccess(resp.msg);
+                                return new userActions.TestSubmitSuccess({ message: resp.msg, status: resp.status, result: resp.result });
                             }
                         })
-                        .catch((err) => Observable.of({ type: userActions.TEST_SUBMITTED_FAILED, payload: err }));
-                }
-                )
+                        .catch((err) => Observable.of({ type: userActions.TEST_SUBMITTED_FAILED, payload: { message: err, status: 'error' } }));
+                })
         );
 
-    // @Effect()
-    // testSubmit: Observable<any> = this.action
-    //     .ofType(userActions.TEST_SUBMITTED)
-    //     .switchMap(() =>
-    //         Observable.timer(300)
-    //             .switchMap(() =>
-    //                 this.quesService.loadAllQuestions()
-    //                     .map((allQues) => new userActions.QuestionLoadSuccess(new ResponseMapper().mapAllQuestions(allQues, 0, false)))
-    //                     .catch((err) => Observable.of({ type: userActions.QUESTION_LOAD_FAILED, payload: err }))
-    //             )
-    //     );
-
-
-
-
-
-
-
-
-
-
-    // Working Copy
-    // @Effect()
-    // loadQuestion: Observable<any> = this.action
-    //     .ofType(userActions.QUESTION_LOAD)
-    //     .switchMap(() =>
-    //         // console.log('Inside Effect: loadQuestion, service call');
-    //         // return Observable.of({ type: userActions.QUESTION_LOAD_SUCCESS, payload: [null, false] });
-    //         this.quesService.loadAllQuestions()
-    //             .map((allQues) => new userActions.LoadAllQuestion(allQues))
-    //             .catch((err) => {
-    //                 console.log('Inside catch of effects.....');
-    //                 return Observable.of({ type: userActions.QUESTION_LOAD_FAILED, payload: err });
-    //             })
-
-    //     );
-
-    // Working BKP
-    // @Effect()
-    // loadQuestion: Observable<any> = this.action
-    //     .ofType(userActions.QUESTION_LOAD)
-    //     .switchMap(() => {
-    //         console.log('Inside Effect: loadQuestion, service call');
-    //         // return Observable.of({ type: userActions.QUESTION_LOAD_SUCCESS, payload: [null, false] });
-    //         return this.quesService.loadAllQuestions()
-    //             .map((allQues) => Observable.of({ type: userActions.QUESTION_LOAD_SUCCESS }))
-    //             .catch((err) => Observable.of({ type: userActions.QUESTION_LOAD_FAILED, payload: err }));
-
-    //     });
-
-    // @Effect({ dispatch: true })
-    // krishna: Observable<any> = this.action
-    //     .ofType(INCREMENT_FROM_EFFECT)
-    //     .switchMap(() => {
-    //         console.log('Calling Effects====>>>');  // http
-    //         return Observable.of({ type: DECREMENT });
-    //     });
-
-    // @Effect({ dispatch: true })
-    // krishna2: Observable<any> = this.action
-    //     .ofType(DECREMENT_FROM_EFFECT)
-    //     .switchMap(() => {
-    //         console.log('Calling Effects====>>>');
-    //         return Observable.of({ type: INCREMENT });
-    //     });
 
 }
+

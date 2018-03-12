@@ -23,7 +23,6 @@ export class Helper {
                     nextPtr = true;
                 }
             } else {    // Next section doesn't exist
-                // Same section next question
                 if (newQuesCounter < (userStates.selectedSection.questions.length - 2)) {
                     newQuesCounter += 1;
                     prevPtr = true;
@@ -48,13 +47,13 @@ export class Helper {
                     prevPtr = ((newSecCounter >= 0) && (newQuesCounter > 0)) ? true : false;
                 }
             } else {
-                // Check for first section...
                 if (newQuesCounter > 0) {
                     newQuesCounter -= 1;
                     nextPtr = true;
                     prevPtr = (newQuesCounter > 0) ? true : false;
                 } else {
-
+                    nextPtr = true;
+                    prevPtr = false;
                 }
             }
         }

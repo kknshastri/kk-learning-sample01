@@ -14,6 +14,7 @@ import { UserHomeComponent } from './user/user-home/user-home.component';
 import { UserQuestionnaireComponent } from './user/user-questionnaire/user-questionnaire.component';
 import { UploadQuestionComponent } from './admin/upload-question/upload-question.component';
 import { HomeLandingComponent } from './home/home-landing/home-landing.component';
+import { UserAuthGuard } from './guards/user-auth.guard';
 
 const routes: Routes = [
   {
@@ -22,7 +23,8 @@ const routes: Routes = [
   },
   {
     path: 'demo',
-    component: DemoComponent
+    canActivate: UserAuthGuard,
+    component: DemoComponent,
   },
   {
     path: 'dashboard',

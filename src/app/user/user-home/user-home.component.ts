@@ -17,52 +17,63 @@ export class UserHomeComponent implements OnInit, OnDestroy {
   isTestSubmitted: Observable<boolean>;
   isQuesLoading: Observable<boolean>;
   loadQuesError: Observable<any>;
+  scoreDetails: Observable<any>;
   quesLoadSubscription: any;
   initialLoad = true;
+
+  quesSet = '';
+  userId = '';
+  userEmail = '';
+  testSubmitStatus = '';
 
   constructor(private store: Store<any>, private router: Router) {
     this.isTestinProgress = store.pipe(select((s) => s.appState.userStates.isTestInProgress));
     this.isTestSubmitted = store.pipe(select((s) => s.appState.userStates.isTestSubmitted));
     this.isQuesLoading = store.pipe(select((s) => s.appState.userStates.allQuestions.isLoading));
     this.loadQuesError = store.pipe(select((s) => s.appState.userStates.allQuestions.error));
+    this.scoreDetails = store.pipe(select((s) => s.appState.userStates.testSubmitResult));
   }
 
   ngOnInit() {
-    console.log('User Home init...');
-
     this.quesLoadSubscription = this.store.select<any>((state: any) => state)
       .subscribe((s: any) => {
-        console.log('>>>> User home subscribe >>>>>>');
-        if (!!s.appState.userStates.allQuestions.data && !!s.appState.userStates.allQuestions.data.status
-          && (s.appState.userStates.allQuestions.data.status === 'success')) {
-          console.log('success >>>>>');
+        if (!s.appState.loggedInUser.isValidUser) {
+          this.router.navigate(['/']);
+        } else {
+          this.quesSet = s.appState.userStates.questionnaireSet;
+          this.userId = s.appState.loggedInUser.userId;
+          this.userEmail = s.appState.loggedInUser.email;
+          this.testSubmitStatus = s.appState.userStates.testStatus;
 
-          if (this.initialLoad && !s.appState.userStates.isTestSubmitted) {
-            console.log('Initial load and dispatch TEST_PROGRESS');
-            this.store.dispatch({ type: userActions.TEST_PROGRESS, payload: true });
-            this.router.navigate(['/dashboard/questionnaire']);
-            this.initialLoad = false;
+          // If Test is already completed and User is loging again
+          if (this.testSubmitStatus === 'completed') {
+            if (!!this.quesLoadSubscription) this.quesLoadSubscription.unsubscribe();
           } else {
-            if (!!this.quesLoadSubscription && s.appState.userStates.isTestSubmitted) {
-              console.log('User Home Unsubscribing here....');
-              this.quesLoadSubscription.unsubscribe();
+            if (!!s.appState.userStates.allQuestions.data && !!s.appState.userStates.allQuestions.data.status
+              && (s.appState.userStates.allQuestions.data.status === 'success')) {
+              if (this.initialLoad && !s.appState.userStates.isTestSubmitted) {
+                this.store.dispatch({ type: userActions.TEST_PROGRESS, payload: true });
+                this.router.navigate(['/dashboard/questionnaire']);
+                this.initialLoad = false;
+              } else {
+                if (!!this.quesLoadSubscription && s.appState.userStates.isTestSubmitted) this.quesLoadSubscription.unsubscribe();
+              }
             }
           }
+
         }
       });
   }
 
   ngOnDestroy() {
-    console.log('User Home destroy...');
-    if (!!this.quesLoadSubscription) {
-      console.log('User home unsubscribe in destroy...');
-      this.quesLoadSubscription.unsubscribe();
-    }
+    if (!!this.quesLoadSubscription) this.quesLoadSubscription.unsubscribe();
   }
 
   startTest() {
-    console.log('Clicked on Start test button...');
-    this.store.dispatch({ type: userActions.QUESTION_LOAD, payload: null });
+    this.store.dispatch({
+      type: userActions.QUESTION_LOAD,
+      payload: { questionset_id: this.quesSet, email: this.userEmail, user_id: this.userId }
+    });
   }
 
 }

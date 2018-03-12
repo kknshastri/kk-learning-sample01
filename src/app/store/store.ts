@@ -36,6 +36,8 @@ export interface UserStates {
     isTestInProgress?: boolean;
     isTestSubmitted?: boolean;
     isTestSubmitProgress: boolean;
+    testSubmitError: any,
+    testSubmitResult: any,
     selectedSection?: any;
     currentQuestion?: any;
     currentSectionCounter: number;
@@ -43,6 +45,7 @@ export interface UserStates {
     allQuestions: AllQuestions;
     nextPointer?: boolean;
     prevPointer?: boolean;
+    testDuration: number;
 }
 export interface AdminStates {
     selectedSidebarMenu: string;
@@ -88,6 +91,8 @@ export const INIT_STATE: AppState = {
         isTestInProgress: false,
         isTestSubmitted: false,
         isTestSubmitProgress: false,
+        testSubmitError: null,
+        testSubmitResult: null,
         currentQuesCounter: 0,
         currentSectionCounter: 0,
         selectedSection: null,
@@ -98,14 +103,15 @@ export const INIT_STATE: AppState = {
             error: null
         },
         nextPointer: true,
-        prevPointer: false
+        prevPointer: false,
+        testDuration: 0
     }
 };
 
 
 // Root Reducer
 export function rootReducer(state: AppState = INIT_STATE, action): AppState {
-    console.log('Received Action >>>>', action);
+    console.log('Received Action ---->>>>', action);
     const helper = new Helper();
     switch (action.type) {
         // All Admin Actions here...
@@ -117,7 +123,6 @@ export function rootReducer(state: AppState = INIT_STATE, action): AppState {
 
 
         // All User Actions here...
-
         case userActions.USER_LOGIN: return Object.assign({}, state, {
             loggedInUser: Object.assign({}, state.loggedInUser, {
                 isLoginProgress: true,
@@ -140,7 +145,8 @@ export function rootReducer(state: AppState = INIT_STATE, action): AppState {
             }),
             userStates: Object.assign({}, state.userStates, {
                 questionnaireSet: action.payload.questionset_id,
-                testStatus: action.payload.test_status
+                testStatus: action.payload.test_status,
+                isTestSubmitted: (action.payload.test_status === 'completed' ? true : false)
             })
         });
 
@@ -175,7 +181,9 @@ export function rootReducer(state: AppState = INIT_STATE, action): AppState {
                     error: null
                 }),
                 selectedSection: action.payload.question_set.sections_questions[0],
-                currentQuestion: action.payload.question_set.sections_questions[0].questions[0]
+                currentQuestion: action.payload.question_set.sections_questions[0].questions[0],
+                testStatus: 'started',
+                testDuration: action.payload.question_set.duration
             })
         });
 
@@ -185,7 +193,8 @@ export function rootReducer(state: AppState = INIT_STATE, action): AppState {
                     isLoading: false,
                     data: null,
                     error: action.payload
-                })
+                }),
+                testStatus: 'notstarted'
             })
         });
 
@@ -259,21 +268,30 @@ export function rootReducer(state: AppState = INIT_STATE, action): AppState {
         case userActions.TEST_SUBMITTED: return Object.assign({}, state, {
             userStates: Object.assign({}, state.userStates, {
                 isTestInProgress: false,
-                isTestSubmitted: true,
                 isTestSubmitProgress: true
             })
         });
 
         case userActions.TEST_SUBMITTED_SUCCESS: return Object.assign({}, state, {
-            userStates: Object.assign({}, state.userStates)
+            userStates: Object.assign({}, state.userStates, {
+                isTestSubmitProgress: false,
+                isTestSubmitted: true,
+                testStatus: 'completed',
+                testSubmitResult: action.payload.result
+            })
         });
 
         case userActions.TEST_SUBMITTED_FAILED: return Object.assign({}, state, {
-            userStates: Object.assign({}, state.userStates)
+            userStates: Object.assign({}, state.userStates, {
+                isTestSubmitProgress: false,
+                testSubmitError: action.payload,
+                testSubmitResult: null,
+            })
         });
 
 
-
+        // testSubmitError: any,
+        // testSubmitResult: any,
 
 
         default: return state;

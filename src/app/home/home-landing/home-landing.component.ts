@@ -31,9 +31,7 @@ export class HomeLandingComponent implements OnInit, OnDestroy {
       .subscribe((s: any) => {
         this.validUser = s.appState.loggedInUser.isValidUser;
         if (this.validUser) {
-          if (!!this.loginSubscription) {
-            this.loginSubscription.unsubscribe();
-          }
+          if (!!this.loginSubscription) this.loginSubscription.unsubscribe();
           let userRole = s.appState.loggedInUser.role;
           if (userRole === 'admin') {
             this.router.navigate(['/adminDashboard']);
@@ -47,9 +45,7 @@ export class HomeLandingComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (!!this.loginSubscription) {
-      this.loginSubscription.unsubscribe();
-    }
+    if (!!this.loginSubscription) this.loginSubscription.unsubscribe();
   }
 
   userLogin() {
@@ -57,7 +53,6 @@ export class HomeLandingComponent implements OnInit, OnDestroy {
   }
 
   userRegister() {
-    console.log('register..');
   }
 
 }

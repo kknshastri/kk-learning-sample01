@@ -9,11 +9,11 @@
     <ul>
       <li>
         <span (click)="expandQuestionnaire = !expandQuestionnaire" class="questionnaireTitleIcon" [ngClass]="expandQuestionnaire ? 'questionnaireExpanded' : ''">{{expandQuestionnaire ? '&#8211;' : '+'}}</span>
-        <span class="questionnaireTitle" [ngClass]="expandQuestionnaire ? 'questionnaireExpanded' : ''">{{(questionSet | async).title}}</span>
+        <span class="questionnaireTitle" [ngClass]="[expandQuestionnaire ? 'questionnaireExpanded' : '', ((questionSet | async).sections_questions | checkAllAnswered: 'allsections') ? 'allAnswered' : '']">{{(questionSet | async).title}}</span>
         <ul [ngClass]="expandQuestionnaire ? '' : 'hideList'">
           <li *ngFor="let section of (questionSet | async).sections_questions; let secIdx = index">
             <span (click)="selectedSection(secIdx, section)" class="sectionTitleIcon">{{section.sectionExpanded ? '&#8211;' : '+'}}</span>
-            <span class="sectionTitle" [ngClass]="[secIdx === (currSecCounter | async) ? 'currentSec' : '', section.sectionExpanded ? 'expandedSec' : '']">{{section.title}}</span>
+            <span class="sectionTitle" [ngClass]="[secIdx === (currSecCounter | async) ? 'currentSec' : '', section.sectionExpanded ? 'expandedSec' : '', (section | checkAllAnswered) ? 'answeredSection' : '']">{{section.title}}</span>
             <ul [ngClass]="((secIdx === (currSecCounter | async)) && section.sectionExpanded) ? '' : 'hideList'">
               <li *ngFor="let ques of section.questions; let quesIdx = index">
                 <span [ngClass]="[((quesIdx === (currQuestionCounter | async)) && (secIdx === (currSecCounter | async))) ? 'currentQues' : '', ques.isAnswered ? 'answeredQues' : '']"
@@ -24,62 +24,5 @@
         </ul>
       </li>
     </ul>
-
   </div>
 </div>
-
-<!-- <hr>
-<div class="row marginLeftRightZero">
-  <div class="col padLeftRightZero">
-    <ul>
-      <li>
-        <span>{{(testResponseData | async)?.title}}</span>
-        <ul>
-          <li *ngFor="let section of (testResponseData | async)?.sections_questions">
-            <span>{{section.title}}</span>
-            <ul>
-              <li *ngFor="let ques of section.questions">
-                {{ques | async | json}}
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-
-  </div>
-</div>
-<hr> -->
-
-
-
-<!-- MAIN BKP: DON'T DELETE -->
-<!-- <div *ngIf="(isTestinProgress | async)" class="row marginLeftRightZero">
-  <div class="col padLeftRightZero">
-    <ul>
-      <li>
-        <span (click)="expandQuestionnaire = !expandQuestionnaire" class="questionnaireTitleIcon" [ngClass]="expandQuestionnaire ? 'questionnaireExpanded' : ''">{{expandQuestionnaire ? '&#8211;' : '+'}}</span>
-        <span class="questionnaireTitle" [ngClass]="expandQuestionnaire ? 'questionnaireExpanded' : ''">{{questionnaireStructure.questionnaireName}}</span>
-        <ul [ngClass]="expandQuestionnaire ? '' : 'hideList'">
-          <li *ngFor="let section of questionnaireStructure.sections; let secIdx = index">
-            <span (click)="selectedSection(secIdx, section)" class="sectionTitleIcon">{{section.sectionExpanded ? '&#8211;' : '+'}}</span>
-            <span class="sectionTitle" [ngClass]="[secIdx === selectedSectionIdx ? 'currentSec' : '', section.sectionExpanded ? 'expandedSec' : '']">{{section.sectionName}}</span>
-            <ul [ngClass]="((secIdx === selectedSectionIdx) && section.sectionExpanded) ? '' : 'hideList'">
-              <li *ngFor="let ques of section.questions; let quesIdx = index">
-                <span [ngClass]="[((quesIdx === selectedQuesIdx) && (secIdx === selectedSectionIdx)) ? 'currentQues' : '', ques.isAnswered ? 'answeredQues' : '']"
-                  (click)="selectedQuestion(ques, quesIdx)">{{ques.description}}</span>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-
-  </div>
-</div> -->
-
-<!-- <div *ngIf="(isTestinProgress | async)" class="row marginLeftRightZero">
-    <div class="col padLeftRightZero">
-      {{questionSet | async | json}}
-    </div>
-</div> -->

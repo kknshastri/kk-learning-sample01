@@ -28,7 +28,6 @@ export class LeftSidebarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log('left sidebar.... init..');
     this.clockInterval = setInterval(() => this.startClock(), 1000);
     this.store.select<any>((state: any) => state)
       .subscribe((cs: any) => console.log(cs.appState.testName));

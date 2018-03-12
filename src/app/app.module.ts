@@ -43,6 +43,8 @@ import { HomeLandingComponent } from './home/home-landing/home-landing.component
 import { HomeHeaderComponent } from './home/home-header/home-header.component';
 import { HomeFooterComponent } from './home/home-footer/home-footer.component';
 import { HomeTitlebarComponent } from './home/home-titlebar/home-titlebar.component';
+import { CheckAllAnsweredPipe } from './pipes/check-all-answered.pipe';
+import { UserAuthGuard } from './guards/user-auth.guard';
 
 const appDeclarations: any = [
   AppComponent, HeaderComponent, FooterComponent, LeftSidebarComponent, MainContentComponent,
@@ -50,11 +52,13 @@ const appDeclarations: any = [
   NotFoundComponent, SampleQuestionComponent, AdminSidebarComponent, ManageQuestionsComponent,
   ManageSectionsComponent, ManageSetsComponent, TitlebarSectionComponent, AdminHeaderComponent,
   ManageQuestionnaireComponent, ManageUsersComponent, UserFooterComponent, UserSidebarComponent,
-  UserTitlebarComponent, UserHeaderComponent, UserHomeComponent, UserQuestionnaireComponent
+  UserTitlebarComponent, UserHeaderComponent, UserHomeComponent, UserQuestionnaireComponent,
+  UploadQuestionComponent, HomeLandingComponent, HomeHeaderComponent, HomeFooterComponent,
+  HomeTitlebarComponent, CheckAllAnsweredPipe
 ];
 
 @NgModule({
-  declarations: [...appDeclarations, UploadQuestionComponent, HomeLandingComponent, HomeHeaderComponent, HomeFooterComponent, HomeTitlebarComponent],
+  declarations: [...appDeclarations],
   imports: [
     BrowserModule,
     FormsModule,
@@ -63,7 +67,7 @@ const appDeclarations: any = [
     StoreModule.forRoot({ appState: rootReducer }),
     EffectsModule.forRoot([SampleEffects])
   ],
-  providers: [QuestionService],
+  providers: [QuestionService, UserAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

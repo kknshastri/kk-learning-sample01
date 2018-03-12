@@ -15,6 +15,8 @@ export class UserFooterComponent implements OnInit, OnDestroy {
   isTestinProgress: Observable<boolean>;
   testResponseData: any;
   testRespSubscription: any;
+  userId = '';
+  userEmail = '';
 
   constructor(private store: Store<any>, private router: Router) {
     this.isTestinProgress = store.pipe(select((s) => s.appState.userStates.isTestInProgress));
@@ -23,30 +25,26 @@ export class UserFooterComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.testRespSubscription = this.store.select<any>((state: any) => state)
       .subscribe((s: any) => {
-        console.log('Footer subscribe --------------');
-        if (!!s.appState.userStates.allQuestions.data) {
-          this.testResponseData = s.appState.userStates.allQuestions.data.question_set;
+        this.userId = s.appState.loggedInUser.userId;
+        this.userEmail = s.appState.loggedInUser.email;
+        if (s.appState.userStates.testStatus === 'completed') {
+          if (!!this.testRespSubscription) this.testRespSubscription.unsubscribe();
+          this.router.navigate(['/dashboard']);
+        } else if (!!s.appState.userStates.allQuestions.data) {
+          this.testResponseData = s.appState.userStates.allQuestions.data;
         }
       });
   }
 
   ngOnDestroy() {
-    if (!!this.testRespSubscription) {
-      this.testRespSubscription.unsubscribe();
-    }
+    if (!!this.testRespSubscription) this.testRespSubscription.unsubscribe();
   }
 
   submitTest() {
-    console.log('Submit Test button clicked...');
-    if (!!this.testRespSubscription) {
-      this.testRespSubscription.unsubscribe();
-    }
-    console.log('Saved Answers ==>> ==>> ==>> ');
-    console.log(this.testResponseData);   // PAYLOAD
-    this.store.dispatch({ type: userActions.TEST_SUBMITTED, payload: this.testResponseData });
-
-    // IN PROGRESS: DONT DELETE
-    // this.router.navigate(['/dashboard']);
+    this.store.dispatch({
+      type: userActions.TEST_SUBMITTED,
+      payload: Object.assign({}, this.testResponseData, { email: this.userEmail, user_id: this.userId, questionset_id: this.testResponseData.questionset_id, status: '' })
+    });
   }
 
 }

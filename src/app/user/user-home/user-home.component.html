@@ -5,12 +5,30 @@
 </div> -->
 
 <div class="row marginLeftRightZero homeRow">
-  <div class="col-12 text-center" *ngIf="(isTestSubmitted | async)">
+  <!-- <div class="col-12 text-center" *ngIf="(isTestSubmitted | async)">
     <p>&nbsp;</p>
     <h5 class="submittedLabel">Your Test is submitted successfully.</h5>
+  </div> -->
+
+  <div class="col-12 text-center" *ngIf="(testSubmitStatus === 'completed')">
+    <p>&nbsp;</p>
+    <h5 class="submittedLabel">Your Test is completed successfully.</h5>
+    <p *ngIf="!(scoreDetails | async)">Kindly contact admin or your POC for your score details.</p>
+    <div class="row" *ngIf="!!(scoreDetails | async)">
+      <!-- <div class="col">
+        <p>Your Score: {{(scoreDetails | async).user_score}}</p>
+        <p>Cutoff Percentage: {{(scoreDetails | async).cut_of_percentage}}</p>
+      </div> -->
+
+    </div>
   </div>
 
-  <div class="col-12 text-center" *ngIf="!(isTestSubmitted | async)">
+  <div class="col-12 text-center" *ngIf="(testSubmitStatus === 'started')">
+    <p>&nbsp;</p>
+    <h5 class="submittedLabel">Your Test is already in progress somewhere else. Please contact your admin.</h5>
+  </div>
+
+  <div class="col-12 text-center" *ngIf="!(isTestSubmitted | async) && (testSubmitStatus === 'notstarted')">
     <h5>Welcome!</h5>
     <p>&nbsp;</p>
     <p>Kindly read all the questions carefully and answer accordingly.</p>
