@@ -48,30 +48,25 @@ import { UserAuthGuard } from './guards/user-auth.guard';
 import { AdminAuthGuard } from './guards/admin-auth.guard';
 
 const appDeclarations: any = [
-  AppComponent, HeaderComponent, FooterComponent, LeftSidebarComponent, MainContentComponent,
-  DemoComponent, UserLandingComponent, AdminLandingComponent, HomeContentComponent,
-  NotFoundComponent, SampleQuestionComponent, AdminSidebarComponent, ManageQuestionsComponent,
-  ManageSectionsComponent, ManageSetsComponent, TitlebarSectionComponent, AdminHeaderComponent,
-  ManageQuestionnaireComponent, ManageUsersComponent, UserFooterComponent, UserSidebarComponent,
-  UserTitlebarComponent, UserHeaderComponent, UserHomeComponent, UserQuestionnaireComponent,
-  UploadQuestionComponent, HomeLandingComponent, HomeHeaderComponent, HomeFooterComponent,
-  HomeTitlebarComponent, CheckAllAnsweredPipe
+	AppComponent, HeaderComponent, FooterComponent, LeftSidebarComponent, MainContentComponent,
+	DemoComponent, UserLandingComponent, AdminLandingComponent, HomeContentComponent,
+	NotFoundComponent, SampleQuestionComponent, AdminSidebarComponent, ManageQuestionsComponent,
+	ManageSectionsComponent, ManageSetsComponent, TitlebarSectionComponent, AdminHeaderComponent,
+	ManageQuestionnaireComponent, ManageUsersComponent, UserFooterComponent, UserSidebarComponent,
+	UserTitlebarComponent, UserHeaderComponent, UserHomeComponent, UserQuestionnaireComponent,
+	UploadQuestionComponent, HomeLandingComponent, HomeHeaderComponent, HomeFooterComponent,
+	HomeTitlebarComponent, CheckAllAnsweredPipe
 ];
 
 @NgModule({
-  declarations: [...appDeclarations],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    StoreModule.forRoot({ appState: rootReducer }),
-    EffectsModule.forRoot([QuestionnaireEffects])
-  ],
-  providers: [QuestionService, UserAuthGuard, AdminAuthGuard],
-  bootstrap: [AppComponent]
+	declarations: [...appDeclarations],
+	imports: [
+		BrowserModule, FormsModule, AppRoutingModule, HttpClientModule,
+		StoreModule.forRoot({ appState: rootReducer }), EffectsModule.forRoot([QuestionnaireEffects])
+	],
+	providers: [QuestionService, UserAuthGuard, AdminAuthGuard],
+	bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor() {
-  }
+	constructor() { }
 }

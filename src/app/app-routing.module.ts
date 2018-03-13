@@ -18,86 +18,86 @@ import { UserAuthGuard } from './guards/user-auth.guard';
 import { AdminAuthGuard } from './guards/admin-auth.guard';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: HomeLandingComponent
-  },
-  {
-    path: 'demo',
-    component: DemoComponent,
-    canActivate: [UserAuthGuard]
-  },
-  {
-    path: 'dashboard',
-    component: UserLandingComponent,
-    canActivate: [UserAuthGuard],
-    children: [
-      {
-        path: '',
-        component: UserHomeComponent
-      },
-      {
-        path: 'home',
-        component: UserHomeComponent
-      },
-      {
-        path: 'questionnaire',
-        component: UserQuestionnaireComponent
-      }
-    ]
-  },
-  {
-    path: 'adminDashboard',
-    component: AdminLandingComponent,
-    canActivate: [AdminAuthGuard],
-    children: [
-      {
-        path: '',
-        component: ManageQuestionsComponent
-      },
-      {
-        path: 'home',
-        component: ManageQuestionsComponent
-        // component: HomeContentComponent
-      },
-      {
-        path: 'homeOld',
-        component: HomeContentComponent
-      },
-      {
-        path: 'manageQues',
-        component: ManageQuestionsComponent
-      },
-      {
-        path: 'manageSections',
-        component: ManageSectionsComponent
-      },
-      {
-        path: 'manageQuestionnaire',
-        component: ManageQuestionnaireComponent
-      },
-      {
-        path: 'manageUsers',
-        component: ManageUsersComponent
-      },
-      {
-        path: 'uploadQues',
-        component: UploadQuestionComponent
-      },
-      {
-        path: '**',
-        component: NotFoundComponent
-      }
-    ]
-  },
-  {
-    path: '**',
-    component: NotFoundComponent
-  }
+	{
+		path: '',
+		component: HomeLandingComponent
+	},
+	{
+		path: 'demo',
+		component: DemoComponent,
+		canActivate: [UserAuthGuard]
+	},
+	{
+		path: 'dashboard',
+		component: UserLandingComponent,
+		canActivate: [UserAuthGuard],
+		children: [
+			{
+				path: '',
+				component: UserHomeComponent
+			},
+			{
+				path: 'home',
+				component: UserHomeComponent
+			},
+			{
+				path: 'questionnaire',
+				component: UserQuestionnaireComponent
+			}
+		]
+	},
+	{
+		path: 'adminDashboard',
+		component: AdminLandingComponent,
+		canActivate: [AdminAuthGuard],
+		children: [
+			{
+				path: '',
+				component: ManageQuestionsComponent
+			},
+			{
+				path: 'home',
+				component: ManageQuestionsComponent
+				// component: HomeContentComponent
+			},
+			{
+				path: 'homeOld',
+				component: HomeContentComponent
+			},
+			{
+				path: 'manageQues',
+				component: ManageQuestionsComponent
+			},
+			{
+				path: 'manageSections',
+				component: ManageSectionsComponent
+			},
+			{
+				path: 'manageQuestionnaire',
+				component: ManageQuestionnaireComponent
+			},
+			{
+				path: 'manageUsers',
+				component: ManageUsersComponent
+			},
+			{
+				path: 'uploadQues',
+				component: UploadQuestionComponent
+			},
+			{
+				path: '**',
+				component: NotFoundComponent
+			}
+		]
+	},
+	{
+		path: '**',
+		component: NotFoundComponent
+	}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule]
 })
 export class AppRoutingModule { }
