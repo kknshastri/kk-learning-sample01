@@ -47,7 +47,7 @@ export class UserHomeComponent implements OnInit, OnDestroy {
 
           // If Test is already completed and User is loging again
           if (this.testSubmitStatus === 'completed') {
-            if (!!this.quesLoadSubscription) this.quesLoadSubscription.unsubscribe();
+            if (!!this.quesLoadSubscription) { this.quesLoadSubscription.unsubscribe(); }
           } else {
             if (!!s.appState.userStates.allQuestions.data && !!s.appState.userStates.allQuestions.data.status
               && (s.appState.userStates.allQuestions.data.status === 'success')) {
@@ -56,7 +56,7 @@ export class UserHomeComponent implements OnInit, OnDestroy {
                 this.router.navigate(['/dashboard/questionnaire']);
                 this.initialLoad = false;
               } else {
-                if (!!this.quesLoadSubscription && s.appState.userStates.isTestSubmitted) this.quesLoadSubscription.unsubscribe();
+                if (!!this.quesLoadSubscription && s.appState.userStates.isTestSubmitted) { this.quesLoadSubscription.unsubscribe(); }
               }
             }
           }
@@ -66,7 +66,7 @@ export class UserHomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (!!this.quesLoadSubscription) this.quesLoadSubscription.unsubscribe();
+    if (!!this.quesLoadSubscription) { this.quesLoadSubscription.unsubscribe(); }
   }
 
   startTest() {

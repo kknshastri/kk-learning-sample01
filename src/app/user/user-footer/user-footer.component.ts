@@ -28,7 +28,7 @@ export class UserFooterComponent implements OnInit, OnDestroy {
         this.userId = s.appState.loggedInUser.userId;
         this.userEmail = s.appState.loggedInUser.email;
         if (s.appState.userStates.testStatus === 'completed') {
-          if (!!this.testRespSubscription) this.testRespSubscription.unsubscribe();
+          if (!!this.testRespSubscription) { this.testRespSubscription.unsubscribe(); }
           this.router.navigate(['/dashboard']);
         } else if (!!s.appState.userStates.allQuestions.data) {
           this.testResponseData = s.appState.userStates.allQuestions.data;
@@ -37,13 +37,16 @@ export class UserFooterComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (!!this.testRespSubscription) this.testRespSubscription.unsubscribe();
+    if (!!this.testRespSubscription) { this.testRespSubscription.unsubscribe(); }
   }
 
   submitTest() {
     this.store.dispatch({
       type: userActions.TEST_SUBMITTED,
-      payload: Object.assign({}, this.testResponseData, { email: this.userEmail, user_id: this.userId, questionset_id: this.testResponseData.questionset_id, status: '' })
+      payload: Object.assign({}, this.testResponseData, {
+        email: this.userEmail, user_id: this.userId,
+        questionset_id: this.testResponseData.questionset_id, status: ''
+      })
     });
   }
 

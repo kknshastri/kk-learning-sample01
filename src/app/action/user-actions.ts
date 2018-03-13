@@ -22,7 +22,6 @@ export const QUESTION_LOAD = 'QUESTION_LOAD';
 export const QUESTION_LOAD_SUCCESS = 'QUESTION_LOAD_SUCCESS';
 export const QUESTION_LOAD_FAILED = 'QUESTION_LOAD_FAILED';
 
-
 export class UserLoginSuccess implements Action {
     readonly type = USER_LOGIN_SUCCESS;
     constructor(public payload: any) { }

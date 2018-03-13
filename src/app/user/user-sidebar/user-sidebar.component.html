@@ -1,6 +1,9 @@
 <div *ngIf="(isTestinProgress | async)" class="row marginLeftRightZero timerContainer">
   <div class="col">
-    <h3 class="timerValue" [ngClass]="warningIndicator">{{remainingTime}}</h3>
+    <h3 class="timerValue" [ngClass]="[warningIndicator]">{{remainingTime}}</h3>
+    <p *ngIf="warningIndicator === 'warning2'" class="errorMsg">
+      Your Test will be submitted automatically after time out. Please save all your answers.
+    </p>
   </div>
 </div>
 

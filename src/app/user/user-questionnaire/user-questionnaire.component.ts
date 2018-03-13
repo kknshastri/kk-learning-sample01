@@ -46,7 +46,7 @@ export class UserQuestionnaireComponent implements OnInit, OnDestroy {
         testSubmitted = s.appState.userStates.isTestSubmitted;
         this.disableSaveButon = true;
         this.currQuesAnswer = !!s.appState.userStates.currentQuestion ? s.appState.userStates.currentQuestion.answer.answer_value : [];
-        if (!!testSubmitted && !!this.subscription1) this.subscription1.unsubscribe();
+        if (!!testSubmitted && !!this.subscription1) { this.subscription1.unsubscribe(); }
       });
 
     if (!testProgress && !testSubmitted) {
@@ -58,7 +58,7 @@ export class UserQuestionnaireComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (!!this.subscription1) this.subscription1.unsubscribe();
+    if (!!this.subscription1) { this.subscription1.unsubscribe(); }
   }
 
   singleAnswerChange(e) {

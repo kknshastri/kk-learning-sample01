@@ -9,7 +9,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
 import { rootReducer } from './store/store';
-import { SampleEffects } from './effects/sample.effects';
+import { QuestionnaireEffects } from './effects/questionnaire.effects';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './common/header/header.component';
@@ -45,6 +45,7 @@ import { HomeFooterComponent } from './home/home-footer/home-footer.component';
 import { HomeTitlebarComponent } from './home/home-titlebar/home-titlebar.component';
 import { CheckAllAnsweredPipe } from './pipes/check-all-answered.pipe';
 import { UserAuthGuard } from './guards/user-auth.guard';
+import { AdminAuthGuard } from './guards/admin-auth.guard';
 
 const appDeclarations: any = [
   AppComponent, HeaderComponent, FooterComponent, LeftSidebarComponent, MainContentComponent,
@@ -65,9 +66,9 @@ const appDeclarations: any = [
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot({ appState: rootReducer }),
-    EffectsModule.forRoot([SampleEffects])
+    EffectsModule.forRoot([QuestionnaireEffects])
   ],
-  providers: [QuestionService, UserAuthGuard],
+  providers: [QuestionService, UserAuthGuard, AdminAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

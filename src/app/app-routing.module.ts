@@ -15,6 +15,7 @@ import { UserQuestionnaireComponent } from './user/user-questionnaire/user-quest
 import { UploadQuestionComponent } from './admin/upload-question/upload-question.component';
 import { HomeLandingComponent } from './home/home-landing/home-landing.component';
 import { UserAuthGuard } from './guards/user-auth.guard';
+import { AdminAuthGuard } from './guards/admin-auth.guard';
 
 const routes: Routes = [
   {
@@ -23,12 +24,13 @@ const routes: Routes = [
   },
   {
     path: 'demo',
-    canActivate: UserAuthGuard,
     component: DemoComponent,
+    canActivate: [UserAuthGuard]
   },
   {
     path: 'dashboard',
     component: UserLandingComponent,
+    canActivate: [UserAuthGuard],
     children: [
       {
         path: '',
@@ -47,6 +49,7 @@ const routes: Routes = [
   {
     path: 'adminDashboard',
     component: AdminLandingComponent,
+    canActivate: [AdminAuthGuard],
     children: [
       {
         path: '',

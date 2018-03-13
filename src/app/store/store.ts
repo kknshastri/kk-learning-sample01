@@ -3,14 +3,10 @@ import { Helper } from '../helper/helper';
 import * as userActions from '../action/user-actions';
 import * as adminActions from '../action/admin-actions';
 
-
 import { Question } from '../model/question.model';
 import { Section } from '../model/section.model';
 import { Questionnaire } from '../model/questionnaire.model';
-
 import { ResponseMapper } from '../effects/response.mapper';
-import { USER_LOGIN_FAILED } from '../action/user-actions';
-
 
 export interface AllQuestions {
     isLoading: boolean;
@@ -36,15 +32,15 @@ export interface UserStates {
     isTestInProgress?: boolean;
     isTestSubmitted?: boolean;
     isTestSubmitProgress: boolean;
-    testSubmitError: any,
-    testSubmitResult: any,
+    testSubmitError: any;
+    testSubmitResult: any;
     selectedSection?: any;
     currentQuestion?: any;
     currentSectionCounter: number;
     currentQuesCounter: number;
     allQuestions: AllQuestions;
-    nextPointer?: boolean;
     prevPointer?: boolean;
+    nextPointer?: boolean;
     testDuration: number;
 }
 export interface AdminStates {
@@ -97,13 +93,9 @@ export const INIT_STATE: AppState = {
         currentSectionCounter: 0,
         selectedSection: null,
         currentQuestion: null,
-        allQuestions: {
-            isLoading: false,
-            data: null,
-            error: null
-        },
-        nextPointer: true,
+        allQuestions: { isLoading: false, data: null, error: null },
         prevPointer: false,
+        nextPointer: false,
         testDuration: 0
     }
 };
@@ -183,7 +175,9 @@ export function rootReducer(state: AppState = INIT_STATE, action): AppState {
                 selectedSection: action.payload.question_set.sections_questions[0],
                 currentQuestion: action.payload.question_set.sections_questions[0].questions[0],
                 testStatus: 'started',
-                testDuration: action.payload.question_set.duration
+                testDuration: action.payload.question_set.duration,
+                nextPointer: ((action.payload.question_set.sections_questions.length === 1) &&
+                    (action.payload.question_set.sections_questions[0].questions.length === 1)) ? false : true
             })
         });
 
@@ -260,7 +254,8 @@ export function rootReducer(state: AppState = INIT_STATE, action): AppState {
                     currentSectionCounter: updateCounter.newSecCounter,
                     currentQuesCounter: updateCounter.newQuesCounter,
                     selectedSection: updatedQuestionSet.data.question_set.sections_questions[updateCounter.newSecCounter],
-                    currentQuestion: updatedQuestionSet.data.question_set.sections_questions[updateCounter.newSecCounter].questions[updateCounter.newQuesCounter],
+                    currentQuestion: updatedQuestionSet.data.question_set.sections_questions[updateCounter.newSecCounter]
+                        .questions[updateCounter.newQuesCounter],
                     allQuestions: updatedQuestionSet
                 })
             });
@@ -288,10 +283,6 @@ export function rootReducer(state: AppState = INIT_STATE, action): AppState {
                 testSubmitResult: null,
             })
         });
-
-
-        // testSubmitError: any,
-        // testSubmitResult: any,
 
 
         default: return state;

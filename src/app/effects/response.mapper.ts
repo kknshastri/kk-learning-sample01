@@ -1,5 +1,5 @@
 export class ResponseMapper {
-    constructor() {}
+    constructor() { }
 
     mapAllQuestions(requestData, expandedSecIdx, isToggle): any {
         return Object.assign({}, requestData, {
@@ -22,10 +22,10 @@ export class ResponseMapper {
         return Object.assign({}, allQues, {
             'question_set': Object.assign({}, allQues.question_set, {
                 'sections_questions': allQues.question_set.sections_questions.map((sec, secIdx) => {
-                    if (secIdx !== sectionIdx) return sec;
+                    if (secIdx !== sectionIdx) { return sec; }
                     return Object.assign({}, sec, {
                         'questions': sec.questions.map((ques, quesIdx) => {
-                            if (quesIdx !== questionIdx) return ques;
+                            if (quesIdx !== questionIdx) { return ques; }
                             return Object.assign({}, ques, {
                                 'isAnswered': !!ansOptions.length ? true : false,
                                 'answer': Object.assign({}, ques.answer, {

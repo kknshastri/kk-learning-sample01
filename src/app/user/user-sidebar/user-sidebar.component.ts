@@ -61,13 +61,14 @@ export class UserSidebarComponent implements OnInit, OnDestroy {
 
         const timerStatus = s.appState.userStates.timerStarted;
         if (timerStatus && !this.timerStarted) {
-          this.secondsInNumber = this.testDuration * 60;
+          this.secondsInNumber = this.testDuration * 60;   // Actual Test Duration from Questionnaire Set
+          // this.secondsInNumber = 5.1 * 60;    // For Testing purpose
           this.startTimer();
           this.timerStarted = true;
         }
 
         if (s.appState.userStates.testStatus === 'completed') {
-          if (!!this.timerSubscription) this.timerSubscription.unsubscribe();
+          if (!!this.timerSubscription) { this.timerSubscription.unsubscribe(); }
         } else if (!!s.appState.userStates.allQuestions.data) {
           this.testResponseData = s.appState.userStates.allQuestions.data;
         }
@@ -75,7 +76,7 @@ export class UserSidebarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (!!this.timerSubscription) this.timerSubscription.unsubscribe();
+    if (!!this.timerSubscription) { this.timerSubscription.unsubscribe(); }
   }
 
   selectedSection(SecIdx, sectionDetails) {
@@ -127,20 +128,18 @@ export class UserSidebarComponent implements OnInit, OnDestroy {
 
   autoSubmitAnswers() {
     clearInterval(this.clockInterval);
-    if (!!this.timerSubscription) this.timerSubscription.unsubscribe();
+    if (!!this.timerSubscription) { this.timerSubscription.unsubscribe(); }
 
     if (this.testSubmitStatus === 'started') {
       this.store.dispatch({
         type: userActions.TEST_SUBMITTED,
-        payload: Object.assign({}, this.testResponseData, { email: this.userEmail, user_id: this.userId, questionset_id: this.testResponseData.questionset_id, status: '' })
+        payload: Object.assign({}, this.testResponseData, {
+          email: this.userEmail, user_id: this.userId,
+          questionset_id: this.testResponseData.questionset_id, status: ''
+        })
       });
     }
   }
-
-  // sectionAnswered(sec): boolean {
-  //   console.log('Checking if all ques answered ---------=->>>');
-  //   return true;
-  // }
 
 
 }
