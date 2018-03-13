@@ -7,52 +7,52 @@ import * as userActions from '../../action/user-actions';
 
 
 @Component({
-  selector: 'app-home-landing',
-  templateUrl: './home-landing.component.html',
-  styleUrls: ['./home-landing.component.scss']
+	selector: 'app-home-landing',
+	templateUrl: './home-landing.component.html',
+	styleUrls: ['./home-landing.component.scss']
 })
 export class HomeLandingComponent implements OnInit, OnDestroy {
-  loginSubscription: any;
-  user = { email: '', pwd: '' };
-  validUser = false;
+	loginSubscription: any;
+	user = { email: '', pwd: '' };
+	validUser = false;
 
-  loginProgress: Observable<boolean>;
-  errorDetails: Observable<any>;
-  userName: Observable<string>;
+	loginProgress: Observable<boolean>;
+	errorDetails: Observable<any>;
+	userName: Observable<string>;
 
-  constructor(private store: Store<any>, private router: Router) {
-    this.loginProgress = store.pipe(select((s) => s.appState.loggedInUser.isLoginProgress));
-    this.errorDetails = store.pipe(select((s) => s.appState.loggedInUser.error));
-    this.userName = store.pipe(select((s) => s.appState.loggedInUser.name));
-  }
+	constructor(private store: Store<any>, private router: Router) {
+		this.loginProgress = store.pipe(select((s) => s.appState.loggedInUser.isLoginProgress));
+		this.errorDetails = store.pipe(select((s) => s.appState.loggedInUser.error));
+		this.userName = store.pipe(select((s) => s.appState.loggedInUser.name));
+	}
 
-  ngOnInit() {
-    this.loginSubscription = this.store.select<any>((state: any) => state)
-      .subscribe((s: any) => {
-        this.validUser = s.appState.loggedInUser.isValidUser;
-        if (this.validUser) {
-          if (!!this.loginSubscription) { this.loginSubscription.unsubscribe(); }
-          const userRole = s.appState.loggedInUser.role;
-          if (userRole === 'admin') {
-            this.router.navigate(['/adminDashboard']);
-          } else if (userRole === 'user') {
-            this.router.navigate(['/dashboard']);
-          }
-        } else {
-          this.validUser = false;
-        }
-      });
-  }
+	ngOnInit() {
+		this.loginSubscription = this.store.select<any>((state: any) => state)
+			.subscribe((s: any) => {
+				this.validUser = s.appState.loggedInUser.isValidUser;
+				if (this.validUser) {
+					if (!!this.loginSubscription) { this.loginSubscription.unsubscribe(); }
+					const userRole = s.appState.loggedInUser.role;
+					if (userRole === 'admin') {
+						this.router.navigate(['/adminDashboard']);
+					} else if (userRole === 'user') {
+						this.router.navigate(['/dashboard']);
+					}
+				} else {
+					this.validUser = false;
+				}
+			});
+	}
 
-  ngOnDestroy() {
-    if (!!this.loginSubscription) { this.loginSubscription.unsubscribe(); }
-  }
+	ngOnDestroy() {
+		if (!!this.loginSubscription) { this.loginSubscription.unsubscribe(); }
+	}
 
-  userLogin() {
-    this.store.dispatch({ type: userActions.USER_LOGIN, payload: { email: this.user.email, password: this.user.pwd } });
-  }
+	userLogin() {
+		this.store.dispatch({ type: userActions.USER_LOGIN, payload: { email: this.user.email, password: this.user.pwd } });
+	}
 
-  userRegister() {
-  }
+	userRegister() {
+	}
 
 }

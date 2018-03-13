@@ -23,22 +23,22 @@ export const QUESTION_LOAD_SUCCESS = 'QUESTION_LOAD_SUCCESS';
 export const QUESTION_LOAD_FAILED = 'QUESTION_LOAD_FAILED';
 
 export class UserLoginSuccess implements Action {
-    readonly type = USER_LOGIN_SUCCESS;
-    constructor(public payload: any) { }
+	readonly type = USER_LOGIN_SUCCESS;
+	constructor(public payload: any) { }
 }
 export class UserLoginFailed implements Action {
-    readonly type = USER_LOGIN_FAILED;
-    constructor(public payload: any) { }
+	readonly type = USER_LOGIN_FAILED;
+	constructor(public payload: any) { }
 }
 export class QuestionLoadSuccess implements Action {
-    readonly type = QUESTION_LOAD_SUCCESS;
-    constructor(public payload: any) { }
+	readonly type = QUESTION_LOAD_SUCCESS;
+	constructor(public payload: any) { }
 }
 export class TestSubmitSuccess implements Action {
-    readonly type = TEST_SUBMITTED_SUCCESS;
-    constructor(public payload: any) { }
+	readonly type = TEST_SUBMITTED_SUCCESS;
+	constructor(public payload: any) { }
 }
 export class TestSubmitFailed implements Action {
-    readonly type = TEST_SUBMITTED_FAILED;
-    constructor(public payload: any) { }
+	readonly type = TEST_SUBMITTED_FAILED;
+	constructor(public payload: any) { }
 }
