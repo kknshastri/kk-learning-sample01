@@ -1,0 +1,21 @@
+.card {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    min-height: 580px;
+    .card-header {
+        h4 {
+            display: inline-block;
+        }
+    }
+}
+.cardActionHeaderRow {
+    padding-bottom: 0;
+    flex: 0 1 auto;
+}
+.uploadButton {
+    width: auto;
+}
+.overrideOption {
+    display: inline;
+    width: 20px;
+}

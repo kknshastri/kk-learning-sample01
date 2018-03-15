@@ -1,0 +1,92 @@
+<div class="row marginLeftRightZero text-center">
+  <div class="col-12 paddingLeftRightZero">
+    <h5>Welcome Krishna!!</h5>
+  </div>
+</div>
+
+<div class="row marginLeftRightZero text-center">
+  <div class="col-12 paddingLeftRightZero">
+    <h5>Remaining Time!!</h5>
+  </div>
+  <div class="col-12 paddingLeftRightZero">
+    <h5>{{remainingTime}}</h5>
+  </div>
+</div>
+
+<div class="row marginLeftRightZero text-center sectionButtonRow">
+  <div class="col-12 paddingLeftRightZero">
+    <button type="button" class="btn btn-outline-success">Section - 1</button>
+  </div>
+  <div class="col-12 paddingLeftRightZero">
+    <div class="progress">
+      <div class="progress-bar bg-success" style="width:40%">
+        Done
+      </div>
+      <div class="progress-bar bg-warning" style="width:60%">
+        Pending
+      </div>
+      <!-- <div class="progress-bar bg-danger" style="width:20%">
+          Danger
+        </div> -->
+    </div>
+  </div>
+
+  <div class="col-12 paddingLeftRightZero">
+    <button type="button" class="btn btn-outline-success">Section - 2</button>
+  </div>
+  <div class="col-12 paddingLeftRightZero">
+    <div class="progress">
+      <div class="progress-bar bg-success" style="width:10%">
+        Done
+      </div>
+      <div class="progress-bar bg-warning" style="width:90%">
+        Pending
+      </div>
+      <!-- <div class="progress-bar bg-danger" style="width:20%">
+          Danger
+        </div> -->
+    </div>
+  </div>
+  <div class="col-12 paddingLeftRightZero">
+    <button type="button" class="btn btn-outline-success">Section - 3</button>
+  </div>
+  <div class="col-12 paddingLeftRightZero">
+    <div class="progress">
+      <div class="progress-bar bg-success" style="width:80%">
+        Done
+      </div>
+      <div class="progress-bar bg-warning" style="width:20%">
+        Pending
+      </div>
+      <!-- <div class="progress-bar bg-danger" style="width:20%">
+          Danger
+        </div> -->
+    </div>
+  </div>
+  <div class="col-12 paddingLeftRightZero">
+    <button type="button" class="btn btn-outline-success">Section - 4</button>
+  </div>
+  <div class="col-12 paddingLeftRightZero">
+    <div class="progress">
+      <div class="progress-bar bg-success" style="width:0%">
+        Done
+      </div>
+      <div class="progress-bar bg-warning" style="width:100%">
+        Pending
+      </div>
+      <!-- <div class="progress-bar bg-danger" style="width:20%">
+          Danger
+        </div> -->
+    </div>
+  </div>
+
+</div>
+
+<div class="row marginLeftRightZero text-center">
+  <div class="col-12 paddingLeftRightZero">
+    <h6>Name: {{name | async}}</h6>
+    <h6>Counter: {{counter | async}}
+      <span *ngIf="(counter | async) === 8">** Only when counter = 8</span>
+    </h6>
+  </div>
+</div>

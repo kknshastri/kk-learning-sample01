@@ -16,17 +16,48 @@
 
 .homeContentSection {
     background-color: #ffffff;
-    height: $contentSectionHeight;
-    padding: 15px;
+    height: $homeContentSectionHeight;
+    // padding: 15px;
     >.row {
         height: 100%;
         min-height: 300px;
         // border: .5px solid $contentBorderColor;
         overflow: auto;
         .loginContainer {
-            padding: 25px;
-            min-width: 490px;
-            max-width: 490px;
+            >.row {
+                height: 100%;
+            }
+            // background-color: rgba(153, 222, 200, 0.16);
+            padding: 50px;
+            min-width: 520px;
+            max-width: 520px;
+            .form-group {
+                margin-bottom: 35px;
+            }
+            h5 {
+                margin-bottom: 0;
+            }
+        }
+        .instructionSection {
+            padding: 25px 35px;
+            background-color: rgba(153, 222, 200, 0.16);
+            overflow: auto;
+            ul {
+                margin-bottom: 15px;
+                padding-left: 0;
+                li {
+                    font-size: 18px;
+                    // margin-bottom: 8px;
+                    list-style-type: none;
+                }
+            }
+            .thumbsUpIcon {
+                font-size: 72px;
+                color: $dark2;
+            }
+            h5 {
+                text-decoration: underline;
+            }
         }
     }
 }
@@ -53,6 +84,45 @@ button {
         &:hover {
             background-color: #ffc107;
             // border-color: #ffc107;
+        }
+    }
+}
+.showPopupButton {
+    padding: 1px;
+    margin-left: 55px;
+    background-color: transparent;
+}
+
+#loginPopupModal {
+    .modal-dialog {
+        top: 25%;
+    }
+    .modalCloseButton {
+        position: absolute;
+        top: 0;
+        left: 30px;
+        padding: 0;
+        &:hover {
+            cursor: default;
+        }
+        background-color: transparent;
+    }
+    .modal-body {
+        min-height: 165px;
+    }
+    .popupCloseBttn {
+        margin-top: 20px;
+    }
+    .preTimerDiv {
+        width: 160px;
+        height: 160px;
+        margin: 0 auto;
+        border: 1px solid $dark2;;
+        border-radius: 50%;
+        font-size: 80px;
+        padding-top: 16px;
+        p {
+            color: $dark2;
         }
     }
 }

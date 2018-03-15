@@ -1,0 +1,45 @@
+// Global Styles Here
+@import '../../shared/styles/common';
+
+.headerSection {
+    background-color: $headerBgColor;
+    height: $headerSectionHeight;
+    padding: $headerSectionPadding;
+    border-bottom: $headerBottomBorder;
+}
+
+.titleBarSection {
+    // border: 1px solid green;
+    background-color: $titlebarBgColor;
+    height: 55px;
+    margin-top: 3px;
+}
+.titlebarContainerLeft {
+    min-width: $leftSidebarMinWidth;
+    max-width: $leftSidebarMaxWidth;
+}
+
+.contentSection {
+    height: $adminContentSectionHeight;
+    overflow: auto;
+    >.row {
+        height: $adminContentSectionHeight;
+    }
+    .contentContainer {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        overflow: auto;
+    }
+}
+
+.leftSidebarContainer {
+    min-width: $leftSidebarMinWidth;
+    max-width: $leftSidebarMaxWidth;
+    background-color: $adminLeftSidebarBgColor;
+}
+
+// .footerSection {
+//     background-color: $footerBgColor;
+//     height: $footerSectionHeight;
+//     padding: $footerSectionPadding;
+// }

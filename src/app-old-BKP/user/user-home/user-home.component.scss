@@ -1,0 +1,19 @@
+// Global Styles Here
+@import '../../shared/styles/common';
+
+.homeRow {
+    min-height: 100%;
+    height: auto;
+    >div {
+        border: .5px solid $contentBorderColor;
+        padding: 25px;
+    }
+}
+.submittedLabel {
+    color: $dark2;
+}
+
+.loadingIcon {
+    width: 200px;
+    height: 200px;
+}

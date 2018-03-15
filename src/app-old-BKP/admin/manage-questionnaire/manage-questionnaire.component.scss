@@ -1,0 +1,84 @@
+.card {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    min-height: 580px;
+    .card-header {
+        h4 {
+            display: inline-block;
+        }
+        .createButton {
+            border-radius: 50%;
+        }
+        .createBadge {
+            font-size: 25px;
+            border-radius: 50%;
+            // background-color: #2eb98f;
+            // background-color: #99dfc8;
+            background-color: transparent;
+            border: 2px solid #2eb98f;
+            color: #2eb98f;
+            cursor: pointer;
+            padding: 0px 5px 3px 6.3px;
+            margin-right: 10px;
+        }
+    }
+}
+.cardActionHeaderRow {
+    padding-bottom: 0;
+    flex: 0 1 auto;
+}
+.searchBox {
+    width: 350px;
+    &:focus {
+        border-color: #2eb98f;
+    }
+}
+
+.table {
+    border: 2px solid #9ddeca;
+    thead {
+        th {
+            border: 1px solid #9ddeca;
+            border-bottom: 1px solid #9ddeca;
+        }
+    }
+    tbody {
+        tr {
+            td {
+                border: 1px solid #eceeef;
+            }
+            &:hover {
+                background-color: #e1f4ee;
+            }
+        }
+    }
+}
+
+.pagination {
+    display: inline-flex;
+    margin-top: 25px;
+    a, button {
+        color: #349965;
+        padding: 8px 22px;
+    }
+    button:focus {
+        outline: none;
+        background-color: #ffffff;
+    }
+    button:hover {
+        background-color: #e1f4ee;
+        cursor: pointer;
+    }
+}
+
+.actionIcon {
+    &:hover {
+        cursor: pointer;
+    }
+    &.view {
+        width: 35px;
+    }
+    &.edit {
+        width: 25px;
+    }
+}

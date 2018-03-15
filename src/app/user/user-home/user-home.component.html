@@ -1,51 +1,51 @@
 <!-- <div class="row marginLeftRightZero homeRow">
-  <div class="col text-center">
-    <h5>Test Submitted: {{isTestSubmitted | async}}</h5>
-  </div>
-</div> -->
+	<div class="col text-center">
+	<h5>Test Submitted: {{isTestSubmitted | async}}</h5>
+	</div>
+	</div> -->
 
 <div class="row marginLeftRightZero homeRow">
-  <!-- <div class="col-12 text-center" *ngIf="(isTestSubmitted | async)">
-    <p>&nbsp;</p>
-    <h5 class="submittedLabel">Your Test is submitted successfully.</h5>
-  </div> -->
+	<!-- <div class="col-12 text-center" *ngIf="(isTestSubmitted | async)">
+	<p>&nbsp;</p>
+	<h5 class="submittedLabel">Your Test is submitted successfully.</h5>
+	</div> -->
 
-  <div class="col-12 text-center" *ngIf="(testSubmitStatus === 'completed')">
-    <p>&nbsp;</p>
-    <h5 class="submittedLabel">Your Test is completed successfully.</h5>
-    <p *ngIf="!(scoreDetails | async)">Kindly contact admin or your POC for your score details.</p>
-    <div class="row" *ngIf="!!(scoreDetails | async)">
-      <!-- <div class="col">
-        <p>Your Score: {{(scoreDetails | async).user_score}}</p>
-        <p>Cutoff Percentage: {{(scoreDetails | async).cut_of_percentage}}</p>
-      </div> -->
+	<div class="col-12 text-center" *ngIf="(testSubmitStatus === 'completed')">
+		<p>&nbsp;</p>
+		<h5 class="submittedLabel">Your Test is completed successfully.</h5>
+		<p *ngIf="!(scoreDetails | async)">Kindly contact admin or your POC for your score details.</p>
+		<div class="row" *ngIf="!!(scoreDetails | async)">
+			<!-- <div class="col">
+	<p>Your Score: {{(scoreDetails | async).user_score}}</p>
+	<p>Cutoff Percentage: {{(scoreDetails | async).cut_of_percentage}}</p>
+	</div> -->
 
-    </div>
-  </div>
+		</div>
+	</div>
 
-  <div class="col-12 text-center" *ngIf="(testSubmitStatus === 'started')">
-    <p>&nbsp;</p>
-    <h5 class="submittedLabel">Your Test is already in progress somewhere else. Please contact your admin.</h5>
-  </div>
+	<div class="col-12 text-center" *ngIf="(testSubmitStatus === 'started')">
+		<p>&nbsp;</p>
+		<h5 class="submittedLabel">Your Test is already in progress somewhere else. Please contact your admin.</h5>
+	</div>
 
-  <div class="col-12 text-center" *ngIf="!(isTestSubmitted | async) && (testSubmitStatus === 'notstarted')">
-    <h5>Welcome!</h5>
-    <p>&nbsp;</p>
-    <p>Kindly read all the questions carefully and answer accordingly.</p>
-    <p>Kindly do not navigate to any other page once test starts.</p>
-    <p>Kindly do not Reload page or Refresh browser while test is in progress.</p>
-    <p>Save your answer before moving to next question.</p>
-    <p>Browse questions via navigation buttons or using left navigation.</p>
-    <p>-- All The Best --</p>
-    <p>&nbsp;</p>
-    <p *ngIf="!!(isQuesLoading | async)">Loading Questions...</p>
-    <!-- <p *ngIf="!!(isQuesLoading | async)"><img class="loadingIcon" src="assets/images/bgLoad.gif" alt="loading"></p> -->
-    <p *ngIf="!!(loadQuesError | async)" class="text-left errorMsg">
-      Something went wrong, please try again later or contact Admin.
-    </p>
-    <p>
-      <button *ngIf="!(isTestinProgress | async) && !(isTestSubmitted | async) && !(isQuesLoading | async)" type="button" class="btn btn-outline-success startTestButton"
-        (click)="startTest()">Click here to Start Test</button>
-    </p>
-  </div>
+	<div class="col-12 text-center" *ngIf="!(isTestSubmitted | async) && (testSubmitStatus === 'notstarted')">
+		<h5>Welcome!</h5>
+		<p>&nbsp;</p>
+		<p>Kindly read all the questions carefully and answer accordingly.</p>
+		<p>Kindly do not navigate to any other page once test starts.</p>
+		<p>Kindly do not Reload page or Refresh browser while test is in progress.</p>
+		<p>Save your answer before moving to next question.</p>
+		<p>Browse questions via navigation buttons or using left navigation.</p>
+		<p>-- All The Best --</p>
+		<p>&nbsp;</p>
+		<p *ngIf="!!(isQuesLoading | async)">Loading Questions...</p>
+		<!-- <p *ngIf="!!(isQuesLoading | async)"><img class="loadingIcon" src="assets/images/bgLoad.gif" alt="loading"></p> -->
+		<p *ngIf="!!(loadQuesError | async)" class="text-left errorMsg">
+			Something went wrong, please try again later or contact Admin.
+		</p>
+		<p>
+			<button *ngIf="!(isTestinProgress | async) && !(isTestSubmitted | async) && !(isQuesLoading | async)" type="button" class="btn btn-outline-success startTestButton"
+			 (click)="startTest()">Click here to Start Test</button>
+		</p>
+	</div>
 </div>

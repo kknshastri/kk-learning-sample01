@@ -1,0 +1,24 @@
+.headerRow {
+    position: relative;
+}
+.popupDiv {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+    transition: opacity 2s;
+    opacity: 0;
+    border: 1px solid gray;
+    background-color: aliceblue;
+    width: 300px;
+}
+.settingsButton {
+    // transition-duration: 2s;
+}
+.settingsButton:hover {
+    // transition-duration: 2s;
+    .popupDiv {
+        display: block;
+        opacity: 1
+    }
+}

@@ -1,0 +1,23 @@
+// Global Styles Here
+@import '../shared/styles/common';
+
+.questionRow {
+    // border: 1px solid green;
+    border-radius: 8px;
+    background-color: #e8e8e8;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    >.row {
+        margin-left: 0;
+        margin-right: 0;
+        .optionsRow {
+            margin: 5px 0;
+        }
+    }
+    input {
+        margin-top: 4px;
+        margin-right: 10px;
+    }
+}

@@ -1,0 +1,35 @@
+<div class="container-fluid headerSection">
+  <div class="row marginLeftRightZero">
+    <div class="col-12 padLeftRightZero">
+      <app-admin-header></app-admin-header>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid titleBarSection">
+  <div class="row marginLeftRightZero">
+    <div class="col-3 padLeftRightZero titlebarContainerLeft"></div>
+    <div class="col padLeftRightZero titlebarContainerRight">
+      <app-titlebar-section></app-titlebar-section>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid contentSection padLeftRightZero">
+  <div class="row marginLeftRightZero">
+    <div class="col-3 leftSidebarContainer padLeftRightZero">
+      <app-admin-sidebar></app-admin-sidebar>
+    </div>
+    <div class="col contentContainer">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container-fluid footerSection">
+  <div class="row marginLeftRightZero">
+    <div class="col-12">
+      <app-footer></app-footer>
+    </div>
+  </div>
+</div> -->

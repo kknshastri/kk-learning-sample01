@@ -39,7 +39,7 @@ export class QuestionnaireEffects {
 	loadQuestion: Observable<any> = this.action
 		.ofType(userActions.QUESTION_LOAD)
 		.switchMap((actionObject) =>
-			Observable.timer(500)
+			Observable.timer(1800)
 				.switchMap(() => {
 					return this.quesService.loadAllQuestions(actionObject['payload'])
 						.map((allQues) => new userActions.QuestionLoadSuccess(new ResponseMapper().mapAllQuestions(allQues, 0, false)))

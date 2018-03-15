@@ -6,28 +6,28 @@ import * as adminActions from '../../action/admin-actions';
 
 
 @Component({
-  selector: 'app-manage-users',
-  templateUrl: './manage-users.component.html',
-  styleUrls: ['./manage-users.component.scss']
+	selector: 'app-manage-users',
+	templateUrl: './manage-users.component.html',
+	styleUrls: ['./manage-users.component.scss']
 })
 export class ManageUsersComponent implements OnInit {
 
-  newUser = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: ''
-  };
+	newUser = {
+		firstName: '',
+		lastName: '',
+		email: '',
+		password: ''
+	};
 
-  constructor(private store: Store<any>) {
-    this.store.dispatch({ type: adminActions.SIDEMENU_SELECTED, payload: 'Users' });
-  }
+	constructor(private store: Store<any>) {
+		this.store.dispatch({ type: adminActions.SIDEMENU_SELECTED, payload: 'Users' });
+	}
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+	}
 
-  createUser() {
-    console.log('User create...');
-  }
+	createUser() {
+		console.log('User create...');
+	}
 
 }

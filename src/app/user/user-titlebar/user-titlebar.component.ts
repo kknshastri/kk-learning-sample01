@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-user-titlebar',
-  templateUrl: './user-titlebar.component.html',
-  styleUrls: ['./user-titlebar.component.scss']
+	selector: 'app-user-titlebar',
+	templateUrl: './user-titlebar.component.html',
+	styleUrls: ['./user-titlebar.component.scss']
 })
 export class UserTitlebarComponent implements OnInit {
 
-  constructor() { }
+	constructor() { }
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+	}
 
 }

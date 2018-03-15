@@ -1,0 +1,44 @@
+
+@import 'colors';
+@import 'dimensions';
+
+* {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica;
+    color: #6c6c6f;
+    font-weight: 200;
+}
+button, .btn {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica;
+    padding: 3px 15px;
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 0;
+    }
+}
+.padLeftRightZero {
+    padding-left: 0;
+    padding-right: 0;
+}
+.marginLeftRightZero {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.verticleSpace {
+    height: 10px;
+}
+
+.btn-outline-success {
+    border-color: #2eb98f;
+    cursor: pointer;
+    &:hover {
+        background-color: #2eb98f;
+    }
+}
+
+input.form-control:focus {
+    border-color: $dark2;
+}
+.errorMsg {
+    color: #ff0000;
+}

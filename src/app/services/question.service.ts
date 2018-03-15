@@ -9,31 +9,32 @@ import { catchError, map } from 'rxjs/operators';
 export class QuestionService {
 	constructor(private http: HttpClient) { }
 
-	// HTTP Call for User Login
-	userLogin(req): Observable<any> {
-		console.log('payload before service call', req);
-		return this.http.post(endpoints.loginApi, req)
+	// Common Headers configuration here
+
+	// Generic HTTP GET REQUEST
+	getRequest(url: string): Observable<any> {
+		return this.http.get(url)
 			.pipe(map((resp) => resp), catchError(this.handleError));
 	}
-
-	// HTTP Call for Load Questionsets
-	loadAllQuestions(req): Observable<any> {
-		return this.http.post(endpoints.loadQuestionApi, req)
+	// Generic HTTP POST REQUEST with optional header
+	postRequest(url: string, payload: any, header?: any): Observable<any> {
+		return this.http.post(url, payload, header)
 			.pipe(map((resp) => resp), catchError(this.handleError));
 	}
-
-	// HTTP Call for Test Submission
-	submitTest(req): Observable<any> {
-		return this.http.post(endpoints.submitTestApi, req)
-			.pipe(map((resp) => resp), catchError(this.handleError));
-	}
-
-
-
 	// Handle Error
 	private handleError(error: any): Promise<any> {
 		console.error('An error occurred', error);
 		return Promise.reject(error.message || error);
 	}
+
+
+	// Service Call for User Login
+	userLogin(req): Observable<any> { return this.postRequest(endpoints.loginApi, req); }
+	// Service Call for Load Questionsets
+	loadAllQuestions(req): Observable<any> { return this.postRequest(endpoints.loadQuestionApi, req); }
+	// Service Call for Test Submission
+	submitTest(req): Observable<any> { return this.postRequest(endpoints.submitTestApi, req); }
+
+
 }
 

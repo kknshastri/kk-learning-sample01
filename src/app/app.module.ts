@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -61,7 +62,7 @@ const appDeclarations: any = [
 @NgModule({
 	declarations: [...appDeclarations],
 	imports: [
-		BrowserModule, FormsModule, AppRoutingModule, HttpClientModule,
+		BrowserModule, FormsModule, AppRoutingModule, HttpClientModule, AngularFontAwesomeModule,
 		StoreModule.forRoot({ appState: rootReducer }), EffectsModule.forRoot([QuestionnaireEffects])
 	],
 	providers: [QuestionService, UserAuthGuard, AdminAuthGuard],

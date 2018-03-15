@@ -16,45 +16,61 @@
 
 <div class="container-fluid homeContentSection padLeftRightZero">
 	<div class="row marginLeftRightZero">
-		<div class="col"></div>
-		<div class="col align-self-center loginContainer">
+		<div class="col loginContainer">
 			<div class="row marginLeftRightZero">
-				<div class="col padLeftRightZero">
-					<form>
-						<div class="form-group row">
-							<label class="col-4 col-form-label"></label>
-							<div class="col-8">
-								<h5 class="titleLabel">User Login</h5>
-							</div>
+				<div class="col align-self-center">
+					<div class="row marginLeftRightZero">
+						<div class="col padLeftRightZero">
+							<form>
+								<div class="form-group row marginLeftRightZero">
+									<div class="col padLeftRightZero text-center">
+										<h5 class="titleLabel">Peach SAP Assesment</h5>
+									</div>
+								</div>
+								<div class="form-group">
+									<input type="email" class="form-control" name="userEmail" placeholder="Username" required [(ngModel)]="user.email" maxlength="60">
+								</div>
+								<div class="form-group">
+									<input type="password" class="form-control" name="userPassword" placeholder="password" required [(ngModel)]="user.pwd" maxlength="60">
+								</div>
+							</form>
 						</div>
-
-						<div class="form-group row">
-							<label class="col-4 col-form-label">User Name</label>
-							<div class="col-8">
-								<input type="email" class="form-control" name="userEmail" placeholder="" required [(ngModel)]="user.email" maxlength="60">
-							</div>
+					</div>
+					<div class="row">
+						<div class="col text-right">
+							<button type="button" class="btn btn-outline-success" (click)="userLogin()" [disabled]="!this.user.email.trim() || !this.user.pwd.trim() || (loginProgress | async)">Login</button>
 						</div>
-
-						<div class="form-group row">
-							<label class="col-4 col-form-label">Password</label>
-							<div class="col-8">
-								<input type="password" class="form-control" name="userPassword" placeholder="" required [(ngModel)]="user.pwd" maxlength="60">
-							</div>
-						</div>
-
-					</form>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-12 text-center errorMsg">&nbsp;{{(errorDetails | async)}}</div>
-				<!-- <div class="col-12 verticleSpace"></div> -->
-				<div class="col text-right">
-					<button type="button" class="btn btn-outline-success" (click)="userLogin()" [disabled]="!this.user.email.trim() || !this.user.pwd.trim() || (loginProgress | async)">Login</button>
-					<!-- <button type="button" class="btn btn-outline-success" (click)="userRegister()">Register</button> -->
+					</div>
+					<div class="row">
+						<button type="button" #showPopupButton class="btn showPopupButton" data-toggle="modal" data-target="#loginPopupModal">&nbsp;</button>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col"></div>
+		<div class="col instructionSection text-center">
+			<h5>Dos</h5>
+			<ul>
+				<li>1. Close all the Applications, Mails, Skype and Browsers before starting test</li>
+				<li>2. Kindly read all the questions carefully and answer accordingly</li>
+				<li>3. You have to finish Test in Single Login/Attempt only</li>
+				<li>4. Your Test will start automaticatlly after login</li>
+				<li>5. Browse questions via navigation buttons or choose question from left panel</li>
+				<li>6. Save your answers before moving to next question</li>
+				<li>7. Use reset button to clear your saved answers</li>
+				<li>8. Test will get auto submit after time over</li>
+			</ul>
+
+			<h5>Don'ts</h5>
+			<ul>
+				<li>1. Do not close browser without submitting your Test</li>
+				<li>1. Do not attempt to navigate any other page, tabs and applications etc</li>
+				<li>2. Do not Reload page or Refresh browser otherwise your test will get blocked</li>
+			</ul>
+			<span class="text-center">
+				<fa name="thumbs-o-up" class="thumbsUpIcon"></fa>
+			</span>
+			<h3 class="text-center">All The Best</h3>
+		</div>
 	</div>
 </div>
 
@@ -62,6 +78,39 @@
 	<div class="row marginLeftRightZero">
 		<div class="col-12">
 			<app-home-footer></app-home-footer>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid">
+	<div class="row marginLeftRightZero">
+		<div class="col-12">
+			<!-- Login popup Modal -->
+			<div class="modal fade" id="loginPopupModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content modelContent">
+						<div class="modal-body">
+							<div class="row marginLeftRightZero">
+								<div class="col-12 text-center">
+									<h5 *ngIf="!!modalTitleLabel" [ngClass]="[!!(errorDetails | async) ? 'errorMsg' : '']" [innerHTML]="modalTitleLabel"></h5>
+									<button type="button" #modalCloseButton class="close modalCloseButton" data-dismiss="modal" aria-label="Close">&nbsp;</button>
+								</div>
+								<div class="col-12 text-center errorMsg" *ngIf="!!(errorDetails | async)">{{(errorDetails | async)}}</div>
+
+								<div class="col-12 text-right" *ngIf="showCloseButton">
+									<button type="button" class="btn btn-outline-success popupCloseBttn" data-dismiss="modal" aria-label="Close">Close</button>
+								</div>
+								<div class="col-12" *ngIf="showCountdownTimer">
+									<div class="preTimerDiv text-center">
+										<p>{{preTimerValue}}</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 		</div>
 	</div>
 </div>

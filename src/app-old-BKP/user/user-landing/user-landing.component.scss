@@ -1,0 +1,43 @@
+// Global Styles Here
+@import '../../shared/styles/common';
+
+.headerSection {
+    background-color: $headerBgColor;
+    height: $headerSectionHeight;
+    padding: $headerSectionPadding;
+    border-bottom: $headerBottomBorder;
+}
+
+.userTitleBarSection {
+    background-color: $titlebarBgColor;
+    height: 55px;
+    margin-top: 3px;
+}
+
+.userContentSection {
+    height: $contentSectionHeight;
+    padding: 15px;
+    >.row {
+        height: 100%;
+        border: .5px solid $contentBorderColor;
+    }
+    .contentContainer {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        overflow: auto;
+    }
+    background-color: #ffffff;
+}
+
+.userSidebarContainer {
+    overflow-x: hidden;
+    overflow-y: auto;
+    // min-width: $userSidebarMinWidth;
+    // max-width: $userSidebarMaxWidth;
+    // background-color: $userSidebarBgColor;
+}
+.userFooterSection {
+    background-color: $footerBgColor;
+    height: $footerSectionHeight;
+    padding: $footerSectionPadding;
+}

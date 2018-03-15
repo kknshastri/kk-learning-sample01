@@ -15,26 +15,19 @@
 				((currQuestion | async).description !== (currQuestion | async).title)">
 				Description: {{(currQuestion | async).description}}
 			</div>
-
 			<div class="col-12 verticleSpace"></div>
-			<!-- <div class="col-12 verticleSpace"></div> -->
 
 			<div class="col-12">
-				<!-- Options and Answers here.. -->
-
 				<!-- Single Answer Type -->
 				<div class="row marginLeftRightZero" *ngIf="(currQuestion | async).question_type === 'single'">
 					<div class="col-12 padLeftRightZero">
 						<div class="row optionsRow marginLeftRightZero" *ngFor="let opt of (currQuestion | async).answer.answer_option">
-							<input type="radio" name="options-S" value="{{opt}}" (change)="singleAnswerChange($event)"
-								[checked]="(currQuestion | async).answer.answer_value.indexOf(opt) > -1"
-								[disabled]="(currQuestion | async).isAnswered">{{opt}}
+							<input type="radio" name="options-S" value="{{opt}}" [checked]="(currQuestion | async).answer.answer_value.indexOf(opt) > -1"
+							 [disabled]="(currQuestion | async).isAnswered" (change)="singleAnswerChange($event)">{{opt}}
 						</div>
 					</div>
 					<div class="col-12 verticleSpace"></div>
-					<div class="col-12 padLeftRightZero">
-						<!-- Selected Answers: {{!!(currQuestion | async).answer.answer_value.length ? (currQuestion | async).answer.answer_value : 'Not Attempted'}} -->
-					</div>
+
 				</div>
 
 				<!-- Multiple Answer Type -->
@@ -46,9 +39,6 @@
 						</div>
 					</div>
 					<div class="col-12 verticleSpace"></div>
-					<div class="col-12">
-						<!-- Selected Answers: {{!!ques.answerResponse.length ? (ques.answerResponse | json) : 'Not Attempted'}} -->
-					</div>
 				</div>
 
 				<!-- Text Answer Type -->
@@ -56,26 +46,21 @@
 					<div class="col-12">
 						<input type="text" name="options-T" value="" [(ngModel)]="ques.answerResponse">
 					</div>
-					<div class="col-12">
-						<!-- Selected Answers: {{!!ques.answerResponse ? ques.answerResponse : 'Not Attempted'}} -->
-					</div>
 				</div>
 
 			</div>
 
 			<div class="col-12 verticleSpace"></div>
-			<div class="col-12 padLeftRightZero">
+			<!-- <div class="col-12 padLeftRightZero">
 				isAnswered: {{(currQuestion | async).isAnswered}}
 			</div>
 
 			<div class="col-12 verticleSpace"></div>
 			<div class="col-12 padLeftRightZero">
 				User Response: {{(currQuestion | async).answer.answer_value | json}}
-			</div>
-
+			</div> -->
 		</div>
 	</div>
-
 
 </div>
 <div *ngIf="(isTestinProgress | async)" class="row marginLeftRightZero">

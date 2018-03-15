@@ -1,0 +1,111 @@
+// Global Styles Here
+@import '../../shared/styles/common';
+
+.timerContainer {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    >.col h3 {
+        margin-left: 8%;
+    }
+}
+
+// li:before {
+//     content: '\002B';
+//     margin-right: 4px;
+// }
+ul {
+    list-style-type: none;
+    padding-left: 5px;
+    li {
+        span {
+            // cursor: pointer;
+        }
+        ul {
+            padding-left: 25px;
+            li {
+                ul {
+                    padding-left: 30px;
+                    li {
+                        margin-top: 4px;
+                        font-size: 12.5px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        span {
+                            cursor: pointer;
+                            white-space: nowrap;
+                            font-weight: 400;
+                            &:before {
+                                content: '\002d';
+                                margin-right: 5px;
+                                color: $dark2;
+                                font-weight: 400;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.sectionTitle {
+    font-size: 14px;
+    font-family: "Helvetica Neue", Helvetica;
+}
+.questionnaireTitleIcon,
+.sectionTitleIcon {
+    margin-right: 5px;
+    color: $dark2;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: "Helvetica Neue", Helvetica;
+}
+.hideList {
+    display: none;
+}
+.questionnaireTitle {
+    color: #000000;
+    font-weight: 500;
+    font-family: "Helvetica Neue", Helvetica;
+    &.allAnswered {
+        color: $dark2;
+    }
+}
+.currentSec {
+    color: #000000;
+    font-weight: 500;
+    // font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica;
+    font-family: "Helvetica Neue", Helvetica;
+}
+.currentQues {
+    color: #000000;
+    font-weight: 500;
+    font-family: "Helvetica Neue", Helvetica;
+    // .answeredQues {
+    //     font-weight: 500;
+    // }
+}
+.answeredQues {
+    color: $dark2;
+    // font-weight: bold;
+    font-weight: 400;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica;
+    &.currentQues {
+        font-family: "Helvetica Neue", Helvetica;
+    }
+}
+
+.timerValue {
+    font-weight: 400;
+    color: $dark2;
+    &.warning1 {
+        color: orange;
+    }
+    &.warning2 {
+        color: red;
+    }
+}
+
+.answeredSection {
+    color: $dark2;
+}

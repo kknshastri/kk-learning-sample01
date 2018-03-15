@@ -1,24 +1,24 @@
 <div class="row marginLeftRightZero">
-  <div class="col padLeftRightZero">
-    <div class="list-group">
-      <button type="button" class="list-group-item list-group-item-action" [ngClass]="(activeMenu | async) === 'Questions' ? 'activeMenu' : ''"
-        (click)="manageQuestions()">Manage Questions</button>
-      <button type="button" class="list-group-item list-group-item-action" [ngClass]="(activeMenu | async) === 'Sections' ? 'activeMenu' : ''"
-        (click)="manageSections()">Manage Sections</button>
-      <button type="button" class="list-group-item list-group-item-action" [ngClass]="(activeMenu | async) === 'Questionnaire' ? 'activeMenu' : ''"
-        (click)="manageQuestionnaire()">Manage Questionnaire</button>
-      <button type="button" class="list-group-item list-group-item-action" [ngClass]="(activeMenu | async) === 'Users' ? 'activeMenu' : ''"
-        (click)="manageUsers()">Manage Users</button>
-      <button type="button" class="list-group-item list-group-item-action" [ngClass]="(activeMenu | async) === 'UploadQues' ? 'activeMenu' : ''"
-        (click)="uploadQuestions()">Upload Questions</button>
+	<div class="col padLeftRightZero">
+		<div class="list-group">
+			<button type="button" class="list-group-item list-group-item-action" [ngClass]="(activeMenu | async) === 'Questions' ? 'activeMenu' : ''"
+			 (click)="manageQuestions()">Manage Questions</button>
+			<button type="button" class="list-group-item list-group-item-action" [ngClass]="(activeMenu | async) === 'Sections' ? 'activeMenu' : ''"
+			 (click)="manageSections()">Manage Sections</button>
+			<button type="button" class="list-group-item list-group-item-action" [ngClass]="(activeMenu | async) === 'Questionnaire' ? 'activeMenu' : ''"
+			 (click)="manageQuestionnaire()">Manage Questionnaire</button>
+			<button type="button" class="list-group-item list-group-item-action" [ngClass]="(activeMenu | async) === 'Users' ? 'activeMenu' : ''"
+			 (click)="manageUsers()">Manage Users</button>
+			<button type="button" class="list-group-item list-group-item-action" [ngClass]="(activeMenu | async) === 'UploadQues' ? 'activeMenu' : ''"
+			 (click)="uploadQuestions()">Upload Questions</button>
 
-      <!-- <a role="button" class="list-group-item list-group-item-action" [routerLink]="['/adminDashboard/manageQues']">Manage Questions</a>
-      <a role="button" class="list-group-item list-group-item-action" [routerLink]="['/adminDashboard/manageSections']">Manage Sections</a>
-      <a role="button" class="list-group-item list-group-item-action" [routerLink]="['/adminDashboard/manageQuestionnaire']">Manage Questionnaire</a>
-      <a role="button" class="list-group-item list-group-item-action" [routerLink]="['/adminDashboard/manageUsers']">Manage Users</a> -->
+			<!-- <a role="button" class="list-group-item list-group-item-action" [routerLink]="['/adminDashboard/manageQues']">Manage Questions</a>
+	<a role="button" class="list-group-item list-group-item-action" [routerLink]="['/adminDashboard/manageSections']">Manage Sections</a>
+	<a role="button" class="list-group-item list-group-item-action" [routerLink]="['/adminDashboard/manageQuestionnaire']">Manage Questionnaire</a>
+	<a role="button" class="list-group-item list-group-item-action" [routerLink]="['/adminDashboard/manageUsers']">Manage Users</a> -->
 
-      <!-- <a role="button" class="list-group-item list-group-item-action" [routerLink]="['/adminDashboard/viewQuestionnaireRelation']">View Questionnaire</a> -->
+			<!-- <a role="button" class="list-group-item list-group-item-action" [routerLink]="['/adminDashboard/viewQuestionnaireRelation']">View Questionnaire</a> -->
 
-    </div>
-  </div>
+		</div>
+	</div>
 </div>
